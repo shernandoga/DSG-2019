@@ -2,9 +2,12 @@
 #include <iostream>
 #include "GameLogic.h"
 #include "System.h"
+#include "World.h"
 
-GameLogic::GameLogic()
+GameLogic::GameLogic(World& world)
+	: m_world(world)
 {
+	
 }
 
 
@@ -26,6 +29,7 @@ void GameLogic::processInput()
 
 		case 'a':
 			//Do whatever needs to be done when 'a' is pressed
+
 			break;
 		case 's':
 			//Do whatever needs to be done when 's' is pressed

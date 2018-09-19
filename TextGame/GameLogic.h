@@ -5,9 +5,9 @@ class World;
 
 class GameLogic
 {
-
+	World& m_world;
 public:
-	GameLogic();
+	GameLogic(World& world);
 	~GameLogic();
 
 	void processInput();

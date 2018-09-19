@@ -16,10 +16,6 @@ World::World(std::string nameFile)
 {
 	System::hideCursor();
 
-	//set a different random seed each execution so that coins don't always appear in the same location
-	int seed = (time(NULL)) % 100;
-	srand(seed);
-
 	//initialize the timer. We want to display the time elapsed since the game began in draw()
 	m_timer.start();
 
