@@ -17,6 +17,8 @@ GameLogic::~GameLogic()
 
 void GameLogic::processInput()
 {
+	//comentario inutil
+
 	if (!System::keyHit())
 		return; //no keyboard event to be processed
 
