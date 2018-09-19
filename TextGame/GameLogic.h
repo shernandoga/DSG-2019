@@ -10,7 +10,7 @@ class GameLogic
 	World world;
 
 public:
-	GameLogic();
+	GameLogic(World& world);
 	~GameLogic();
 
 	void processInput();
