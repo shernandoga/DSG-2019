@@ -8,7 +8,7 @@ class World
 	Timer m_timer;
 
 	void drawMaze();
-
+	
 public:
 	World(string nameFile);
 	~World();

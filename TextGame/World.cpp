@@ -32,7 +32,7 @@ World::~World()
 void World::draw()
 {
 	drawMaze();
-
+	
 	//TODO: -write the points each player has
 	
 
