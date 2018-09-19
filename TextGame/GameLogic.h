@@ -6,6 +6,9 @@ class World;
 class GameLogic
 {
 
+	Player player1, player2;
+	World world;
+
 public:
 	GameLogic();
 	~GameLogic();
