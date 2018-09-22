@@ -10,7 +10,14 @@
 #include "stdafx.h"
 #include <stdio.h>
 #include <istream>
+#include <fstream>
+using namespace std;
 
+#define NUM_POINTS 2
+
+struct point2D {
+	double x, y;
+};
 
 World::World(std::string nameFile)
 {
@@ -20,7 +27,9 @@ World::World(std::string nameFile)
 	m_timer.start();
 
 	//TODO: initalize everything else
-	//...
+	point2D pointsForReading[NUM_POINTS];
+	ReadFile("file", pointsForReading, NUM_POINTS);
+	PrintPoints(pointsForReading, NUM_POINTS);
 }
 
 
@@ -52,3 +61,26 @@ void World::drawMaze()
 	//we sleep for a while
 	std::this_thread::sleep_for(std::chrono::milliseconds(100));
 }
+
+void World::ReadFile(const char* filename, point2D * points, int numPoints)
+{
+	ifstream inputFile;
+	char c1, c2;
+	inputFile.open(filename, fstream::in);
+	if (inputFile.is_open()) {
+		for (int i=0; i < numPoints; i++) {
+			inputFile >> points[i].x >> c1 >> points[i].y >> c2;
+		}
+		inputFile.close();
+	}
+	else
+		cout << "Couldn't create the file: " << filename;
+}
+
+void World::PrintPoints(point2D * points, int numPoints)
+{
+	for (int i=0; i < numPoints; i++) {
+		cout << points[i].x << "," << points[i].y;
+	}
+}
+
