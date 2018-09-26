@@ -105,10 +105,10 @@ void World::drawMaze()
 
 Player& World::getPlayer1()
 {
-	return m_player1;
+	return a_player1;
 }
 
 Player& World::getPlayer2()
 {
-	return m_player2;
+	return a_player2;
 }

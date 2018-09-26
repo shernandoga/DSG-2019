@@ -8,8 +8,8 @@ using namespace std;
 class World
 {
 	Timer m_timer;
-	Player player1;
-	Player player2;
+	Player a_player1;
+	Player a_player2;
 
 	int m_width = 0, m_height = 0;
 	char m_blank = ' ', m_coin = ' ', m_player1 = ' ', m_player2 = ' ', m_wall = ' ';
