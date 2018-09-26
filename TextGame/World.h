@@ -16,5 +16,8 @@ public:
 	World(string nameFile);
 	~World();
 
+	Player& getPlayer1();
+	Player& getPlayer2();
+
 	void draw();
 };
