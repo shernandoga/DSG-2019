@@ -20,7 +20,7 @@ Player::~Player()
 
 void Player::moveUp()
 {
-	if this.gety()>0 
+	if (this->getY()>0) 
 	{c_y--;}
 	setpos(c_x, c_y);
 
@@ -28,21 +28,21 @@ void Player::moveUp()
 
 void Player::moveDown()
 { 
-	if this.gety() < 19
-	{c_y++:}
+	if (this->getY() < 19)
+	{c_y++; }
 	setpos(c_x, c_y);
 }
 
 void Player::moveRight()
 {
-	if this.getx() < 19
+	if (this->getX() < 19)
 	{c_x++;}
 	setpos(c_x, c_y);
 }
 
 void Player::moveLeft()
 {
-	if this.getx() > 0
+	if (this->getX() > 0)
 	{c_x--;}
 	setpos(c_x, c_y);
 }
