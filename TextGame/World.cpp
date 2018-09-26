@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <istream>
 #include <fstream>
+
+World* World::m_pInstance = nullptr;
 using namespace std;
 
 #define NUM_POINTS 7
@@ -21,6 +23,8 @@ struct point2D {
 
 
 World::World(std::string nameFile){
+	m_pInstance = this;
+
 	System::hideCursor();
 
 	//initialize the timer. We want to display the time elapsed since the game began in draw()
@@ -46,6 +50,7 @@ void World::draw(){
 	//		-set the proper position/color
 	std::cout << m_timer.getElapsedTime() << "   ";
 }
+
 
 
 void World::drawMaze(){
@@ -84,6 +89,15 @@ void World::ReadFile(const char* filename, point2D * points, int numPoints)
 		for (int i = 0; i < m_sizeX * m_sizeY; i++) {
 			inputFile >> c_aux;
 			m_maze[i] = c_aux;
+
+			if (c_aux == c_player1) {
+				player1.setcoord(i%m_sizeX, i / m_sizeX);					
+			}
+			if (c_aux == c_player2) {
+				player2.setcoord(i%m_sizeX, i / m_sizeX);
+			}
+
+
 		}
 		inputFile.close();
 	}

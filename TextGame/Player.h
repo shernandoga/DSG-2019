@@ -6,7 +6,7 @@ class Player
 public:
 	Player();
 	~Player();
-
+	void setcoord(int q, int w);
 	void moveUp();
 	void moveDown();
 	void moveRight();

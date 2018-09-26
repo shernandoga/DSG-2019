@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
+#include "World.h"
 
 
 Player::Player()
@@ -11,10 +12,16 @@ Player::~Player()
 {
 }
 
+void Player::setcoord(int q, int w) {
+	x = q;
+	y = w;
+
+}
+
 
 void Player::moveUp()
 {
-
+	//World::getInstance()->
 	if (x!=limitx) {
 		x = x + 1;
 	}

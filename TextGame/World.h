@@ -2,14 +2,18 @@
 #include "Timer.h"
 #include <string>
 #include <vector>
+#include "Player.h"
 using namespace std;
 
 class World
 {
+	static World* m_pInstance;
+
+
 	Timer m_timer;
 	vector<char> m_maze;
 	int m_sizeX, m_sizeY;
-
+	Player player1, player2;
 
 	struct point2D {
 		double x, y;
@@ -26,4 +30,6 @@ public:
 	~World();
 
 	void draw();
+
+	static World* getInstance() { return m_pInstance; }
 };
