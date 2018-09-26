@@ -11,7 +11,7 @@ class World
 		double x, y;
 	};
 
-   #define NUM_POINTS 2
+   #define NUM_POINTS 7
 
 	void drawMaze();
 	void ReadFile(const char* filename, point2D* points, int numPoints);
