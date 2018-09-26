@@ -21,23 +21,31 @@ Player::~Player()
 
 void Player::moveUp()
 {
-	c_y--;
+	if this.gety()>0 
+	{c_y--;}
+	setpos(c_x, c_y);
 
 }
 
 void Player::moveDown()
 { 
-	c_y++:
+	if this.gety() < 19
+	{c_y++:}
+	setpos(c_x, c_y);
 }
 
 void Player::moveRight()
 {
-	c_x++;
+	if this.getx() < 19
+	{c_x++;}
+	setpos(c_x, c_y);
 }
 
 void Player::moveLeft()
 {
-	c_x--;
+	if this.getx() > 0
+	{c_x--;}
+	setpos(c_x, c_y);
 }
 
 int Player::getX() {
