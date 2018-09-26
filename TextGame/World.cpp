@@ -41,14 +41,20 @@ void World::draw(){
 
 void World::drawMaze(){
 	System::clear();
-
+	for (int i = 0; i < 400; i++) {
+		m_maze.push_back(i);
+	}
 	//TODO: -draw the maze: walls and each of the cells
-	int posi;
+	int posi=0;
 	for (int i = 0; i < m_sizeY; i++){
 		for ( int j = 0; j < m_sizeX; j++){
-
-			std::cout << map[posi];
+			//std::string auxString << m_maze[posi];
+			std::cout << m_maze[posi];
+			posi++;
 		}
+		//std::cout << auxString;
+		//change line
+		std::cout << "\n";
 	}
 
 	//we sleep for a while

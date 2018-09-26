@@ -8,7 +8,7 @@
 
 int main()
 {
-	World world("file.csv");
+	World world("abc");
 	GameLogic gameLogic(world);
 
 	while (!gameLogic.gameHasEnded())
