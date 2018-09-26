@@ -23,5 +23,8 @@ public:
 	void ReadFile(std::string filename);
 
 
+	Player& getPlayer1();
+	Player& getPlayer2();
+
 	void draw();
 };

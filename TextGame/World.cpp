@@ -102,3 +102,13 @@ void World::drawMaze()
 	//we sleep for a while
 	std::this_thread::sleep_for(std::chrono::milliseconds(100));
 }
+
+Player& World::getPlayer1()
+{
+	return m_player1;
+}
+
+Player& World::getPlayer2()
+{
+	return m_player2;
+}

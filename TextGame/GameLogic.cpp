@@ -12,6 +12,9 @@ GameLogic::GameLogic(World& world)
 }
 
 
+
+
+
 GameLogic::~GameLogic()
 {
 }
@@ -30,34 +33,42 @@ void GameLogic::processInput()
 
 		case 'a':
 			//Do whatever needs to be done when 'a' is pressed
+			m_world.getPlayer1().moveLeft();
 			break;
 		case 's':
 			//Do whatever needs to be done when 's' is pressed
+			m_world.getPlayer1().moveDown();
 			break;
 		case 'w':
 			//Do whatever needs to be done when 's' is pressed
-			//player1.moveup();
+			m_world.getPlayer1().moveUp();
 			break;
 		case 'd':
 			//Do whatever needs to be done when 's' is pressed
+			m_world.getPlayer1().moveRight();
 			break;
 
 		case 'j':
 			//Do whatever needs to be done when 's' is pressed
+			m_world.getPlayer2().moveLeft();
 			break;
 		case 'k':
 			//Do whatever needs to be done when 's' is pressed
+			m_world.getPlayer2().moveDown();
 			break;
 		case 'i':
 			//Do whatever needs to be done when 's' is pressed
+			m_world.getPlayer2().moveUp();
 			break;
 		case 'l':
 			//Do whatever needs to be done when 's' is pressed
+			m_world.getPlayer2().moveRight();
 			break;
 
 		case 27:
 			//'Esc' key pressed. Exit the game
-			return;
+			//With this command we automatically exit of the program, cause this function is already programmed in a library
+			exit(0);
 		}
 	}
 }
