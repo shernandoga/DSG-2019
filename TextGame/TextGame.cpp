@@ -9,7 +9,6 @@
 int main()
 {
 	World world("file.csv");
-	GameLogic gameLogic(world%);
 	GameLogic gameLogic(world);
 
 	while (!gameLogic.gameHasEnded())

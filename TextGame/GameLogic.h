@@ -5,10 +5,7 @@ class World;
 
 class GameLogic
 {
-
-	Player player1, player2;
-	World world;
-
+	World& m_world;
 public:
 	GameLogic(World& world);
 	~GameLogic();
@@ -16,4 +13,3 @@ public:
 	void processInput();
 	bool gameHasEnded();
 };
-
