@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
-
+//Griffith !!!!!!
 int coins;
 int c_x;
 int c_y;
@@ -12,7 +12,6 @@ Player::Player()
 	c_y = 0;
 
 }
-
 
 Player::~Player()
 {
