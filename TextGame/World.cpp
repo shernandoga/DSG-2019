@@ -19,8 +19,7 @@ struct point2D {
 	double x, y;
 };
 
-World::World(std::string nameFile)
-{
+World::World(std::string nameFile){
 	System::hideCursor();
 
 	//initialize the timer. We want to display the time elapsed since the game began in draw()
@@ -33,13 +32,11 @@ World::World(std::string nameFile)
 }
 
 
-World::~World()
-{
+World::~World(){
 }
 
 
-void World::draw()
-{
+void World::draw(){
 	drawMaze();
 
 	//TODO: -write the points each player has
@@ -51,12 +48,17 @@ void World::draw()
 }
 
 
-void World::drawMaze()
-{
+void World::drawMaze(){
 	System::clear();
 
 	//TODO: -draw the maze: walls and each of the cells
+	int posi;
+	for (int i = 0; i < m_sizeY; i++){
+		for ( int j = 0; j < m_sizeX; j++){
 
+			std::cout << map[posi];
+		}
+	}
 
 	//we sleep for a while
 	std::this_thread::sleep_for(std::chrono::milliseconds(100));
