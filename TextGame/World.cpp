@@ -19,8 +19,7 @@ struct point2D {
 	double x, y;
 };
 
-World::World(std::string nameFile)
-{
+World::World(std::string nameFile){
 	System::hideCursor();
 
 	//initialize the timer. We want to display the time elapsed since the game began in draw()
@@ -30,17 +29,14 @@ World::World(std::string nameFile)
 	point2D pointsForReading[NUM_POINTS];
 	ReadFile("file.csv", pointsForReading, NUM_POINTS);
 	PrintPoints(pointsForReading, NUM_POINTS);
-
 }
 
 
-World::~World()
-{
+World::~World(){
 }
 
 
-void World::draw()
-{
+void World::draw(){
 	drawMaze();
 
 	//TODO: -write the points each player has
@@ -52,27 +48,38 @@ void World::draw()
 }
 
 
-void World::drawMaze()
-{
+void World::drawMaze(){
 	System::clear();
 
+	/*
 	//TODO: -draw the maze: walls and each of the cells
+	int posi;
+	for (int i = 0; i < m_sizeY; i++){
+		for ( int j = 0; j < m_sizeX; j++){
 
-
+			std::cout << m_maze[posi];
+		}
+	}
+	
 	//we sleep for a while
 	std::this_thread::sleep_for(std::chrono::milliseconds(100));
+	*/
 }
 
 void World::ReadFile(const char* filename, point2D * points, int numPoints)
 {
 	ifstream inputFile;
-	char c1, c2;
+	int x_max, y_max;
+	char c_empty, c_coin, c_player1, c_player2, c_wall, c_aux;
+	m_maze = vector<char>(400);
+
 	inputFile.open(filename, fstream::in);
-	if (inputFile.is_open())
-	{
-		for (int i=0; i < numPoints; i++) 
-		{
-			inputFile >> points[i].x >> c1 >> points[i].y >> c2;
+	if (inputFile.is_open()) {
+		//Reads the first row of the file
+		inputFile >> x_max >> c_aux >> y_max >> c_aux >> c_empty >> c_aux >> c_coin >> c_aux >> c_player1 >> c_aux >> c_player2 >> c_aux >> c_wall;
+		for (int i = 0; i < x_max * y_max; i++) {
+			inputFile >> c_aux;
+			m_maze[i] = c_aux;
 		}
 		inputFile.close();
 	}
