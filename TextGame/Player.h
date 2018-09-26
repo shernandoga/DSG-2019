@@ -14,6 +14,7 @@ public:
 	void moveDown();
 	void moveRight();
 	void moveLeft();
+	void setpos(int x, int y);
 	int getX();
 	int getY();
 	int getcoin();
