@@ -2,6 +2,7 @@
 
 class Player
 {
+	int x, y, coins, limitx,limity;
 public:
 	Player();
 	~Player();

@@ -19,6 +19,7 @@ struct point2D {
 	double x, y;
 };
 
+
 World::World(std::string nameFile){
 	System::hideCursor();
 
