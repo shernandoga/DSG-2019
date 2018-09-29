@@ -3,9 +3,10 @@
 #include "GameLogic.h"
 #include "System.h"
 #include "World.h"
+#include "Player.h"
 
-GameLogic::GameLogic(World& world)
-	: m_world(world)
+GameLogic::GameLogic(World& world, Player& player, Player& player2)
+	:m_world(world), m_player(player), m_player2(player2)
 {
 	
 }
@@ -17,7 +18,6 @@ GameLogic::~GameLogic()
 
 void GameLogic::processInput()
 {
-	//comentario inutil
 
 	if (!System::keyHit())
 		return; //no keyboard event to be processed
@@ -28,17 +28,22 @@ void GameLogic::processInput()
 		char c = System::getNextKey();
 		switch (c)
 		{
-
-		case 'a':
-			//Do whatever needs to be done when 'a' is pressed
-
-			break;
+		case 'w':
+			m_player.moveUp(); break;
 		case 's':
-			//Do whatever needs to be done when 's' is pressed
-			break;
-		//...
-		//...
-		//...
+			m_player.moveDown(); break;
+		case 'd':
+			m_player.moveRight(); break;
+		case 'a':
+			m_player.moveLeft(); break;
+		case '8':
+			m_player2.moveUp(); break;
+		case '2':
+			m_player2.moveDown(); break;
+		case '6':
+			m_player2.moveRight(); break;
+		case '4':
+			m_player2.moveLeft(); break;
 		case 27:
 			//'Esc' key pressed. Exit the game
 			return;
@@ -48,6 +53,8 @@ void GameLogic::processInput()
 
 bool GameLogic::gameHasEnded()
 {
-	//TODO: We need to check it the game has ended
+	/*if ((m_world.pointsP1 + m_world.pointsP2) == m_world.numCoins) {
+		return true;
+	}*/
 	return false;
 }

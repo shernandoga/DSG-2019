@@ -33,6 +33,10 @@ World::World(std::string nameFile){
 	//TODO: initalize everything else
 	point2D pointsForReading[NUM_POINTS];
 	ReadFile("file.csv", pointsForReading, NUM_POINTS);
+
+	pointsP1 = 0;
+	pointsP2 = 0;
+	numCoins = (m_sizeX * m_sizeY) / 10;
 }
 
 

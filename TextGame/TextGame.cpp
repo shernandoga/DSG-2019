@@ -9,7 +9,9 @@
 int main()
 {
 	World world("file.csv");
-	GameLogic gameLogic(world);
+	Player m_player1;
+	Player m_player2;
+	GameLogic gameLogic(world, m_player1, m_player2);
 
 	while (!gameLogic.gameHasEnded())
 	{

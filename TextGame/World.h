@@ -12,7 +12,7 @@ class World
 
 	Timer m_timer;
 	vector<char> m_maze;
-	int m_sizeX, m_sizeY;
+	int m_sizeX, m_sizeY, pointsP1, pointsP2, numCoins;
 	Player player1, player2;
 
 	struct point2D {
