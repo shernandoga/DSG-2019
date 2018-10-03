@@ -95,15 +95,6 @@ void Player::moveRight()
 
 void Player::moveLeft()
 {
-}
-
-void Player::addScore() {
-	score = score + 1;
-}
-
-int Player::getScore() {
-	return score;
-}
 
 	if (x != 0) {
 
@@ -116,3 +107,12 @@ int Player::getScore() {
 }
 
 
+}
+
+void Player::addScore() {
+	score = score + 1;
+}
+
+int Player::getScore() {
+	return score;
+}
