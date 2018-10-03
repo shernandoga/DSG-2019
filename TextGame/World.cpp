@@ -72,6 +72,18 @@ bool World::isplayer(char a) {
    
 	return a == c_player1 || a == c_player2;
 };
+void World::updateworld(int xold,int yold ,int xnew,int ynew) {
+
+	int posold = (yold*m_sizeX) + xold;
+	int posnew = (ynew*m_sizeX) + xnew;
+	char aux = m_maze[posold];
+	m_maze[posold] = c_empty;
+	m_maze[posnew] = aux;
+
+
+}
+
+
 bool World::isempty(char a) {
 
 	return a == c_empty;
@@ -112,6 +124,8 @@ void World::ReadFile(const char* filename, point2D * points, int numPoints)
 		inputFile >> m_sizeX >> c_aux >> m_sizeY >> c_aux >> c_empty >> c_aux >> c_coin >> c_aux >> c_player1 >> c_aux >> c_player2 >> c_aux >> c_wall;
 		//Defines de vector
 		m_maze = vector<char>(m_sizeX * m_sizeY);
+		player1.setlimit(m_sizeX, m_sizeY);
+		player2.setlimit(m_sizeX, m_sizeY);
 
 		//Reads the rest of the files and saves it into the vector
 		for (int i = 0; i < m_sizeX * m_sizeY; i++) {
