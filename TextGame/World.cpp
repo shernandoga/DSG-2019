@@ -95,17 +95,6 @@ void World::ReadFile(const char* filename, point2D * points, int numPoints)
 }
 
 void World::drawScore() {
-	//m_player1.addScore();
-	//m_player1.addScore();
-	m_player1.addScore();
-	System::setTextColor(Red,White);
-	std::cout << "Player 1: " << m_player1.getScore() << std::endl;
-	System::setTextColor(Blue, White);
-	std::cout << "Player 2: " << m_player2.getScore()<<std::endl;
-	System::setTextColor(Black, White);
-}
-
-void World::drawScore() {
 	m_player1.addScore();
 	System::setTextColor(Blue, White);
 	cout <<"Player 1: "<< m_player1.getScore()<<endl;
