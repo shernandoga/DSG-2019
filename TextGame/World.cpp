@@ -159,10 +159,14 @@ void World::ReadFile(const char* filename, point2D * points, int numPoints)
 }
 
 void World::drawScore() {
-	m_player1.addScore();
+	//player1.addScore();
 	System::setTextColor(Blue, White);
-	cout <<"Player 1: "<< m_player1.getScore()<<endl;
+	cout <<"Player 1: "<< player1.getScore()<<endl;
 	System::setTextColor(Red, White);
-	cout << "Player 2: " << m_player2.getScore() << endl;
+	cout << "Player 2: " << player2.getScore() << endl;
 	System::setTextColor(Black, White);
+}
+
+int World::getTotalCoins() {
+	return 15;
 }

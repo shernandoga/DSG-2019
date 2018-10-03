@@ -53,8 +53,15 @@ void GameLogic::processInput()
 
 bool GameLogic::gameHasEnded()
 {
-	/*if ((m_world.pointsP1 + m_world.pointsP2) == m_world.numCoins) {
+	if ((World::getInstance()->getPlayer(1).getScore() + World::getInstance()->getPlayer(2).getScore()) == World::getInstance()->getTotalCoins()) {
+		cout << "No quedan más monedas. El juego se ha terminado" << endl;
+
+		if (World::getInstance()->getPlayer(1).getScore() > World::getInstance()->getPlayer(2).getScore()) {
+			cout << "El jugador 1 (o) ha ganado !!!" << endl;
+		}
+		else
+			cout << "El jugador 2 (x) ha ganado !!!" << endl;
 		return true;
-	}*/
+	}
 	return false;
 }

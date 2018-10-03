@@ -10,7 +10,7 @@
 
 Player::Player()
 {
-	score = 0;
+	coins = 0;
 }
 
 
@@ -24,8 +24,8 @@ void Player::setcoord(int q, int w) {
 
 }
 void Player::setlimit(int q, int w) {
-	limitx = q;
-	limity = w;
+	limitx = q-1;
+	limity = w-1;
 
 }
 
@@ -107,12 +107,10 @@ void Player::moveLeft()
 }
 
 
-}
+//}
 
-void Player::addScore() {
-	score = score + 1;
-}
+
 
 int Player::getScore() {
-	return score;
+	return coins;
 }

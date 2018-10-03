@@ -35,7 +35,7 @@ public:
 	bool isempty(char a);
 	bool iscoin(char a);
 	void updateworld(int xold, int yold, int xnew, int ynew);
-
+	int World::getTotalCoins();
 	bool isplayer(char a);
 	void draw();
 
