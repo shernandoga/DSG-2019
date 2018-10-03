@@ -38,6 +38,7 @@ World::~World(){
 
 void World::draw(){
 	System::clear();
+	
 	drawScore();
 	
 	drawMaze();
@@ -48,7 +49,7 @@ void World::draw(){
 
 	//TODO: -write the time elapsed since the beginning
 	//		-set the proper position/color
-	std::cout << m_timer.getElapsedTime() << "   ";
+	
 }
 
 
@@ -66,7 +67,8 @@ void World::drawMaze(){
 		//change line
 		std::cout << "\n";
 	}
-	
+	System::setTextColor(Green, White);
+	std::cout << "Time: " << (int)m_timer.getElapsedTime() << "   " << endl;
 	//we sleep for a while
 	std::this_thread::sleep_for(std::chrono::milliseconds(100));
 }
