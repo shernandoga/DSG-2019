@@ -58,11 +58,11 @@ bool Player::movegeneral (int x1, int  y1) {
 
 void Player::moveUp()
 {
-	if (x!=limitx) {
-		if (movegeneral(x + 1, y))
+	if (y!=0) {
+		if (movegeneral(x, y-1))
 		{
-			World::getInstance()->updateworld(x, y, x + 1, y);
-			x++;
+			World::getInstance()->updateworld(x, y, x, y-1);
+			y--;
 		};
 	}
 
@@ -72,22 +72,22 @@ void Player::moveUp()
 void Player::moveDown()
 { 
 
-	if (x != 0) {
-		if (movegeneral(x -1, y))
+	if (y != limity) {
+		if (movegeneral(x, y+1))
 		{
-
-			World::getInstance()->updateworld(x, y, x - 1, y);
-			x--;
+			World::getInstance()->updateworld(x, y, x, y+1);
+			y++;
 		};
 	}
 }
 
 void Player::moveRight()
 {
-	if (y != limity) {
-		if (movegeneral(x, y+1))
+	if (x != limitx) {
+		if (movegeneral(x+1, y))
 		{
-			y++;
+			World::getInstance()->updateworld(x, y, x+1, y);
+			x++;
 		};
 	}
 }
@@ -95,11 +95,12 @@ void Player::moveRight()
 void Player::moveLeft()
 {
 
-	if (y != 0) {
+	if (x != 0) {
 
-		if (movegeneral(x, y-1))
+		if (movegeneral(x-1, y))
 		{
-			y--;
+			World::getInstance()->updateworld(x, y, x-1, y);
+			x--;
 		};
 	}
 }

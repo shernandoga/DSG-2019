@@ -5,10 +5,10 @@
 #include "World.h"
 #include "Player.h"
 
-GameLogic::GameLogic(World& world, Player& player, Player& player2)
-	:m_world(world), m_player(player), m_player2(player2)
+GameLogic::GameLogic(World& world)
+	:m_world(world)
 {
-	
+
 }
 
 
@@ -29,24 +29,24 @@ void GameLogic::processInput()
 		switch (c)
 		{
 		case 'w':
-			m_player.moveUp(); break;
+			World::getInstance()->getPlayer(1).moveUp(); break;
 		case 's':
-			m_player.moveDown(); break;
+			World::getInstance()->getPlayer(1).moveDown(); break;
 		case 'd':
-			m_player.moveRight(); break;
+			World::getInstance()->getPlayer(1).moveRight(); break;
 		case 'a':
-			m_player.moveLeft(); break;
+			World::getInstance()->getPlayer(1).moveLeft(); break;
 		case '8':
-			m_player2.moveUp(); break;
+			World::getInstance()->getPlayer(2).moveUp(); break;
 		case '2':
-			m_player2.moveDown(); break;
+			World::getInstance()->getPlayer(2).moveDown(); break;
 		case '6':
-			m_player2.moveRight(); break;
+			World::getInstance()->getPlayer(2).moveRight(); break;
 		case '4':
-			m_player2.moveLeft(); break;
+			World::getInstance()->getPlayer(2).moveLeft(); break;
 		case 27:
 			//'Esc' key pressed. Exit the game
-			return;
+			exit(0);
 		}
 	}
 }

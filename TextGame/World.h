@@ -40,5 +40,7 @@ public:
 	bool isplayer(char a);
 	void draw();
 
+	Player& getPlayer(int p);
+
 	static World* getInstance() { return m_pInstance; }
 };

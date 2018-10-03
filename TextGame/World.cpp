@@ -83,6 +83,13 @@ void World::updateworld(int xold,int yold ,int xnew,int ynew) {
 
 }
 
+Player& World::getPlayer(int p)
+{
+	if (p == 1)
+		return player1;
+	else if (p == 2)
+		return player2;
+}
 
 bool World::isempty(char a) {
 
