@@ -76,5 +76,6 @@ void GameLogic::processInput()
 bool GameLogic::gameHasEnded()
 {
 	//TODO: We need to check it the game has ended
-	return false;
+	return m_world.getTotalCoins() 
+		== (m_world.getPlayer1().getcoin() + m_world.getPlayer2().getcoin());
 }

@@ -157,18 +157,18 @@ int World::getMaxHeight()
 
 bool World::isCoin(int x, int y)
 {
-	return (m_maze[(x*m_width) + y] == m_coin);
+	return (m_maze[(y*m_width) + x] == m_coin);
 }
 
 bool World::isWall(int x, int y)
 {
-	return (m_maze[(x*m_width) + y] == m_wall);
+	return (m_maze[(y*m_width) + x] == m_wall);
 }
 
 bool World::isPlayer(int x, int y)
 {
-	return (m_maze[(x*m_width) + y] == m_player1)
-		|| (m_maze[(x*m_width) + y] == m_player2);
+	return (m_maze[(y*m_width) + x] == m_player1)
+		|| (m_maze[(y*m_width) + x] == m_player2);
 }
 
 void World::clearPosition(int x, int y)
