@@ -38,21 +38,22 @@ World::~World(){
 void World::draw(){
 	System::clear();
 	
+	drawScore();
+	
+	drawMaze();
 
 	//TODO: -write the points each player has
-	drawScore();
-
-	drawMaze();
+	
+	
 
 	//TODO: -write the time elapsed since the beginning
 	//		-set the proper position/color
-	std::cout << m_timer.getElapsedTime() << "   ";
+	
 }
 
 
 void World::drawMaze(){
-	
-
+		
 	//TODO: -draw the maze: walls and each of the cells
 	int posi=0;
 	for (int i = 0; i < m_sizeY; i++){
@@ -64,7 +65,8 @@ void World::drawMaze(){
 		//Change line
 		std::cout << "\n";
 	}
-
+	System::setTextColor(Green, White);
+	std::cout << "Time: " << (int)m_timer.getElapsedTime() << "   " << endl;
 	//we sleep for a while
 	std::this_thread::sleep_for(std::chrono::milliseconds(100));
 }
@@ -103,3 +105,11 @@ void World::drawScore() {
 	System::setTextColor(Black, White);
 }
 
+void World::drawScore() {
+	m_player1.addScore();
+	System::setTextColor(Blue, White);
+	cout <<"Player 1: "<< m_player1.getScore()<<endl;
+	System::setTextColor(Red, White);
+	cout << "Player 2: " << m_player2.getScore() << endl;
+	System::setTextColor(Black, White);
+}

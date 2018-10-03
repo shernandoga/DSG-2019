@@ -28,10 +28,10 @@ void Player::moveLeft()
 {
 }
 
-int Player::getScore() {
-	return score;
+void Player::addScore() {
+	score = score + 1;
 }
 
-void Player::addScore() {
-	score=score+1;
+int Player::getScore() {
+	return score;
 }
