@@ -31,7 +31,9 @@ public:
 	int getMaxHeight();
 	bool isCoin(int x, int y);
 	bool isWall(int x, int y);
-	void updatePosition(int x, int y);
+	bool isPlayer(int x, int y);
+	void clearPosition(int x, int y);
+	void updatePosition(int x, int y, char player);
 
 	void draw();
 

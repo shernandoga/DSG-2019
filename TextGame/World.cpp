@@ -62,13 +62,14 @@ World::World(std::string nameFile)
 	// TODO init players position
 	for (int x = 0; x < m_height; x++) {
 		for (int y = 0; y < m_width; y++) {
-			if (m_maze[(x*m_width)+y] == m_player1)
+			if (m_maze[(y*m_width)+x] == m_player1)
 				getPlayer1().setpos(x, y);
-			else if (m_maze[(x*m_width) + y] == m_player2)
+			else if (m_maze[(y*m_width) + x] == m_player2)
 				getPlayer2().setpos(x, y);
 		}
 	}
-
+	getPlayer1().setid(m_player1);
+	getPlayer2().setid(m_player2);
 }
 
 
@@ -164,7 +165,17 @@ bool World::isWall(int x, int y)
 	return (m_maze[(x*m_width) + y] == m_wall);
 }
 
-void World::updatePosition(int x, int y)
+bool World::isPlayer(int x, int y)
 {
-	m_maze[(x*m_width) + y] = 'W';
+	return (m_maze[(x*m_width) + y] == m_player1)
+		|| (m_maze[(x*m_width) + y] == m_player2);
+}
+
+void World::clearPosition(int x, int y)
+{
+	m_maze[(y*m_width) + x] = m_blank;
+}
+void World::updatePosition(int x, int y, char player)
+{
+	m_maze[(y*m_width) + x] = player;
 }
