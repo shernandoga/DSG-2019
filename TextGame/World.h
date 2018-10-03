@@ -36,6 +36,7 @@ public:
 	void updatePosition(int x, int y, char player);
 
 	void draw();
+	void finishGame();
 
 	static World* getInstance() { return m_pInstance; }
 };

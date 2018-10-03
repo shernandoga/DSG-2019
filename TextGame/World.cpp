@@ -32,10 +32,6 @@ void World::ReadFile(std::string filename)
 		for (int x = 0; x < m_height; x++) {
 			for (int y = 0; y < m_width; y++) {
 				inputFile >> c;
-				if (c == m_player1)
-					getPlayer1().setpos(x, y);
-				if (c == m_player2)
-					getPlayer2().setpos(x, y);
 				m_maze.push_back(c);
 			}
 			getline(inputFile, line);
@@ -57,11 +53,11 @@ World::World(std::string nameFile)
 	//initialize the timer. We want to display the time elapsed since the game began in draw()
 	m_timer.start();
 
-	//TODO: initalize everything else
+	//initalize everything else
 	ReadFile(nameFile);
-	// TODO init players position
-	for (int x = 0; x < m_height; x++) {
-		for (int y = 0; y < m_width; y++) {
+	// init players position
+	for (int x = 0; x < m_width; x++) {
+		for (int y = 0; y < m_height; y++) {
 			if (m_maze[(y*m_width)+x] == m_player1)
 				getPlayer1().setpos(x, y);
 			else if (m_maze[(y*m_width) + x] == m_player2)
@@ -72,11 +68,9 @@ World::World(std::string nameFile)
 	getPlayer2().setid(m_player2);
 }
 
-
 World::~World()
 {
 }
-
 
 void World::draw()
 {
@@ -96,7 +90,7 @@ void World::drawMaze()
 	System::clear();
 
 	// print scoreboard with players scores and elapsed time
-	cout << "  ";
+	cout << "\n  ";
 	cout << "P1: " << getPlayer1().getcoin();
 	cout << "   ";
 	cout << "P2: " << getPlayer2().getcoin();
@@ -104,7 +98,7 @@ void World::drawMaze()
 	cout << m_timer.getElapsedTime();
 	cout << '\n' << '\n';
 
-	//TODO: -draw the maze: walls and each of the cells
+	// -draw the maze: walls and each of the cells
 	//print the maze in the screen
 	cout << ' ' << '|';
 	for (int x = 0; x < m_width; x++)
@@ -128,6 +122,25 @@ void World::drawMaze()
 
 	//we sleep for a while
 	std::this_thread::sleep_for(std::chrono::milliseconds(100));
+}
+void World::finishGame()
+{
+	System::clear();
+
+	std::cout << '\n';
+	std::cout << " ############################\n ####   ";
+	if (getPlayer1().getcoin() < getPlayer2().getcoin())
+		std::cout << "PLAYER 2 WIN !";
+	else
+		std::cout << "PLAYER 1 WIN !";
+	std::cout << "   ####\n ############################";
+
+	cout << "\n\n exiting... ";
+	for (int countdown = 5; countdown >= 0; countdown--) {
+		std::this_thread::sleep_for(std::chrono::milliseconds(1 * 1000));
+		cout << countdown;
+	}
+
 }
 
 Player& World::getPlayer1()
