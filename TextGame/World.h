@@ -10,6 +10,7 @@ class World
 	static World* m_pInstance;
 
 
+	char c_empty, c_coin, c_player1, c_player2, c_wall, c_aux;
 	Timer m_timer;
 	vector<char> m_maze;
 	int m_sizeX, m_sizeY, pointsP1, pointsP2, numCoins;
@@ -24,11 +25,18 @@ class World
 	void drawMaze();
 	void ReadFile(const char* filename, point2D* points, int numPoints);
 	void PrintPoints(point2D* points, int numPoints);
+	
+
 
 public:
 	World(string nameFile);
 	~World();
+	char checkbox(int x, int y);
+	bool iswall(char a);
+	bool isempty(char a);
+	bool iscoin(char a);
 
+	bool isplayer(char a);
 	void draw();
 
 	static World* getInstance() { return m_pInstance; }

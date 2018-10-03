@@ -21,6 +21,8 @@ struct point2D {
 	double x, y;
 };
 
+char c_empty, c_coin, c_player1, c_player2, c_wall, c_aux;
+
 
 World::World(std::string nameFile){
 	m_pInstance = this;
@@ -55,6 +57,36 @@ void World::draw(){
 	std::cout << m_timer.getElapsedTime() << "   ";
 }
 
+char World::checkbox(int x, int y){
+
+	//y*msizex+x
+	int k = (y*m_sizeX) + x;
+	return m_maze[k];
+
+
+}
+
+bool World::iswall(char a) {
+
+	return a == c_wall;
+}; 
+bool World::isplayer(char a) {
+
+	   
+	return a == c_player1 || a == c_player2;
+};
+bool World::isempty(char a) {
+
+	return a == c_empty;
+};
+bool World::iscoin(char a) {
+	return a == c_coin;
+};
+
+
+
+
+
 
 
 void World::drawMaze(){
@@ -80,7 +112,7 @@ void World::drawMaze(){
 void World::ReadFile(const char* filename, point2D * points, int numPoints)
 {
 	ifstream inputFile;
-	char c_empty, c_coin, c_player1, c_player2, c_wall, c_aux;
+	//char c_empty, c_coin, c_player1, c_player2, c_wall, c_aux;
 
 	inputFile.open(filename, fstream::in);
 	if (inputFile.is_open()) {

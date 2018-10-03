@@ -2,7 +2,7 @@
 
 class Player
 {
-	int x, y, coins, limitx,limity;
+	int x, y, coins=0, limitx,limity;
 public:
 	Player();
 	~Player();
@@ -11,5 +11,6 @@ public:
 	void moveDown();
 	void moveRight();
 	void moveLeft();
+	bool movegeneral(int x1, int y1);
 };
 
