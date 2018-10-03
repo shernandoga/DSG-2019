@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
-#include "world.h"
+#include "World.h"
 //Griffith !!!!!!
 int coins;
 int c_x;
@@ -24,7 +24,7 @@ void Player::moveUp()
 	if (this->getY()>0) 
 	{c_y--;}
 	setpos(c_x, c_y);
-
+	//World::getInstance()->updatePosition(c_x, c_y);
 }
 
 void Player::moveDown()
@@ -32,6 +32,8 @@ void Player::moveDown()
 	if (this->getY() < 19)
 	{c_y++; }
 	setpos(c_x, c_y);
+	//World::getInstance()->updatePosition(c_x, c_y);
+
 }
 
 void Player::moveRight()

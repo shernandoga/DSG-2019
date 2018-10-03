@@ -13,6 +13,8 @@
 #include <istream>
 #include <vector>
 
+World* World::m_pInstance;
+
 void World::ReadFile(std::string filename)
 {
 	cout << "Reading config file: " << filename << "\n";
@@ -30,27 +32,43 @@ void World::ReadFile(std::string filename)
 		for (int x = 0; x < m_height; x++) {
 			for (int y = 0; y < m_width; y++) {
 				inputFile >> c;
+				if (c == m_player1)
+					getPlayer1().setpos(x, y);
+				if (c == m_player2)
+					getPlayer2().setpos(x, y);
 				m_maze.push_back(c);
 			}
 			getline(inputFile, line);
 		}
+		m_totalCoins = count(m_maze.begin(), m_maze.end(), m_coin);
 
 		inputFile.close();
 	}
 	else
-		cout << "Couldn't create file: " << filename;
+		cout << "Couldn't open file: " << filename;
 }
 
 World::World(std::string nameFile)
 {
+	m_pInstance = this;
+
 	System::hideCursor();
 
 	//initialize the timer. We want to display the time elapsed since the game began in draw()
 	m_timer.start();
 
 	//TODO: initalize everything else
-	//...
 	ReadFile(nameFile);
+	// TODO init players position
+	for (int x = 0; x < m_height; x++) {
+		for (int y = 0; y < m_width; y++) {
+			if (m_maze[(x*m_width)+y] == m_player1)
+				getPlayer1().setpos(x, y);
+			else if (m_maze[(x*m_width) + y] == m_player2)
+				getPlayer2().setpos(x, y);
+		}
+	}
+
 }
 
 
@@ -61,6 +79,7 @@ World::~World()
 
 void World::draw()
 {
+
 	drawMaze();
 	
 	//TODO: -write the points each player has
@@ -71,22 +90,29 @@ void World::draw()
 	std::cout << m_timer.getElapsedTime() << "   ";
 }
 
-
 void World::drawMaze()
 {
 	System::clear();
 
+	// print scoreboard with players scores and elapsed time
+	cout << "  ";
+	cout << "P1: " << getPlayer1().getcoin();
+	cout << "   ";
+	cout << "P2: " << getPlayer2().getcoin();
+	cout << "   ";
+	cout << m_timer.getElapsedTime();
+	cout << '\n' << '\n';
+
 	//TODO: -draw the maze: walls and each of the cells
 	//print the maze in the screen
-	cout << '|';
+	cout << ' ' << '|';
 	for (int x = 0; x < m_width; x++)
 		cout << "-";
-
-	cout << '|' << '\n' << '|';
+	cout << '|' << '\n' << ' ' << '|';
+	
 	for (int x = 0; x < (m_height*m_width); x++) {
-		//c = ;
 		if (x%m_width == 0 && x != 0)
-			cout << '|' << "\n" << '|';
+			cout << '|' << "\n" << ' ' << '|';
 
 		if (m_maze.at(x) == m_blank)
 			cout << ' ';
@@ -94,10 +120,10 @@ void World::drawMaze()
 			cout << m_maze.at(x);
 	}
 
-	cout << '|' << "\n" << '|';
+	cout << '|' << "\n" << ' ' << '|';
 	for (int x = 0; x < m_width; x++)
 		cout << "-";
-	cout << '|' << "\n";
+	cout << '|' << ' ' << "\n";
 
 	//we sleep for a while
 	std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -111,4 +137,34 @@ Player& World::getPlayer1()
 Player& World::getPlayer2()
 {
 	return a_player2;
+}
+
+int World::getTotalCoins()
+{
+	return m_totalCoins;
+}
+
+int World::getMaxWidth()
+{
+	return m_width;
+}
+
+int World::getMaxHeight()
+{
+	return m_height;
+}
+
+bool World::isCoin(int x, int y)
+{
+	return (m_maze[(x*m_width) + y] == m_coin);
+}
+
+bool World::isWall(int x, int y)
+{
+	return (m_maze[(x*m_width) + y] == m_wall);
+}
+
+void World::updatePosition(int x, int y)
+{
+	m_maze[(x*m_width) + y] = 'W';
 }
