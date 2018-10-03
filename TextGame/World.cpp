@@ -37,9 +37,13 @@ World::~World(){
 
 
 void World::draw(){
+	System::clear();
+	drawScore();
+	
 	drawMaze();
 
 	//TODO: -write the points each player has
+	
 	
 
 	//TODO: -write the time elapsed since the beginning
@@ -49,9 +53,7 @@ void World::draw(){
 
 
 void World::drawMaze(){
-	System::clear();
-
-	
+		
 	//TODO: -draw the maze: walls and each of the cells
 	int posi=0;
 	for (int i = 0; i < m_sizeY; i++){
@@ -97,3 +99,11 @@ void World::PrintPoints(point2D * points, int numPoints)
 	}
 }*/
 
+void World::drawScore() {
+	m_player1.addScore();
+	System::setTextColor(Blue, White);
+	cout <<"Player 1: "<< m_player1.getScore()<<endl;
+	System::setTextColor(Red, White);
+	cout << "Player 2: " << m_player2.getScore() << endl;
+	System::setTextColor(Black, White);
+}
