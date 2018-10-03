@@ -35,6 +35,7 @@ public:
 	bool iswall(char a);
 	bool isempty(char a);
 	bool iscoin(char a);
+	void updateworld(int xold, int yold, int xnew, int ynew);
 
 	bool isplayer(char a);
 	void draw();

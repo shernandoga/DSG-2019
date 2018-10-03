@@ -22,6 +22,11 @@ void Player::setcoord(int q, int w) {
 	y = w;
 
 }
+void Player::setlimit(int q, int w) {
+	limitx = q;
+	limity = w;
+
+}
 
 
 
@@ -61,6 +66,7 @@ void Player::moveUp()
 	if (x!=limitx) {
 		if (movegeneral(x + 1, y))
 		{
+			World::getInstance()->updateworld(x, y, x + 1, y);
 			x++;
 		};
 	}
@@ -74,6 +80,8 @@ void Player::moveDown()
 	if (x != 0) {
 		if (movegeneral(x -1, y))
 		{
+
+			World::getInstance()->updateworld(x, y, x - 1, y);
 			x--;
 		};
 	}
