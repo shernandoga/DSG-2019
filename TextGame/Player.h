@@ -2,6 +2,8 @@
 
 class Player
 {
+	int score;
+
 public:
 	Player();
 	~Player();
@@ -10,5 +12,7 @@ public:
 	void moveDown();
 	void moveRight();
 	void moveLeft();
+	int getScore();
+	void addScore();
 };
 

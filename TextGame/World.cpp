@@ -36,10 +36,13 @@ World::~World(){
 
 
 void World::draw(){
-	drawMaze();
+	System::clear();
+	
 
 	//TODO: -write the points each player has
-	
+	drawScore();
+
+	drawMaze();
 
 	//TODO: -write the time elapsed since the beginning
 	//		-set the proper position/color
@@ -48,7 +51,7 @@ void World::draw(){
 
 
 void World::drawMaze(){
-	System::clear();
+	
 
 	//TODO: -draw the maze: walls and each of the cells
 	int posi=0;
@@ -58,11 +61,10 @@ void World::drawMaze(){
 			std::cout << m_maze[posi];
 			posi++;
 		}
-		//std::cout << auxString;
-		//change line
+		//Change line
 		std::cout << "\n";
 	}
-	
+
 	//we sleep for a while
 	std::this_thread::sleep_for(std::chrono::milliseconds(100));
 }
@@ -90,5 +92,14 @@ void World::ReadFile(const char* filename, point2D * points, int numPoints)
 		cout << "Couldn't create the file: " << filename;
 }
 
-
+void World::drawScore() {
+	//m_player1.addScore();
+	//m_player1.addScore();
+	m_player1.addScore();
+	System::setTextColor(Red,White);
+	std::cout << "Player 1: " << m_player1.getScore() << std::endl;
+	System::setTextColor(Blue, White);
+	std::cout << "Player 2: " << m_player2.getScore()<<std::endl;
+	System::setTextColor(Black, White);
+}
 

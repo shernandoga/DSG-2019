@@ -3,6 +3,7 @@
 
 Player::Player()
 {
+	score = 0;
 }
 
 
@@ -25,4 +26,12 @@ void Player::moveRight()
 
 void Player::moveLeft()
 {
+}
+
+int Player::getScore() {
+	return score;
+}
+
+void Player::addScore() {
+	score=score+1;
 }
