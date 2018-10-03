@@ -38,7 +38,7 @@ World::World(std::string nameFile){
 
 	pointsP1 = 0;
 	pointsP2 = 0;
-	numCoins = (m_sizeX * m_sizeY) / 10;
+	numCoins = 15;
 }
 
 
@@ -62,8 +62,6 @@ char World::checkbox(int x, int y){
 	//y*msizex+x
 	int k = (y*m_sizeX) + x;
 	return m_maze[k];
-
-
 }
 
 bool World::iswall(char a) {
@@ -71,8 +69,7 @@ bool World::iswall(char a) {
 	return a == c_wall;
 }; 
 bool World::isplayer(char a) {
-
-	   
+   
 	return a == c_player1 || a == c_player2;
 };
 bool World::isempty(char a) {
@@ -80,14 +77,9 @@ bool World::isempty(char a) {
 	return a == c_empty;
 };
 bool World::iscoin(char a) {
+
 	return a == c_coin;
 };
-
-
-
-
-
-
 
 void World::drawMaze(){
 	System::clear();

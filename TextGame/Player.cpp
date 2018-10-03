@@ -38,7 +38,6 @@ bool Player::movegeneral (int x1, int  y1) {
 	}
 	if (World::getInstance()->iscoin(a))
 	{
-		
 		coins++;
 		return true;
 	}
@@ -52,12 +51,8 @@ bool Player::movegeneral (int x1, int  y1) {
 }
 
 
-
 void Player::moveUp()
 {
-	
-	
-
 	if (x!=limitx) {
 		if (movegeneral(x + 1, y))
 		{
