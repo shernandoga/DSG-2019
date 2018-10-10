@@ -5,7 +5,10 @@ class World;
 
 class GameLogic
 {
-	World& m_world;
+
+	Player player1, player2;
+	World world;
+
 public:
 	GameLogic(World& world);
 	~GameLogic();
