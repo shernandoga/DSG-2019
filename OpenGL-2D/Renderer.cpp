@@ -13,6 +13,8 @@ Renderer::Renderer()
 
 Renderer::~Renderer()
 {
+	for (int i = 0; i < m_objects2D.size(); i++)
+		delete m_objects2D[i];
 }
 
 Renderer* Renderer::get()
@@ -26,11 +28,12 @@ void Renderer::initialize(int argc, char** argv)
 	////////////////////////////////
 	//init window and OpenGL context
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(800, 800);
 	glutCreateWindow(argv[0]);
-	//glutFullScreen();
-
+	
+	//OpenGL global initializations
+	glEnable(GL_DEPTH_TEST);
 
 	//callback functions
 	glutDisplayFunc(__drawScene);
@@ -66,7 +69,7 @@ void Renderer::addObject(Drawable* pObj)
 void Renderer::drawScene()
 {
 	//clean the backbuffer
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	//set the 2d modelview matrix
 	set2DMatrix();
