@@ -22,6 +22,11 @@ void Sprite::setPosition(double x, double y)
 	//This method only updates internally the object's position. It still needs to be passed to OpenGL before drawing it
 }
 
+void Sprite::setDepth(double depth)
+{
+	//This method only updates internally the object's depth. It still needs to be passed to OpenGL before drawing it
+}
+
 void Sprite::setRotation(double angle)
 {
 	//This method only updates internally the object's rotation. It still needs to be passed to OpenGL before drawing it
@@ -38,9 +43,11 @@ void Sprite::draw()
 
 	//1. Pass the object's color to OpenGL
 
-	//2. Set the transformation matrix of the quad using position, size and angle
+	//2. Save the current transformation matrix
 
-	//3. Draw the quad centered in [0,0] with coordinates: [-1,-1], [1,-1], [1,1] and [-1,1]
+	//3. Set the transformation matrix of the quad using position, size and angle
+
+	//4. Draw the quad centered in [0,0] with coordinates: [-1,-1], [1,-1], [1,1] and [-1,1]
 	
-	//4. Restore the transformation matrix
+	//5. Restore the transformation matrix
 }
