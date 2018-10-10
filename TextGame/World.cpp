@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <istream>
 #include <fstream>
+
+World* World::m_pInstance = nullptr;
 using namespace std;
 
 #define NUM_POINTS 7
@@ -19,7 +21,12 @@ struct point2D {
 	double x, y;
 };
 
+char c_empty, c_coin, c_player1, c_player2, c_wall, c_aux;
+
+
 World::World(std::string nameFile){
+	m_pInstance = this;
+
 	System::hideCursor();
 
 	//initialize the timer. We want to display the time elapsed since the game began in draw()
@@ -28,6 +35,10 @@ World::World(std::string nameFile){
 	//TODO: initalize everything else
 	point2D pointsForReading[NUM_POINTS];
 	ReadFile("file.csv", pointsForReading, NUM_POINTS);
+
+	pointsP1 = 0;
+	pointsP2 = 0;
+	numCoins = 15;
 }
 
 
@@ -51,6 +62,48 @@ void World::draw(){
 	
 }
 
+char World::checkbox(int x, int y){
+
+	//y*msizex+x
+	int k = (y*m_sizeX) + x;
+	return m_maze[k];
+}
+
+bool World::iswall(char a) {
+
+	return a == c_wall;
+}; 
+bool World::isplayer(char a) {
+   
+	return a == c_player1 || a == c_player2;
+};
+void World::updateworld(int xold,int yold ,int xnew,int ynew) {
+
+	int posold = (yold*m_sizeX) + xold;
+	int posnew = (ynew*m_sizeX) + xnew;
+	char aux = m_maze[posold];
+	m_maze[posold] = c_empty;
+	m_maze[posnew] = aux;
+
+
+}
+
+Player& World::getPlayer(int p)
+{
+	if (p == 1)
+		return player1;
+	else if (p == 2)
+		return player2;
+}
+
+bool World::isempty(char a) {
+
+	return a == c_empty;
+};
+bool World::iscoin(char a) {
+
+	return a == c_coin;
+};
 
 void World::drawMaze(){
 		
@@ -74,7 +127,7 @@ void World::drawMaze(){
 void World::ReadFile(const char* filename, point2D * points, int numPoints)
 {
 	ifstream inputFile;
-	char c_empty, c_coin, c_player1, c_player2, c_wall, c_aux;
+	//char c_empty, c_coin, c_player1, c_player2, c_wall, c_aux;
 
 	inputFile.open(filename, fstream::in);
 	if (inputFile.is_open()) {
@@ -82,11 +135,22 @@ void World::ReadFile(const char* filename, point2D * points, int numPoints)
 		inputFile >> m_sizeX >> c_aux >> m_sizeY >> c_aux >> c_empty >> c_aux >> c_coin >> c_aux >> c_player1 >> c_aux >> c_player2 >> c_aux >> c_wall;
 		//Defines de vector
 		m_maze = vector<char>(m_sizeX * m_sizeY);
+		player1.setlimit(m_sizeX, m_sizeY);
+		player2.setlimit(m_sizeX, m_sizeY);
 
 		//Reads the rest of the files and saves it into the vector
 		for (int i = 0; i < m_sizeX * m_sizeY; i++) {
 			inputFile >> c_aux;
 			m_maze[i] = c_aux;
+
+			if (c_aux == c_player1) {
+				player1.setcoord(i%m_sizeX, i / m_sizeX);					
+			}
+			if (c_aux == c_player2) {
+				player2.setcoord(i%m_sizeX, i / m_sizeX);
+			}
+
+
 		}
 		inputFile.close();
 	}
@@ -95,10 +159,14 @@ void World::ReadFile(const char* filename, point2D * points, int numPoints)
 }
 
 void World::drawScore() {
-	m_player1.addScore();
+	//player1.addScore();
 	System::setTextColor(Blue, White);
-	cout <<"Player 1: "<< m_player1.getScore()<<endl;
+	cout <<"Player 1: "<< player1.getScore()<<endl;
 	System::setTextColor(Red, White);
-	cout << "Player 2: " << m_player2.getScore() << endl;
+	cout << "Player 2: " << player2.getScore() << endl;
 	System::setTextColor(Black, White);
+}
+
+int World::getTotalCoins() {
+	return 15;
 }
