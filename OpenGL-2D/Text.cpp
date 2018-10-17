@@ -9,6 +9,8 @@ Text2D::Text2D(string name, double x, double y, double depth)
 	m_x = x;
 	m_y = y;
 	m_depth = depth;
+	setColor(255,0,0);
+	setText(name);
 }
 
 
@@ -48,6 +50,11 @@ void Text2D::setColor(double r, double g, double b)
 	m_g = g;
 	m_b = b;
 }
+void Text2D::updateScore(string pl, int score)
+{
+	setText(string("PLAYER ")+pl+string(": ")+to_string(score));
+}
+
 
 void Text2D::setText(string text)
 {

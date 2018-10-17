@@ -30,7 +30,7 @@ void Projectile::draw()
 	if (m_right == true) {
 
 	}
-	m_x += m_x * 0.01;
+	m_x += m_x * 0.0001;
 	//m_y += m_y * 0.01;
 	Sprite::draw();
 	

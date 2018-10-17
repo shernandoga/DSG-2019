@@ -16,6 +16,7 @@ public:
 	virtual ~Text2D();
 
 	void setText(string text);
+	void updateScore(string pl, int score);
 
 	void setColor(double r, double g, double b);
 	void draw();
