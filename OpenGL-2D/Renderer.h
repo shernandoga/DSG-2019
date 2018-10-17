@@ -22,10 +22,10 @@ public:
 
 	void drawScene();
 	void addObject(Drawable* pObj);
-	void removeObject(Drawable* pObj);
 	void reshapeWindow(int x, int y);
-
+	
 	static void __drawScene();
 	static void __reshapeWindow(int x, int y);
+	Drawable* getObject(string name);
 };
 
