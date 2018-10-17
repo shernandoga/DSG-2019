@@ -18,8 +18,6 @@ InputHandler::~InputHandler()
 void InputHandler::initialize()
 {
 	glutKeyboardFunc(__processKeyboard);
-	//TODO glutKeyboardUpFunc deje de moverse cuando se suelte y que detecte cuando pulsado con booleans
-
 }
 
 
