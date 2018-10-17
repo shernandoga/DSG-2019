@@ -72,8 +72,9 @@ void Renderer::removeObject(Drawable* pObj)
 	{
 		if ((*it) == pObj)
 		{
-			it= m_objects2D.erase(it);
+			m_objects2D.erase(it);
 			delete pObj;
+			return;
 		}
 	}
 }

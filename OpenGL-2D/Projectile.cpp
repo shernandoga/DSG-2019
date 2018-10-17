@@ -44,7 +44,7 @@ void Projectile::draw()
 	}
 	else
 	{
-		Renderer::get()->removeObject(this);
+		//Renderer::get()->removeObject(this);
 	}
 	
 }
