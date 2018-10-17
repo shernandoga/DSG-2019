@@ -2,6 +2,7 @@
 #include "InputHandler.h"
 #include "Renderer.h"
 #include "Sprite.h"
+#include "Text.h"
 #include "Projectile.h"
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
 
