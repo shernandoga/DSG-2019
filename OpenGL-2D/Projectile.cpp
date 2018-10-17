@@ -5,11 +5,18 @@
 
 Projectile::Projectile(double coordPlayerX, double coordPlayerY, bool direction)
 {
-	this->setColor(255, 0, 0);
+	this->setColor(100, 0, 0);
 	setPosition(coordPlayerX, coordPlayerY, direction);
 	this->setRotation(0.0);
 	this->setSize(0.2);
 	this->setDepth(1.5);
+
+	m_r = 210;
+	m_g = 10;
+	m_b = 10;
+
+
+
 	//renderer.addObject(this);
 	draw();
 }
