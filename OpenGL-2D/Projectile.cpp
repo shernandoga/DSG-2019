@@ -23,28 +23,17 @@ void Projectile::draw()
 {
 	bool destr = false;
 
-	if (m_right == true) 
+	if (m_right == true)
 	{
 		m_x += m_x * 0.004;
 	}
 
-	if (m_right == false) 
+	if (m_right == false)
 	{
 		m_x -= m_x * 0.004;
 	}
 
 	if (m_x <= -1.0 || m_x >= 1.0 || m_y <= -1.0 || m_y >= 1.0)
-	{
-		destr = true;
-	}
-
-	if(destr == false)
-	{
-		Sprite::draw();
-	}
-	else
-	{
-		//Renderer::get()->removeObject(this);
-	}
-	
+		markForDeletion();
+	else Sprite::draw();
 }

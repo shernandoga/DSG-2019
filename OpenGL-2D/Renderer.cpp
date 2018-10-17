@@ -89,7 +89,10 @@ void Renderer::drawScene()
 
 	for (auto it = m_objects2D.begin(); it != m_objects2D.end(); ++it)
 	{
-		(*it)->draw();
+		if ((*it)->isAlive())
+			(*it)->draw();
+		else
+			it= m_objects2D.erase(it);
 	}
 }
 
