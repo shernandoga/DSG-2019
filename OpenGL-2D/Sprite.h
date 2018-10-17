@@ -13,6 +13,7 @@ class Sprite: public Drawable
 	double m_size= 1.0; //size of the quad
 
 	double m_angle= 0.0; //rotation angle
+
 public:
 	Sprite();
 	~Sprite();

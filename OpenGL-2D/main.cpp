@@ -2,6 +2,7 @@
 #include "InputHandler.h"
 #include "Renderer.h"
 #include "Sprite.h"
+#include "Projectile.h"
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
 
 
@@ -14,7 +15,9 @@ int main(int argc, char** argv)
 	renderer.initialize(argc, argv);
 	inputHandler.initialize();
 
+	Projectile *pProj1 = new Projectile(0.25, 0.25, true);
 
+	/*
 	//test objects
 	Sprite *pSprite1= new Sprite();
 	pSprite1->setColor(255, 0, 0);
@@ -31,7 +34,7 @@ int main(int argc, char** argv)
 	pSprite2->setSize(0.2);
 	pSprite2->setDepth(1.3);
 	renderer.addObject(pSprite2);
-
+	*/
 
 	while (1)
 	{
