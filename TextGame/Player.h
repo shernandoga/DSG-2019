@@ -13,5 +13,7 @@ public:
 	void moveRight();
 	void moveLeft();
 	bool movegeneral(int x1, int y1);
+	int getScore();
+	void addScore();
 };
 

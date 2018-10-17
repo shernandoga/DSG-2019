@@ -25,8 +25,7 @@ class World
 	void drawMaze();
 	void ReadFile(const char* filename, point2D* points, int numPoints);
 	void PrintPoints(point2D* points, int numPoints);
-	
-
+	void drawScore();
 
 public:
 	World(string nameFile);
@@ -36,7 +35,7 @@ public:
 	bool isempty(char a);
 	bool iscoin(char a);
 	void updateworld(int xold, int yold, int xnew, int ynew);
-
+	int World::getTotalCoins();
 	bool isplayer(char a);
 	void draw();
 
