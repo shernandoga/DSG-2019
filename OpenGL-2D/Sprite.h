@@ -25,5 +25,7 @@ public:
 	void setDepth(double depth);
 	void setRotation(double angle);
 	void setSize(double size);
+	double Sprite::getX();
+	double Sprite::getY();
 };
 

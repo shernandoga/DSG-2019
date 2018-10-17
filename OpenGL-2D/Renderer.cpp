@@ -66,6 +66,18 @@ void Renderer::addObject(Drawable* pObj)
 	m_objects2D.push_back(pObj);
 }
 
+void Renderer::removeObject(Drawable* pObj)
+{
+	for (vector<Drawable*>::iterator it = m_objects2D.begin(); it != m_objects2D.end(); it++)
+	{
+		if ((*it) == pObj)
+		{
+			it= m_objects2D.erase(it);
+			delete pObj;
+		}
+	}
+}
+
 void Renderer::drawScene()
 {
 	//clean the backbuffer

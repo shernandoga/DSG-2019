@@ -17,8 +17,8 @@ int main(int argc, char** argv)
 	inputHandler.initialize();
 
 	Projectile *pProj1 = new Projectile(0.25, 0.25, true);
-
 	renderer.addObject(pProj1);
+
 	/*
 	//test objects
 	Sprite *pSprite1= new Sprite();

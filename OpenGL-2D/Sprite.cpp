@@ -27,6 +27,16 @@ void Sprite::setPosition(double x, double y)
 	m_y = y;
 }
 
+double Sprite::getX()
+{
+	return m_x;
+}
+
+double Sprite::getY()
+{
+	return m_y;
+}
+
 void Sprite::setDepth(double depth)
 {
 	//This method only updates internally the object's depth. It still needs to be passed to OpenGL before drawing it
