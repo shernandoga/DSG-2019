@@ -29,7 +29,7 @@ int main(int argc, char** argv)
 	texto1->updateScore(1);
 	texto2->updateScore(0);
 	
-	/*
+	
 	//test objects
 	Player *pPlayer1= new Player();
 	pPlayer1->setColor(255, 0, 0);
@@ -65,5 +65,5 @@ int main(int argc, char** argv)
 	}
    
 	return 0;
-
+	
 }

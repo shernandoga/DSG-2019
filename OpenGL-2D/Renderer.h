@@ -22,6 +22,7 @@ public:
 
 	void drawScene();
 	void addObject(Drawable* pObj);
+	void removeObject(Drawable * pObj);
 	void reshapeWindow(int x, int y);
 	
 	static void __drawScene();
