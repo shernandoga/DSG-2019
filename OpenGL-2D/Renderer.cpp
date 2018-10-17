@@ -92,7 +92,12 @@ void Renderer::drawScene()
 		if ((*it)->isAlive())
 			(*it)->draw();
 		else
-			it= m_objects2D.erase(it);
+		{
+			//delete the object
+			delete (*it);
+			//remove the pointer from the vector
+			it = m_objects2D.erase(it);
+		}
 	}
 }
 
