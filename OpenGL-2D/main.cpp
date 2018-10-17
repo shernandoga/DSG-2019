@@ -23,7 +23,8 @@ int main(int argc, char** argv)
 
 	renderer.addObject(texto1);
 	renderer.addObject(texto2);
-	texto1->updateScore("1",9);
+	texto1->updateScore(9);
+	texto2->updateScore(0);
 	
 	/*
 	//test objects

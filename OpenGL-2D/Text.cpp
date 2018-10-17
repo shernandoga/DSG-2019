@@ -54,6 +54,13 @@ void Text2D::updateScore(string pl, int score)
 {
 	setText(string("PLAYER ")+pl+string(": ")+to_string(score));
 }
+void Text2D::updateScore(int score)
+{
+	//string s = m_text.substr(0, m_text.size-2);
+	string s = m_text.substr(0, 10);
+	setText(s + to_string(score));
+
+}
 
 
 void Text2D::setText(string text)
