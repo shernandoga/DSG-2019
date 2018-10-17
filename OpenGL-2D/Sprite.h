@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Drawable.h"
+#include <string>
 
+using namespace std;
 class Sprite: public Drawable
 {
 protected:
@@ -16,15 +18,23 @@ protected:
 	double m_size= 1.0; //size of the quad
 
 	double m_angle= 0.0; //rotation angle
+
+
+
 public:
 	Sprite(const char* texture );
 	~Sprite();
 
 	virtual void draw();
-	void setColor(float r, float g, float b);
+	void setColor(float r, float g, float b); 
 	void setPosition(double x, double y);
 	void setDepth(double depth);
 	void setRotation(double angle);
 	void setSize(double size);
+	double getX() { return m_x; };
+	double getY() { return m_y; };
+	double getDepth() { return m_depth; };
+	
+
 };
 

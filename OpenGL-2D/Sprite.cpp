@@ -28,6 +28,8 @@ void Sprite::setColor(float r, float g, float b)
 
 void Sprite::setPosition(double x, double y)
 {
+	m_x = x;
+	m_y = y;
 	//This method only updates internally the object's position. It still needs to be passed to OpenGL before drawing it
 	m_x = x;
 	m_y = y;
