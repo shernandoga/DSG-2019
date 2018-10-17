@@ -92,3 +92,13 @@ void Renderer::__reshapeWindow(int x, int y)
 	if (m_pRenderer)
 		m_pRenderer->reshapeWindow(x, y);
 }
+
+Drawable* Renderer::getObject(string name){
+	for (int i = 0; i < m_objects2D.size(); i++) {
+		if (m_objects2D[i]->getName() == name) {
+			return m_objects2D[i];
+			break;
+		}
+	}
+	return nullptr;
+}

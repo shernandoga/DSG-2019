@@ -2,6 +2,8 @@
 #include "InputHandler.h"
 #include "Renderer.h"
 #include "Sprite.h"
+#include "Player.h"
+#include "World.h"
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
 
 
@@ -14,23 +16,26 @@ int main(int argc, char** argv)
 	renderer.initialize(argc, argv);
 	inputHandler.initialize();
 
+	//World mWorld = new World(renderer);
 
 	//test objects
-	Sprite *pSprite1= new Sprite();
-	pSprite1->setColor(255, 0, 0);
-	pSprite1->setPosition(0.25, 0.25);
-	pSprite1->setRotation(0.0);
-	pSprite1->setSize(0.2);
-	pSprite1->setDepth(1.5);
-	renderer.addObject(pSprite1);
+	Player *pPlayer1= new Player();
+	pPlayer1->setColor(255, 0, 0);
+	pPlayer1->setPosition(-0.75, 0.0);
+	pPlayer1->setRotation(0.0);
+	pPlayer1->setSize(0.2);
+	pPlayer1->setDepth(1.5);
+	pPlayer1->setName("Player1");
+	renderer.addObject(pPlayer1);
 
-	Sprite *pSprite2= new Sprite();
-	pSprite2->setColor(0, 255, 0);
-	pSprite2->setPosition(0.5, 0.5);
-	pSprite2->setRotation(45.0);
-	pSprite2->setSize(0.2);
-	pSprite2->setDepth(1.3);
-	renderer.addObject(pSprite2);
+	Player *pPlayer2 = new Player();
+	pPlayer2->setColor(0, 255, 0);
+	pPlayer2->setPosition(0.75, 0.0);
+	pPlayer2->setRotation(0.0);
+	pPlayer2->setSize(0.2);
+	pPlayer2->setDepth(1.3);
+	pPlayer2->setName("Player2");
+	renderer.addObject(pPlayer2);
 
 
 	while (1)
