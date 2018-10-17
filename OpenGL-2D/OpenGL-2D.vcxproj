@@ -54,7 +54,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="main.cpp" />
@@ -63,7 +63,7 @@
     <ClCompile Include="Text.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="InputHandler.h" />
