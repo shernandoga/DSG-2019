@@ -16,20 +16,19 @@ int main(int argc, char** argv)
 
 
 	//test objects
-	Sprite *pSprite1= new Sprite();
-	pSprite1->setColor(255, 0, 0);
+	Sprite *pSprite1= new Sprite("../OpenGL-2D/img/alien-01.png"); 
 	pSprite1->setPosition(0.25, 0.25);
 	pSprite1->setRotation(0.0);
 	pSprite1->setSize(0.2);
 	pSprite1->setDepth(1.5);
-	renderer.addObject(pSprite1);
+	renderer.addObject(pSprite1); 
 
-	Sprite *pSprite2= new Sprite();
-	pSprite2->setColor(0, 255, 0);
-	pSprite2->setPosition(0.5, 0.5);
-	pSprite2->setRotation(45.0);
+	Sprite *pSprite2= new Sprite("../OpenGL-2D/img/alien-02.png");
+//	pSprite2->setColor(0, 255, 0);
+	pSprite2->setPosition(-0.25, 0.25);
+	pSprite2->setRotation(0.0);
 	pSprite2->setSize(0.2);
-	pSprite2->setDepth(1.3);
+	pSprite2->setDepth(1.5);
 	renderer.addObject(pSprite2);
 
 
