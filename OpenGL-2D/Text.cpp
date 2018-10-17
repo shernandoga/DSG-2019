@@ -60,6 +60,28 @@ void Text2D::updateScore(int score)
 	string s = m_text.substr(0, 10);
 	setText(s + to_string(score));
 
+	if(score==8){
+	
+		setColor(150, 50, 0);
+	}
+	if (score == 6) {
+
+		setColor(100, 150, 0);
+	}
+	if (score == 4 ){
+
+		setColor(0, 255, 0);
+	}
+	if (score == 2) {
+
+		setColor(0, 150, 100);
+	}
+	if (score == 1) {
+
+		setColor(255, 255, 255);
+	}
+
+
 }
 
 
