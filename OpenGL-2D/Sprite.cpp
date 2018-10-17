@@ -1,9 +1,12 @@
 #include "stdafx.h"
 #include "Sprite.h"
+#include "../3rd-party/SOIL/src/SOIL.h"
 
 
-Sprite::Sprite()
+
+Sprite::Sprite(const char* texture)
 {
+	 m_textureId = SOIL_load_OGL_texture(texture, 0, 0, 0);
 }
 
 
@@ -21,14 +24,19 @@ void Sprite::setColor(float r, float g, float b)
 
 }
 
+
+
 void Sprite::setPosition(double x, double y)
 {
 	m_x = x;
 	m_y = y;
 	//This method only updates internally the object's position. It still needs to be passed to OpenGL before drawing it
+	m_x = x;
+	m_y = y;
 }
 
 void Sprite::setDepth(double depth)
+//El ha puesto que la profundidad es de -1 a -20, por lo que debe tener el signo en negativo
 {
 	//This method only updates internally the object's depth. It still needs to be passed to OpenGL before drawing it
 	m_depth = depth;
@@ -38,7 +46,7 @@ void Sprite::setDepth(double depth)
 void Sprite::setRotation(double angle)
 {
 	//This method only updates internally the object's rotation. It still needs to be passed to OpenGL before drawing it
-	
+	m_angle = angle;
 }
 
 void Sprite::setSize(double size)
@@ -49,30 +57,41 @@ void Sprite::setSize(double size)
 
 void Sprite::draw()
 {
-	//TODO:
-	//m_y += 0.00001;
-	//m_angle += 800;
-	//m_depth -= 1;
-	//1. Pass the object's color to OpenGL
-	//glColor3f(m_r, m_g, m_b);
+	//DONE:
+
+	//0. Activate textures and give coords
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, m_textureId);
+
+	//1. Pass the object's test to OpenGL
+       //glColor3f(m_r, m_g, m_b);
+
 	//2. Save the current transformation matrix
-//	glPushMatrix();
+
+	glPushMatrix();
+
 	//3. Set the transformation matrix of the quad using position, size and angle
-	//glTranslated(m_x, m_y, 0);
-	//glRotated(m_angle, 0, 0, 1);
-	//glScaled(m_size, m_size, 1);
+
+	glTranslatef(m_x,m_y,0);
+	glRotatef(m_angle, 0, 0, 1);
+	glScalef(m_size,m_size,1);
+
+
 	//4. Draw the quad centered in [0,0] with coordinates: [-1,-1], [1,-1], [1,1] and [-1,1]
-	//glBegin(GL_QUADS);
-	
-	//glVertex3f(-1, -1, -m_depth);
-	//glColor3f(0.25, 0.1, 0.8);
-	//glVertex3f(1, -1, -m_depth);
-	//glColor3f(0.75, 0.2, 0.7);
-	//glVertex3f(1, 1, -m_depth);
-	//glColor3f(0.80, 0.5, 0.2);
-	//glVertex3f(-1, 1, -m_depth);
-	//glEnd();
+
+	glBegin(GL_QUADS);
+	glTexCoord2f(0.0, 1.0);
+	glVertex3f(-1.0, -1.0, -m_depth);
+	glTexCoord2f(1.0, 1.0);
+	glVertex3f(1.0, -1.0, -m_depth);
+	glTexCoord2f(1.0, 0.0);
+	glVertex3f(1.0, 1.0, -m_depth);
+	glTexCoord2f(0.0, 0.0);
+	glVertex3f(-1.0, 1.0, -m_depth);
+
+	glEnd();
 	
 	//5. Restore the transformation matrix
-	//glPopMatrix();
+
+	glPopMatrix();
 }

@@ -28,12 +28,12 @@ int main(int argc, char** argv)
 	pSprite1->setDepth(1.5);
 	renderer.addObject(pSprite1);
 
-	Sprite *pSprite2= new Sprite();
-	pSprite2->setColor(0, 255, 0);
-	pSprite2->setPosition(-0.5, 0.5);
-	pSprite2->setRotation(45.0);
+	Sprite *pSprite2= new Sprite("../OpenGL-2D/img/alien-02.png");
+//	pSprite2->setColor(0, 255, 0);
+	pSprite2->setPosition(-0.25, 0.25);
+	pSprite2->setRotation(0.0);
 	pSprite2->setSize(0.2);
-	pSprite2->setDepth(1.3);
+	pSprite2->setDepth(1.5);
 	renderer.addObject(pSprite2);
 	*/
 

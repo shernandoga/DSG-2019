@@ -6,6 +6,9 @@
 using namespace std;
 class Sprite: public Drawable
 {
+protected:
+	unsigned int m_textureId;
+
 	float m_r, m_g, m_b;
 	
 	double m_x= 0.0, m_y= 0.0; //position around which the quad is drawn
@@ -19,7 +22,7 @@ class Sprite: public Drawable
 
 
 public:
-	Sprite();
+	Sprite(const char* texture );
 	~Sprite();
 
 	virtual void draw();
