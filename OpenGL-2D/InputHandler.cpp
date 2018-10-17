@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "InputHandler.h"
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
+#include "Renderer.h"
+#include "Player.h"
 
 InputHandler* InputHandler::m_pInputHandler = nullptr;
 
@@ -20,16 +22,29 @@ void InputHandler::initialize()
 }
 
 
-void InputHandler::processKeyboard(unsigned char key, int x, int y)
+void InputHandler::processKeyboard(unsigned char key, int x, int y) 
 {
 	//keyboard callback function
+	Sprite * temp = (Sprite*)m_renderer.getDrawable("jugador");
 	switch (key)
 	{
 		//TODO
-	case '8': break;
-	case '2': break;
-	case '6': break;
-	case '4': break;
+	case 'w':
+		//m_renderer.
+			break;
+	case 'a': 
+		if (temp->getX() > -1)
+			temp->setPosition(temp->getX()-0.01, temp->getY());
+		break;
+
+	case 's': break;
+	case 'd': 
+		if (temp->getX() <=1)
+			temp->setPosition(temp->getX() + 0.01, temp->getY());
+			
+		
+		break;
+
 	case 27: exit(0);
 	}
 }
