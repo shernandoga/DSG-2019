@@ -20,10 +20,10 @@ int main(int argc, char** argv)
 
 
 	//test objects
-	Player* jugador = new Player("jugador");
+	Player* jugador = new Player("jugador", "../OpenGL-2D/img/fighter-01.png");
 	renderer.addObject(jugador);
-	/*
-	Sprite *pSprite1= new Sprite();
+	
+	Sprite *pSprite1= new Sprite("../OpenGL-2D/img/alien-01.png");
 	pSprite1->setColor(255, 0, 0);
 	pSprite1->setPosition(0.25, 0.25);
 	pSprite1->setRotation(0.0);
@@ -40,7 +40,7 @@ int main(int argc, char** argv)
 	renderer.addObject(pSprite2);
 
 	Sprite *pSprite3 = new Sprite("../OpenGL-2D/img/alien-01.png");
-	pSprite3->setPosition(0.25, 0.25);
+	pSprite3->setPosition(0.75, 0.25);
 	pSprite3->setRotation(0.0);
 	pSprite3->setSize(0.2);
 	pSprite3->setDepth(1.5);
@@ -48,7 +48,7 @@ int main(int argc, char** argv)
 
 	Sprite *pSprite4 = new Sprite("../OpenGL-2D/img/alien-02.png");
 	//	pSprite2->setColor(0, 255, 0);
-	pSprite4->setPosition(-0.25, 0.25);
+	pSprite4->setPosition(-0.75, 0.25);
 	pSprite4->setRotation(0.0);
 	pSprite4->setSize(0.2);
 	pSprite4->setDepth(1.5);
