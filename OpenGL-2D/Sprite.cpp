@@ -35,6 +35,7 @@ void Sprite::setRotation(double angle)
 void Sprite::setSize(double size)
 {
 	//This method only updates internally the object's size. It still needs to be passed to OpenGL before drawing it
+	m_size = size;
 }
 
 void Sprite::draw()

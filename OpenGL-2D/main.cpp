@@ -3,7 +3,7 @@
 #include "Renderer.h"
 #include "Sprite.h"
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
-
+#include "AnimatedSprite.h"
 
 
 int main(int argc, char** argv)
@@ -32,6 +32,9 @@ int main(int argc, char** argv)
 	pSprite2->setDepth(1.3);
 	renderer.addObject(pSprite2);
 
+	AnimatedSprite * pAnimatedSprite = new AnimatedSprite("img/fire-animation-2.png", 5, 2, true);
+	pAnimatedSprite->setSize(0.25);
+	renderer.addObject(pAnimatedSprite);
 
 	while (1)
 	{
