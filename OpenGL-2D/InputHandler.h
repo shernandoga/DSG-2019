@@ -6,6 +6,7 @@ class InputHandler
 {
 	static InputHandler* m_pInputHandler;
 	Renderer& m_renderer;
+	int SHOOT_TIME = 2;
 public:
 	InputHandler(Renderer& renderer);
 	~InputHandler();

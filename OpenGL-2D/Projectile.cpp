@@ -11,8 +11,11 @@ Projectile::Projectile(double coordPlayerX, double coordPlayerY, bool direction)
 	setRotation(0.0);
 	setSize(0.1);
 	setDepth(1.5);
-	setColor(210, 10, 10);
 	m_right = direction;
+	if(direction == true)
+		setColor(130, 0, 0);
+	else
+		setColor(0, 130, 0);
 }
 
 Projectile::~Projectile()
