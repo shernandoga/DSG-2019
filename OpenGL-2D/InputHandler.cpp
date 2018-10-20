@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "InputHandler.h"
 #include "World.h"
+#include "Projectile.h"
+#include "Renderer.h"
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
 
 InputHandler* InputHandler::m_pInputHandler = nullptr;
@@ -24,24 +26,32 @@ void InputHandler::initialize()
 void InputHandler::processKeyboard(unsigned char key, int x, int y)
 {
 	//keyboard callback function
-	Player* player;
+	Renderer* renderer = (Renderer*)Renderer::get();
+	Player* player2;
+	Player* player1;
+	player2 = (Player*)Renderer::get()->getObject("Player2");
+	player1 = (Player*)Renderer::get()->getObject("Player1");
+	Projectile *pProj1 = new Projectile(player1->getX(), player1->getY(), true);
+	Projectile *pProj2 = new Projectile(player2->getX(), player2->getY(), false);
+
 	switch (key)
 	{
 		//TODO
 	case '8': 
-		player = (Player*)Renderer::get()->getObject("Player2");
-		player->moveUp(); break;
+		player2->moveUp(); break;
 	case '2':
-		player = (Player*)Renderer::get()->getObject("Player2");
-		player->moveDown(); break;
-	case '6': break;
-	case '4': break;
+		player2->moveDown(); break;
+	case '4': 
+		renderer->addObject(pProj2);
+		break;
+
 	case 'w':
-		player = (Player*)Renderer::get()->getObject("Player1");
-		player->moveUp(); break;
+		player1->moveUp(); break;
 	case 's':
-		player = (Player*)Renderer::get()->getObject("Player1");
-		player->moveDown(); break;
+		player1->moveDown(); break;
+	case 'd':
+		renderer->addObject(pProj1);
+		break;
 	case 27: exit(0);
 	}
 }
