@@ -21,7 +21,6 @@ Projectile::~Projectile()
 
 void Projectile::draw()
 {
-	bool destr = false;
 
 	if (m_right == true)
 	{

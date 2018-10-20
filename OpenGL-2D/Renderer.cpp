@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Renderer.h"
 #include "Drawable.h"
+#include "Projectile.h"
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
 
 Renderer* Renderer::m_pRenderer = nullptr;
@@ -66,6 +67,7 @@ void Renderer::addObject(Drawable* pObj)
 	m_objects2D.push_back(pObj);
 }
 
+
 void Renderer::removeObject(Drawable* pObj)
 {
 	for (vector<Drawable*>::iterator it = m_objects2D.begin(); it != m_objects2D.end(); it++)
@@ -89,8 +91,10 @@ void Renderer::drawScene()
 
 	for (auto it = m_objects2D.begin(); it != m_objects2D.end(); ++it)
 	{
-		if ((*it)->isAlive())
+		if ((*it)->isAlive()) 
+		{
 			(*it)->draw();
+		}
 		else
 		{
 			//delete the object
