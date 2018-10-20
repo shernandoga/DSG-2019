@@ -15,18 +15,15 @@ int main(int argc, char** argv)
 {
 	Renderer renderer;
 	InputHandler inputHandler(renderer);
-	
 	renderer.initialize(argc, argv);
 	inputHandler.initialize();
 
-	Projectile *pProj1 = new Projectile(0.25, 0.25, true);
 	Text2D *texto1 = new Text2D("PLAYER 1: 10", -0.75, 0.75, 1);
 	Text2D *texto2 = new Text2D("PLAYER 2: 10", 0.40, 0.75, 1);
 
 	renderer.addObject(texto1);
 	renderer.addObject(texto2);
-	renderer.addObject(pProj1);
-	texto1->updateScore(1);
+	texto1->updateScore(0);
 	texto2->updateScore(0);
 	
 	
@@ -48,7 +45,6 @@ int main(int argc, char** argv)
 	pPlayer2->setDepth(1.3);
 	pPlayer2->setName("Player2");
 	renderer.addObject(pPlayer2);
-
 
 	while (1)
 	{

@@ -25,15 +25,16 @@ void Projectile::draw()
 
 	if (m_right == true)
 	{
-		m_x += m_x * 0.004;
+		m_x += 0.008;
 	}
 
 	if (m_right == false)
 	{
-		m_x -= m_x * 0.004;
+		m_x -= 0.008;
 	}
 
 	if (m_x <= -1.0 || m_x >= 1.0 || m_y <= -1.0 || m_y >= 1.0)
 		markForDeletion();
-	else Sprite::draw();
+	else 
+		Sprite::draw();
 }
