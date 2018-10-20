@@ -89,11 +89,12 @@ void Renderer::drawScene()
 	//set the 2d modelview matrix
 	set2DMatrix();
 
-	for (auto it = m_objects2D.begin(); it != m_objects2D.end(); ++it)
+	for (auto it = m_objects2D.begin(); it != m_objects2D.end();)
 	{
 		if ((*it)->isAlive()) 
 		{
 			(*it)->draw();
+			it++;
 		}
 		else
 		{
