@@ -4,6 +4,7 @@
 
 class Sprite: public Drawable
 {
+protected:
 	float m_r, m_g, m_b;
 	
 	protected:double m_x= 0.0, m_y= 0.0; //position around which the quad is drawn
@@ -13,6 +14,7 @@ class Sprite: public Drawable
 	double m_size= 1.0; //size of the quad
 
 	double m_angle= 0.0; //rotation angle
+
 public:
 	Sprite();
 	~Sprite();
@@ -23,5 +25,7 @@ public:
 	void setDepth(double depth);
 	void setRotation(double angle);
 	void setSize(double size);
+	double Sprite::getX();
+	double Sprite::getY();
 };
 

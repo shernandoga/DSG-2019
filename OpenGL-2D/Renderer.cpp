@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Renderer.h"
 #include "Drawable.h"
+#include "Projectile.h"
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
 
 Renderer* Renderer::m_pRenderer = nullptr;
@@ -67,6 +68,20 @@ void Renderer::addObject(Drawable* pObj)
 	m_objects2D.push_back(pObj);
 }
 
+
+void Renderer::removeObject(Drawable* pObj)
+{
+	for (vector<Drawable*>::iterator it = m_objects2D.begin(); it != m_objects2D.end(); it++)
+	{
+		if ((*it) == pObj)
+		{
+			m_objects2D.erase(it);
+			delete pObj;
+			return;
+		}
+	}
+}
+
 void Renderer::drawScene()
 {
 	//clean the backbuffer
@@ -75,9 +90,20 @@ void Renderer::drawScene()
 	//set the 2d modelview matrix
 	set2DMatrix();
 
-	for (auto it = m_objects2D.begin(); it != m_objects2D.end(); ++it)
+	for (auto it = m_objects2D.begin(); it != m_objects2D.end();)
 	{
-		(*it)->draw();
+		if ((*it)->isAlive()) 
+		{
+			(*it)->draw();
+			it++;
+		}
+		else
+		{
+			//delete the object
+			delete (*it);
+			//remove the pointer from the vector
+			it = m_objects2D.erase(it);
+		}
 	}
 }
 

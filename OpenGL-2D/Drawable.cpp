@@ -7,3 +7,13 @@ string Drawable::getName() {
 void Drawable::setName(string pName){
 	name = pName;
 }
+
+void Drawable::markForDeletion()
+{
+	m_alive = false;
+}
+
+bool Drawable::isAlive()
+{
+	return m_alive;
+}
