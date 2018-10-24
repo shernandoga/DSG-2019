@@ -59,6 +59,8 @@ AnimatedSprite::AnimatedSprite(const char* textureFilename, int numSubImagesX, i
 		glTexEnvi(GL_TEXTURE_3D, GL_TEXTURE_ENV_MODE, GL_DECAL);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glDisable(GL_TEXTURE_3D);
+		glEnable(GL_TEXTURE_2D);
 
 		delete [] pDstBuffer;
 		delete [] pImage;

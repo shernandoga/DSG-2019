@@ -44,6 +44,8 @@ int main(int argc, char** argv)
 
 	//number of columns
 	double c = 4.00;
+	int id = 0;
+	int numEnemies;
 
 	for (int k=0;k<c;k++) {
 		for (int l=0; l < E; l++) {
@@ -60,13 +62,15 @@ int main(int argc, char** argv)
 			pSprite->setRotation(0.0);
 			pSprite->setSize(0.1);
 			pSprite->setDepth(1.5);
-			pSprite->setName((string)(k+""+l));
+			pSprite->setName(string("enemy") + to_string(id));
 			renderer.addObject(pSprite);
 			x = x + r;
+			id++;
 		}
 		y = y + t;
 		x = xmin;
 	}
+	numEnemies = id;
 
 	Text2D *Text2D11 = new Text2D("Player1textName",-0.125,-0.8,1.5);
 	Text2D11->setColor(13, 120, 254);
@@ -93,13 +97,12 @@ int main(int argc, char** argv)
 		inputHandler.update();
 
 
-/*		for (int k = 0; k<c; k++) {
-			for (int l = 0; l < E; l++) {
-				Sprite* theEnemy = (Sprite*)renderer.getDrawable((string)(k + "" + l));
-				theEnemy->setPosition(theEnemy->getX(), theEnemy->getY()-0.1);
-				
-			}
-		}  */
+	
+		for (int id= 0; id<numEnemies; id++)
+		{
+				Sprite* theEnemy = (Sprite*)renderer.getDrawable(string("enemy") + to_string(id));
+				theEnemy->setPosition(theEnemy->getX(), theEnemy->getY()-0.0001);			
+		}  
 
 		//RENDER////////////////////
 		////////////////////////////
