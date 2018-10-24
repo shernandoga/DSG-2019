@@ -19,6 +19,7 @@ public:
 
 	void setPos(double x,double y);
 	void changeImpact();
+	void draw();
 
 
 };
