@@ -6,7 +6,9 @@
 
 Sprite::Sprite(const char* texture)
 {
-	 m_textureId = SOIL_load_OGL_texture(texture, 0, 0, 0);
+	if( texture != nullptr){
+		m_textureId = SOIL_load_OGL_texture(texture, 0, 0, 0);
+	}
 }
 
 
@@ -62,6 +64,8 @@ void Sprite::draw()
 	//0. Activate textures and give coords
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, m_textureId);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	//1. Pass the object's test to OpenGL
        //glColor3f(m_r, m_g, m_b);

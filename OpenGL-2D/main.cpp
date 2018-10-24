@@ -20,10 +20,10 @@ int main(int argc, char** argv)
 
 
 	//test objects
-	Player* jugador = new Player("jugador", "../OpenGL-2D/img/fighter-01.png");
+	Player* jugador = new Player("jugador", "img/fighter-01.png");
 	renderer.addObject(jugador);
 	
-	Sprite *pSprite1= new Sprite("../OpenGL-2D/img/alien-01.png");
+	Sprite *pSprite1= new Sprite("img/alien-01.png");
 	pSprite1->setColor(255, 0, 0);
 	pSprite1->setPosition(0.25, 0.25);
 	pSprite1->setRotation(0.0);
@@ -31,7 +31,7 @@ int main(int argc, char** argv)
 	pSprite1->setDepth(1.5);
 	renderer.addObject(pSprite1);
 
-	Sprite *pSprite2= new Sprite("../OpenGL-2D/img/alien-02.png");
+	Sprite *pSprite2= new Sprite("img/alien-02.png");
 //	pSprite2->setColor(0, 255, 0);
 	pSprite2->setPosition(-0.25, 0.25);
 	pSprite2->setRotation(0.0);
@@ -42,14 +42,14 @@ int main(int argc, char** argv)
 	AnimatedSprite * pAnimatedSprite = new AnimatedSprite("img/fire-animation-2.png", 5, 2, true);
 	pAnimatedSprite->setSize(0.25);
 	renderer.addObject(pAnimatedSprite);
-	Sprite *pSprite3 = new Sprite("../OpenGL-2D/img/alien-01.png");
+	Sprite *pSprite3 = new Sprite("img/alien-01.png");
 	pSprite3->setPosition(0.75, 0.25);
 	pSprite3->setRotation(0.0);
 	pSprite3->setSize(0.2);
 	pSprite3->setDepth(1.5);
 	renderer.addObject(pSprite3);
 
-	Sprite *pSprite4 = new Sprite("../OpenGL-2D/img/alien-02.png");
+	Sprite *pSprite4 = new Sprite("img/alien-02.png");
 	//	pSprite2->setColor(0, 255, 0);
 	pSprite4->setPosition(-0.75, 0.25);
 	pSprite4->setRotation(0.0);
@@ -57,7 +57,7 @@ int main(int argc, char** argv)
 	pSprite4->setDepth(1.5);
 	renderer.addObject(pSprite4);
 
-	Sprite *pSprite5 = new Sprite("../OpenGL-2D/img/alien-01.png");
+	Sprite *pSprite5 = new Sprite("img/alien-01.png");
 	pSprite5->setPosition(0.25, 0.25);
 	pSprite5->setRotation(0.0);
 	pSprite5->setSize(0.2);
