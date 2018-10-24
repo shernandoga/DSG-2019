@@ -91,6 +91,8 @@ void AnimatedSprite::draw()
 	glDisable(GL_TEXTURE_2D); //disable 2d textures and enable 3d textures
 	glEnable(GL_TEXTURE_3D);
 	glBindTexture(GL_TEXTURE_3D, m_textureId);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glBegin(GL_QUADS);
 	glTexCoord3d(0.0, 1.0, animationPoint);

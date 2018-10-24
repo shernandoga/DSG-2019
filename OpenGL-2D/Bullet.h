@@ -1,7 +1,7 @@
 #pragma once
-#include "Sprite.h"
+#include "AnimatedSprite.h"
 class Bullet :
-	public Sprite
+	public AnimatedSprite
 {
 
 	//int m_direction; //0=UP/1=DOWN
