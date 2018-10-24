@@ -7,7 +7,8 @@
 #include "AnimatedSprite.h"
 #include "Text.h"
 #include "Timer.h"
-
+#include <iostream>
+#include <thread>
 
 
 int main(int argc, char** argv)
@@ -75,6 +76,7 @@ int main(int argc, char** argv)
 	Text2D *Text2D11 = new Text2D("Player1textName",-0.125,-0.8,1.5);
 	Text2D11->setColor(13, 120, 254);
 	renderer.addObject(Text2D11);
+
 	int i = 0;
 	Timer time;
 	time.start();
@@ -83,13 +85,14 @@ int main(int argc, char** argv)
 	Text2D12->setColor(13, 120, 254);
 	renderer.addObject(Text2D12);
 	
-
+	
 
 	while (1)
 	{
-
+		bool gameOver = false;
 		Text2D11->setText("Player 1 Points: "+to_string(i++));
 		Text2D12->setText("Time: " + to_string(time.getElapsedTime()));
+		
 		//UPDATE////////////////////
 		////////////////////////////
 		//process queued events
@@ -101,15 +104,45 @@ int main(int argc, char** argv)
 		for (int id= 0; id<numEnemies; id++)
 		{
 				Sprite* theEnemy = (Sprite*)renderer.getDrawable(string("enemy") + to_string(id));
-				theEnemy->setPosition(theEnemy->getX(), theEnemy->getY()-0.0001);			
+				if (theEnemy->getY()>=-0.25) {
+					theEnemy->setPosition(theEnemy->getX(), theEnemy->getY()-0.0001);
+				}else{
+					gameOver = true;
+					
+					Text2D *textGameOver = new Text2D("gameOver", -0.13, 0, 1.0);
+					textGameOver->setColor(10, 0, 0);
+					renderer.addObject(textGameOver);
+					textGameOver->setText("GAME OVER!!!!");
+				}
+							
 		}  
+
+
 
 		//RENDER////////////////////
 		////////////////////////////
 		glutPostRedisplay();
 		glutSwapBuffers();
+		if (gameOver)
+			break;
 	}
    
+/*	Text2D *textGameOver = new Text2D("GAME OVER!!!!", 0, 0, 1.0);
+	textGameOver->setColor(13, 120, 254);
+	renderer.addObject(textGameOver);
+	*/
+	glutMainLoopEvent();
+	glutPostRedisplay();
+	glutSwapBuffers();
+	
+	cout << "\n\n exiting... ";
+	for (int countdown = 5; countdown >= 0; countdown--) {
+		this_thread::sleep_for(std::chrono::milliseconds(1 * 1000));
+		cout << countdown;
+	}
+
+
+
 	return 0;
 
 }
