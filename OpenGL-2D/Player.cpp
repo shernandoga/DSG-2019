@@ -1,5 +1,7 @@
 #include "Player.h"
 #include "stdafx.h"
+#include "Bullet.h"
+#include "Renderer.h"
 
 Player::Player(string name, const char* texture): Sprite(texture)
 {
@@ -40,5 +42,14 @@ void Player::draw() {
 
 	//5. Restore the transformation matrix
 	glPopMatrix();
+
+}
+
+
+void Player::shoot()
+{
+	Sprite* pBullet = new Bullet(m_x, m_y, "../OpenGL-2D/img/alien-01.png");
+	Renderer render;
+	render.get()->addObject(pBullet);
 
 }
