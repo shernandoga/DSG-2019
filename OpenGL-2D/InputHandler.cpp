@@ -25,7 +25,7 @@ void InputHandler::initialize()
 {
 	glutKeyboardFunc(__processKeyboard);
 	//TODO glutKeyboardUpFunc deje de moverse cuando se suelte y que detecte cuando pulsado con booleans
-
+	glutKeyboardUpFunc(__processUpKeyboard);
 }
 
 
@@ -33,8 +33,36 @@ void InputHandler::processKeyboard(unsigned char key, int x, int y)
 {
 	//keyboard callback function
 	Renderer* renderer = (Renderer*)Renderer::get();
-	Player* player2;
-	Player* player1;
+	
+	player2 = (Player*)Renderer::get()->getObject("Player2");
+	player1 = (Player*)Renderer::get()->getObject("Player1");
+
+	switch (key){
+		//TODO
+	case '8':
+		mvUp2=true; break;
+	case '2':
+		mvDwn2 = true; break;
+	case '4':
+		retard(player2, renderer, false);
+		break;
+
+	case 'w':
+		mvUp1=true; break;
+	case 's':
+		mvDwn1 = true; break;
+	case 'd':
+		retard(player1, renderer, true);
+		break;
+
+	case 27: exit(0);
+	}
+}
+
+void InputHandler::processUpKeyboard(unsigned char key, int x, int y) {
+	//keyboard callback function
+	Renderer* renderer = (Renderer*)Renderer::get();
+	
 	player2 = (Player*)Renderer::get()->getObject("Player2");
 	player1 = (Player*)Renderer::get()->getObject("Player1");
 
@@ -42,17 +70,17 @@ void InputHandler::processKeyboard(unsigned char key, int x, int y)
 	{
 		//TODO
 	case '8':
-		player2->moveUp(); break;
+		mvUp2=false; break;
 	case '2':
-		player2->moveDown(); break;
+		mvDwn2=false; break;
 	case '4':
 		retard(player2, renderer, false);
 		break;
 
 	case 'w':
-		player1->moveUp(); break;
+		mvUp1=false; break;
 	case 's':
-		player1->moveDown(); break;
+		mvDwn1 = false; break;
 	case 'd':
 		retard(player1, renderer, true);
 		break;
@@ -85,4 +113,24 @@ void InputHandler::__processKeyboard(unsigned char key, int x, int y)
 {
 	if (m_pInputHandler)
 		m_pInputHandler->processKeyboard(key, x, y);
+}
+
+void InputHandler::__processUpKeyboard(unsigned char key, int x, int y) {
+	if (m_pInputHandler)
+		m_pInputHandler->processUpKeyboard(key, x, y);
+}
+
+void InputHandler::processEvents() {
+	if (mvUp1) {
+		player1->moveUp();
+	}
+	if (mvUp2) {
+		player2->moveUp();
+	}
+	if (mvDwn1) {
+		player1->moveDown();
+	}
+	if (mvDwn2) {
+		player2->moveDown();
+	}
 }

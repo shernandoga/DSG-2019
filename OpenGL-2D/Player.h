@@ -3,7 +3,7 @@
 #include "Sprite.h"
 class Player : public Sprite
 {
-	double coins, limitDown=-0.75, limitUp=0.75;
+	double coins, limitDown=-0.75, limitUp=0.5;
 public:
 	Player();
 	~Player();
