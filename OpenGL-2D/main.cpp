@@ -60,6 +60,7 @@ int main(int argc, char** argv)
 			pSprite->setRotation(0.0);
 			pSprite->setSize(0.1);
 			pSprite->setDepth(1.5);
+			pSprite->setName((string)(k+""+l));
 			renderer.addObject(pSprite);
 			x = x + r;
 		}
@@ -92,6 +93,13 @@ int main(int argc, char** argv)
 		inputHandler.update();
 
 
+/*		for (int k = 0; k<c; k++) {
+			for (int l = 0; l < E; l++) {
+				Sprite* theEnemy = (Sprite*)renderer.getDrawable((string)(k + "" + l));
+				theEnemy->setPosition(theEnemy->getX(), theEnemy->getY()-0.1);
+				
+			}
+		}  */
 
 		//RENDER////////////////////
 		////////////////////////////
