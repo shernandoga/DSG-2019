@@ -1,5 +1,7 @@
 #include "Player.h"
 #include "stdafx.h"
+#include "Bullet.h"
+#include "Renderer.h"
 
 Player::Player(string name, const char* texture): Sprite(texture)
 {
@@ -8,5 +10,13 @@ Player::Player(string name, const char* texture): Sprite(texture)
 	setDepth(1.25);
 	setColor(255, 0, 0);
 	setName(name);
+}
+
+void Player::shoot()
+{
+	Sprite* pBullet = new Bullet(m_x, m_y, "../OpenGL-2D/img/alien-01.png");
+	Renderer render;
+	render.get()->addObject(pBullet);
+
 }
 
