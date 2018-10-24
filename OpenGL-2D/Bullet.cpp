@@ -28,3 +28,7 @@ void Bullet::setPos(double x, double y) { m_x = x; m_y = y; }
 void Bullet::changeImpact() {
 	if (!m_hasImpact) { m_hasImpact = true; }
 }
+void Bullet::draw() {
+	setPos(getPosX(), getPosY() + 0.001);
+	Sprite::draw();
+}

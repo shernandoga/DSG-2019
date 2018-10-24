@@ -3,6 +3,7 @@
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
 #include "Renderer.h"
 #include "Player.h"
+#include <iostream>
 
 InputHandler* InputHandler::m_pInputHandler = nullptr;
 
@@ -26,10 +27,12 @@ void InputHandler::processKeyboard(unsigned char key, int x, int y)
 {
 	//keyboard callback function
 	Sprite* thePlayer = (Sprite*)m_renderer.getDrawable("jugador");
+	std::cout << key;
+
 	switch (key)
 	{
 		//TODO
-	case ' ':
+	case 32: //ASCII KEY SPACE
 		//m_renderer.
 		((Player*)thePlayer)->shoot();
 			break;
