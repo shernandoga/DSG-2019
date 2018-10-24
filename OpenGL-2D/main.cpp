@@ -4,9 +4,9 @@
 #include "Sprite.h"
 #include "Player.h"
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
+#include "AnimatedSprite.h"
 #include "Text.h"
 #include "Timer.h"
-
 
 
 
@@ -39,6 +39,9 @@ int main(int argc, char** argv)
 	pSprite2->setDepth(1.5);
 	renderer.addObject(pSprite2);
 
+	AnimatedSprite * pAnimatedSprite = new AnimatedSprite("img/fire-animation-2.png", 5, 2, true);
+	pAnimatedSprite->setSize(0.25);
+	renderer.addObject(pAnimatedSprite);
 	Sprite *pSprite3 = new Sprite("../OpenGL-2D/img/alien-01.png");
 	pSprite3->setPosition(0.75, 0.25);
 	pSprite3->setRotation(0.0);
