@@ -13,6 +13,6 @@ public:
 
 	string m_name;
 	void shoot();
-	virtual void draw();
+	
 	
 };

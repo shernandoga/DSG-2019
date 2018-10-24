@@ -4,6 +4,7 @@
 #include <string>
 
 AnimatedSprite::AnimatedSprite(const char* textureFilename, int numSubImagesX, int numSubImagesY, bool loop)
+	:Sprite(nullptr)
 {
 	int width, height, nChannels;
 	unsigned char* pImage= SOIL_load_image(textureFilename, &width, &height, &nChannels, 0);
