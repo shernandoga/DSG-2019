@@ -23,56 +23,58 @@ int main(int argc, char** argv)
 	Player* jugador = new Player("jugador", "img/fighter-01.png");
 	renderer.addObject(jugador);
 	
-	Sprite *pSprite1= new Sprite("img/alien-01.png");
-	pSprite1->setColor(255, 0, 0);
-	pSprite1->setPosition(0.25, 0.25);
-	pSprite1->setRotation(0.0);
-	pSprite1->setSize(0.2);
-	pSprite1->setDepth(1.5);
-	renderer.addObject(pSprite1);
-
-	Sprite *pSprite2= new Sprite("img/alien-02.png");
-//	pSprite2->setColor(0, 255, 0);
-	pSprite2->setPosition(-0.25, 0.25);
-	pSprite2->setRotation(0.0);
-	pSprite2->setSize(0.2);
-	pSprite2->setDepth(1.5);
-	renderer.addObject(pSprite2);
-
-	AnimatedSprite * pAnimatedSprite = new AnimatedSprite("img/fire-animation-2.png", 5, 2, true);
+	/*AnimatedSprite * pAnimatedSprite = new AnimatedSprite("img/fire-animation-2.png", 5, 2, true);
 	pAnimatedSprite->setSize(0.25);
 	renderer.addObject(pAnimatedSprite);
-	Sprite *pSprite3 = new Sprite("img/alien-01.png");
-	pSprite3->setPosition(0.75, 0.25);
-	pSprite3->setRotation(0.0);
-	pSprite3->setSize(0.2);
-	pSprite3->setDepth(1.5);
-	renderer.addObject(pSprite3);
+	*/
 
-	Sprite *pSprite4 = new Sprite("img/alien-02.png");
-	//	pSprite2->setColor(0, 255, 0);
-	pSprite4->setPosition(-0.75, 0.25);
-	pSprite4->setRotation(0.0);
-	pSprite4->setSize(0.2);
-	pSprite4->setDepth(1.5);
-	renderer.addObject(pSprite4);
+	//Number of enemies
+	double E = 8.00;
 
-	Sprite *pSprite5 = new Sprite("img/alien-01.png");
-	pSprite5->setPosition(0.25, 0.25);
-	pSprite5->setRotation(0.0);
-	pSprite5->setSize(0.2);
-	pSprite5->setDepth(1.5);
-	renderer.addObject(pSprite5);
+	//Start position of X
+	const double xmin = -0.7;
+	double x = xmin;
+	//Start position of Y
+	double y = 0.25;
 
+	//Separation between enemies
+	double r = ((-x)*2)/(E-1);
 
-	Text2D *Text2D11 = new Text2D("Player1textName",-0.125,0.8,1.5);
+	double t = 0.15;
+
+	//number of columns
+	double c = 4.00;
+
+	for (int k=0;k<c;k++) {
+		for (int l=0; l < E; l++) {
+
+			Sprite *pSprite;
+			if (k%2==0) {
+				pSprite = new Sprite("img/alien-01.png");
+			}
+			else {
+				pSprite = new Sprite("img/alien-02.png");
+			}
+			pSprite->setColor(255, 0, 0);
+			pSprite->setPosition(x, y);
+			pSprite->setRotation(0.0);
+			pSprite->setSize(0.1);
+			pSprite->setDepth(1.5);
+			renderer.addObject(pSprite);
+			x = x + r;
+		}
+		y = y + t;
+		x = xmin;
+	}
+
+	Text2D *Text2D11 = new Text2D("Player1textName",-0.125,-0.8,1.5);
 	Text2D11->setColor(13, 120, 254);
 	renderer.addObject(Text2D11);
 	int i = 0;
 	Timer time;
 	time.start();
 
-	Text2D *Text2D12 = new Text2D("TimerP", 0.5, 0.8, 1.5);
+	Text2D *Text2D12 = new Text2D("TimerP", 0.5, -0.8, 1.5);
 	Text2D12->setColor(13, 120, 254);
 	renderer.addObject(Text2D12);
 	
