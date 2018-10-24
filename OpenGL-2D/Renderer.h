@@ -2,6 +2,10 @@
 
 class Drawable;
 #include <vector>
+#include <string>
+#include "Sprite.h"
+
+
 using namespace std;
 
 class Renderer
@@ -22,6 +26,7 @@ public:
 
 	void drawScene();
 	void addObject(Drawable* pObj);
+	Drawable* getDrawable(string name);
 	void reshapeWindow(int x, int y);
 
 	static void __drawScene();
