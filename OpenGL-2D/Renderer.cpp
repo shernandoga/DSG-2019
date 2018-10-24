@@ -28,6 +28,7 @@ void Renderer::initialize(int argc, char** argv)
 	//INIT GLUT/////////////////////
 	////////////////////////////////
 	//init window and OpenGL context
+	
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(800, 800);
@@ -42,6 +43,7 @@ void Renderer::initialize(int argc, char** argv)
 	//callback functions
 	glutDisplayFunc(__drawScene);
 	glutReshapeFunc(__reshapeWindow);
+	glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
 }
 
 void Renderer::set2DMatrix()
