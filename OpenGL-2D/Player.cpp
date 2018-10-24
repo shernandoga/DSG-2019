@@ -14,9 +14,8 @@ Player::Player(string name, const char* texture): Sprite(texture)
 
 void Player::shoot()
 {
-	Sprite* pBullet = new Bullet(m_x, m_y, "img/alien-01.png");
-	Renderer render;
-	render.get()->addObject(pBullet);
+	Bullet* pBullet = new Bullet(m_x, m_y, "img/alien-01.png");
+	Renderer::get()->addObject(pBullet);
 
 }
 
