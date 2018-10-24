@@ -30,7 +30,7 @@ int main(int argc, char** argv)
 	//test objects
 	Player *pPlayer1= new Player();
 	pPlayer1->setColor(255, 0, 0);
-	pPlayer1->setPosition(-0.75, 0.0);
+	pPlayer1->setPosition(-0.75, 0.5);
 	pPlayer1->setRotation(0.0);
 	pPlayer1->setSize(0.2);
 	pPlayer1->setDepth(1.5);
@@ -39,7 +39,7 @@ int main(int argc, char** argv)
 
 	Player *pPlayer2 = new Player();
 	pPlayer2->setColor(0, 255, 0);
-	pPlayer2->setPosition(0.75, 0.0);
+	pPlayer2->setPosition(0.75, -0.75);
 	pPlayer2->setRotation(0.0);
 	pPlayer2->setSize(0.2);
 	pPlayer2->setDepth(1.3);
