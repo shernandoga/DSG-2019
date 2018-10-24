@@ -4,7 +4,7 @@
 
 Player::Player()
 {
-	coins = 0;
+	score = 0;
 }
 
 
@@ -26,4 +26,14 @@ void Player::moveDown()
 		m_y = m_y - 0.1;
 		setPosition(m_x, m_y);
 	}
+}
+
+void Player::addScore()
+{
+	score++;
+}
+
+int Player::getScore()
+{
+	return score;
 }

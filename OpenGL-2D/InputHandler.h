@@ -16,6 +16,6 @@ public:
 
 	void processKeyboard(unsigned char key, int x, int y);
 	static void __processKeyboard(unsigned char key, int x, int y);
-	void retard(Player* player, Renderer* renderer, bool direction);
+	void retard(Player* player, Renderer* renderer, bool direction); 
 };
 

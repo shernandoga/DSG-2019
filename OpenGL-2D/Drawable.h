@@ -13,4 +13,5 @@ public:
 
 	void markForDeletion();
 	bool isAlive();
+	bool canBeHit(Drawable * obj);
 };
