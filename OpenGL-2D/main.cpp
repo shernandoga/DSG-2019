@@ -89,6 +89,8 @@ int main(int argc, char** argv)
 		////////////////////////////
 		//process queued events
 		glutMainLoopEvent();
+		inputHandler.update();
+
 
 
 		//RENDER////////////////////
