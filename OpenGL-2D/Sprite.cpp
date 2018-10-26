@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Sprite.h"
-
+#include "../3rd-party/SOIL/src/SOIL.h"
 
 Sprite::Sprite()
 {
@@ -53,6 +53,11 @@ void Sprite::setSize(double size)
 {
 	//This method only updates internally the object's size. It still needs to be passed to OpenGL before drawing it
 	m_size = size;
+}
+
+double Sprite::getSize()
+{
+	return m_size;
 }
 
 void Sprite::draw()

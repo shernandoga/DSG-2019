@@ -9,6 +9,8 @@ public:
 	Projectile(double coordPlayerX, double coordPlayerY, bool direction);
 	~Projectile();
 	void draw();
+	bool isHitP1();
+	bool isHitP2();
 };
 
 

@@ -46,6 +46,8 @@ int main(int argc, char** argv)
 
 	renderer.addObject(texto1);
 	renderer.addObject(texto2);
+	texto1->setName("text1");
+	texto2->setName("text2");
 	texto1->updateScore(0);
 	texto2->updateScore(0);
 	
