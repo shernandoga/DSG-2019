@@ -7,7 +7,8 @@
 #include "AnimatedSprite.h"
 #include "Text.h"
 #include "Timer.h"
-
+#include <iostream>
+#include <thread>
 
 
 int main(int argc, char** argv)
@@ -23,78 +24,125 @@ int main(int argc, char** argv)
 	Player* jugador = new Player("jugador", "img/fighter-01.png");
 	renderer.addObject(jugador);
 	
-	Sprite *pSprite1= new Sprite("img/alien-01.png");
-	pSprite1->setColor(255, 0, 0);
-	pSprite1->setPosition(0.25, 0.25);
-	pSprite1->setRotation(0.0);
-	pSprite1->setSize(0.2);
-	pSprite1->setDepth(1.5);
-	renderer.addObject(pSprite1);
-
-	Sprite *pSprite2= new Sprite("img/alien-02.png");
-//	pSprite2->setColor(0, 255, 0);
-	pSprite2->setPosition(-0.25, 0.25);
-	pSprite2->setRotation(0.0);
-	pSprite2->setSize(0.2);
-	pSprite2->setDepth(1.5);
-	renderer.addObject(pSprite2);
-
-	AnimatedSprite * pAnimatedSprite = new AnimatedSprite("img/fire-animation-2.png", 5, 2, true);
+	/*AnimatedSprite * pAnimatedSprite = new AnimatedSprite("img/fire-animation-2.png", 5, 2, true);
 	pAnimatedSprite->setSize(0.25);
 	renderer.addObject(pAnimatedSprite);
-	Sprite *pSprite3 = new Sprite("img/alien-01.png");
-	pSprite3->setPosition(0.75, 0.25);
-	pSprite3->setRotation(0.0);
-	pSprite3->setSize(0.2);
-	pSprite3->setDepth(1.5);
-	renderer.addObject(pSprite3);
+	*/
 
-	Sprite *pSprite4 = new Sprite("img/alien-02.png");
-	//	pSprite2->setColor(0, 255, 0);
-	pSprite4->setPosition(-0.75, 0.25);
-	pSprite4->setRotation(0.0);
-	pSprite4->setSize(0.2);
-	pSprite4->setDepth(1.5);
-	renderer.addObject(pSprite4);
+	//Number of enemies
+	double E = 8.00;
 
-	Sprite *pSprite5 = new Sprite("img/alien-01.png");
-	pSprite5->setPosition(0.25, 0.25);
-	pSprite5->setRotation(0.0);
-	pSprite5->setSize(0.2);
-	pSprite5->setDepth(1.5);
-	renderer.addObject(pSprite5);
+	//Start position of X
+	const double xmin = -0.7;
+	double x = xmin;
+	//Start position of Y
+	double y = 0.25;
 
+	//Separation between enemies
+	double r = ((-x)*2)/(E-1);
 
-	Text2D *Text2D11 = new Text2D("Player1textName",-0.125,0.8,1.5);
+	double t = 0.15;
+
+	//number of columns
+	double c = 4.00;
+	int id = 0;
+	int numEnemies;
+
+	for (int k=0;k<c;k++) {
+		for (int l=0; l < E; l++) {
+
+			Sprite *pSprite;
+			if (k%2==0) {
+				pSprite = new Sprite("img/alien-01.png");
+			}
+			else {
+				pSprite = new Sprite("img/alien-02.png");
+			}
+			pSprite->setColor(255, 0, 0);
+			pSprite->setPosition(x, y);
+			pSprite->setRotation(0.0);
+			pSprite->setSize(0.1);
+			pSprite->setDepth(1.5);
+			pSprite->setName(string("enemy") + to_string(id));
+			renderer.addObject(pSprite);
+			x = x + r;
+			id++;
+		}
+		y = y + t;
+		x = xmin;
+	}
+	numEnemies = id;
+
+	Text2D *Text2D11 = new Text2D("Player1textName",-0.125,-0.8,1.5);
 	Text2D11->setColor(13, 120, 254);
 	renderer.addObject(Text2D11);
+
 	int i = 0;
 	Timer time;
 	time.start();
 
-	Text2D *Text2D12 = new Text2D("TimerP", 0.5, 0.8, 1.5);
+	Text2D *Text2D12 = new Text2D("TimerP", 0.5, -0.8, 1.5);
 	Text2D12->setColor(13, 120, 254);
 	renderer.addObject(Text2D12);
 	
-
+	
 
 	while (1)
 	{
-
+		bool gameOver = false;
 		Text2D11->setText("Player 1 Points: "+to_string(i++));
 		Text2D12->setText("Time: " + to_string(time.getElapsedTime()));
+		
 		//UPDATE////////////////////
 		////////////////////////////
 		//process queued events
 		glutMainLoopEvent();
+		inputHandler.update();
+
+
+	
+		for (int id= 0; id<numEnemies; id++)
+		{
+				Sprite* theEnemy = (Sprite*)renderer.getDrawable(string("enemy") + to_string(id));
+				if (theEnemy->getY()>=-0.25) {
+					theEnemy->setPosition(theEnemy->getX(), theEnemy->getY()-0.0001);
+				}else{
+					gameOver = true;
+					
+					Text2D *textGameOver = new Text2D("gameOver", -0.13, 0, 1.0);
+					textGameOver->setColor(10, 0, 0);
+					renderer.addObject(textGameOver);
+					textGameOver->setText("GAME OVER!!!!");
+				}
+							
+		}  
+
 
 
 		//RENDER////////////////////
 		////////////////////////////
 		glutPostRedisplay();
 		glutSwapBuffers();
+		if (gameOver)
+			break;
 	}
    
+/*	Text2D *textGameOver = new Text2D("GAME OVER!!!!", 0, 0, 1.0);
+	textGameOver->setColor(13, 120, 254);
+	renderer.addObject(textGameOver);
+	*/
+	glutMainLoopEvent();
+	glutPostRedisplay();
+	glutSwapBuffers();
+	
+	cout << "\n\n exiting... ";
+	for (int countdown = 5; countdown >= 0; countdown--) {
+		this_thread::sleep_for(std::chrono::milliseconds(1 * 1000));
+		cout << countdown;
+	}
+
+
+
 	return 0;
 
 }

@@ -20,41 +20,65 @@ InputHandler::~InputHandler()
 void InputHandler::initialize()
 {
 	glutKeyboardFunc(__processKeyboard);
+	glutKeyboardUpFunc(__processKeyboardUp);
 }
 
 
-void InputHandler::processKeyboard(unsigned char key, int x, int y) 
+void InputHandler::update() 
 {
 	//keyboard callback function
 	Sprite* thePlayer = (Sprite*)m_renderer.getDrawable("jugador");
-	std::cout << key;
 
-	switch (key)
-	{
-		//TODO
-	case 32: //ASCII KEY SPACE
-		//m_renderer.
+	if (spacePressed)
 		((Player*)thePlayer)->shoot();
-			break;
-	case 'a': 
+ 
+	if (leftPressed) {
 		if (thePlayer->getX() > -1)
-			thePlayer->setPosition(thePlayer->getX()-0.01, thePlayer->getY());
-		break;
-
-	case 's': break;
-	case 'd': 
-		if (thePlayer->getX() <=1)
-			thePlayer->setPosition(thePlayer->getX() + 0.01, thePlayer->getY());
-			
-		
-		break;
-
-	case 27: exit(0);
+			thePlayer->setPosition(thePlayer->getX() - 0.01, thePlayer->getY());
 	}
+		
+
+	if (rightPressed) {
+		if (thePlayer->getX() <= 1)
+			thePlayer->setPosition(thePlayer->getX() + 0.01, thePlayer->getY());		
+	}
+		
+		
+
 }
 
 void InputHandler::__processKeyboard(unsigned char key, int x, int y)
 {
 	if (m_pInputHandler)
-		m_pInputHandler->processKeyboard(key, x, y);
+	{
+		switch (key)
+		{
+		case 32: //ASCII KEY SPACE
+			m_pInputHandler->spacePressed = true;
+			break;
+		case 'a':
+			m_pInputHandler->leftPressed = true;
+			break;
+		case 'd':
+			m_pInputHandler->rightPressed = true;
+			break;
+		}
+
+	}
+	
+}
+
+
+void InputHandler::__processKeyboardUp(unsigned char key, int x, int y)
+{
+	
+	if (m_pInputHandler->leftPressed)
+		m_pInputHandler->leftPressed = false;
+	else if (m_pInputHandler->rightPressed)
+		m_pInputHandler->rightPressed = false;
+	else
+		m_pInputHandler->spacePressed = false;
+
+
+
 }
