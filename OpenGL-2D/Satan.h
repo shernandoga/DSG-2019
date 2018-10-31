@@ -20,6 +20,7 @@ class Satan
 	double c = 4.00;
 	int id = 0;
 	int numEnemies;
+	int killedEnemies = 0;
 	static Satan* m_pInstance;
 public:
 	Satan();
@@ -28,8 +29,10 @@ public:
 	void createEnemies();
 	void setNumEnemies(int numEnemies) { m_numEnemies = numEnemies;  };
 	int getNumEnemies() { return m_numEnemies;  };
+	int getKilledEnemies() { return killedEnemies; };
+
 
 	static Satan* getInstance() { return m_pInstance; }
-	void killEnemy() { m_numEnemies--; };
+	void killEnemy() { killedEnemies++; };
 };
 

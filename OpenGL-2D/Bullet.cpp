@@ -13,6 +13,8 @@ Bullet::Bullet(double x, double y, const char* texture)
 	m_fun = true;
 	m_x=x;
 	m_y=y;
+	setDepth(1.1);
+
 
 }
 
@@ -47,7 +49,7 @@ void Bullet::checkImpact() {
 					//borrar theEnemy del vector<> que tiene renderer 
 					theEnemy->kill();
 					kill();
-				//	Satan::getInstance()->killEnemy();
+					Satan::getInstance()->killEnemy();
 					//sumar un punto
 					Player::get()->addScore();
 					//borrar la bala (llamar a delSprite) 

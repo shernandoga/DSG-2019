@@ -21,13 +21,13 @@ int main(int argc, char** argv)
 	// TODO uncomment for background music
 //	pSoundManager->createAudioObject("snd/soundtrack-01.wav");
 	pSoundManager->createAudioObject("snd/cannon.wav");
-	pSoundManager->createAudioObject("snd/fireball.wav");
-	pSoundManager->createAudioObject("snd/explosion.wav");
+	//pSoundManager->createAudioObject("snd/fireball.wav");
+	//pSoundManager->createAudioObject("snd/explosion.wav");
 
 	int audioObjBg = pSoundManager->getAudioObjectId("snd/soundtrack-01.wav");
 	// TODO uncomment for background music
 //	pSoundManager->play(audioObjBg, 1.f);
-
+	system("cls");
 	std::cout << "  _________                          \n";
 	std::cout << " /   _____/__________    ____  ____  \n";
 	std::cout << " \_____   \\ ____ \\__  \\ _/ ___\\/ __ \\ \n";
@@ -70,7 +70,6 @@ int main(int argc, char** argv)
 
 
 
-	
 
 
 	Text2D *Text2D11 = new Text2D("Player1textName",-0.125,-0.8,1.5);
@@ -88,7 +87,6 @@ int main(int argc, char** argv)
 	while (1)
 	{
 		bool gameOver = false;
-		//Text2D11->setText("Enemies: " + to_string(Satan::getInstance()->getNumEnemies()));
 		Text2D11->setText("Points: "+to_string(jugador->getScore()));
 		Text2D12->setText("Time: " + to_string((int)time.getElapsedTime()));
 		
@@ -104,11 +102,11 @@ int main(int argc, char** argv)
 
 
 	
-		if (Satan::getInstance()->getNumEnemies() == 0) {
+		if (Satan::getInstance()->getNumEnemies() <= Satan::getInstance()->getKilledEnemies()) {
 			gameOver = true;
 
-			Sprite* gameover = new Sprite("img/game-over.png");
-			gameover->setDepth(1.01);
+			Sprite* gameover = new Sprite("img/you-win.jpg");
+			gameover->setDepth(1);
 			renderer.addObject(gameover);
 		}
 		for (int id= 0; id<satanas->getNumEnemies(); id++)
