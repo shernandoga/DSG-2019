@@ -3,7 +3,7 @@
 #include "Sprite.h"
 class Player : public Sprite
 {
-	double limitDown=-0.75, limitUp=0.75;
+	double limitDown=-0.75, limitUp=0.5;
 	int score;
 public:
 	Player(string img);
@@ -17,5 +17,6 @@ public:
 	bool movegeneral(int x1, int y1);
 	int getScore();
 	void addScore();
+	void setScore(int pScore);
 };
 

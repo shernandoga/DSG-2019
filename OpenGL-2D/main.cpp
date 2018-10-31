@@ -14,12 +14,11 @@
 using namespace std;
 
 
+
 int main(int argc, char** argv)
 {
-	int cont = 0;
-
 	//Sound
-	clock_t startSoundtrack = clock();
+	clock_t startSoundtrack;
 	double secondsPassed;
 	SoundManager soundManager;
 	SoundManager* pSoundManager = SoundManager::getInstance();
@@ -28,33 +27,36 @@ int main(int argc, char** argv)
 	pSoundManager->createAudioObject("snd/cannon.wav");
 
 	int audioObj1 = pSoundManager->getAudioObjectId("snd/soundtrack-01.wav");
-	pSoundManager->play(audioObj1, 1.f);
 	int audioObj2 = pSoundManager->getAudioObjectId("snd/cannon.wav");
 
 	Renderer renderer;
 	InputHandler inputHandler(renderer);
 	renderer.initialize(argc, argv);
-	inputHandler.initialize();
-	bool play = true;
-	/*while (!play) {
+	Text2D *textInit = new Text2D("Presione cualquier tecla para empezar", -0.4, 0, 1);
+	renderer.addObject(textInit);
+	bool play = false;
+	while (!play) {
+		glutKeyboardFunc(inputHandler.__processPlay);
 		if (inputHandler.doPlay()) {
 			play = true;
+			renderer.removeObject(textInit);
+			pSoundManager->play(audioObj1, 1.f);
+			startSoundtrack = clock();
 		}
 		glutMainLoopEvent();
 		glutPostRedisplay();
 		glutSwapBuffers();
-	}*/
-	Text2D *texto1 = new Text2D("PLAYER 1: 10", -0.75, 0.75, 1);
-	Text2D *texto2 = new Text2D("PLAYER 2: 10", 0.40, 0.75, 1);
+	}
+	inputHandler.initialize();
+	Text2D *texto1 = new Text2D("PLAYER 1: 10", -0.75, 0.92, 1);
+	Text2D *texto2 = new Text2D("PLAYER 2: 10", 0.40, 0.92, 1);
 	Text2D *textWinner = new Text2D("GANADOR", -0.25, 0.5, 1);
-
 	renderer.addObject(texto1);
 	renderer.addObject(texto2);
 	texto1->setName("text1");
 	texto2->setName("text2");
 	texto1->updateScore(0);
 	texto2->updateScore(0);
-	
 	
 	//test objects
 	Player *pPlayer1= new Player("img/fighter-01.png");
@@ -100,8 +102,8 @@ int main(int argc, char** argv)
 		}
 
 		if (pPlayer1->getScore() == 10) {
+			textWinner->setText("Player 1 has won!!!");
 			renderer.addObject(textWinner);
-			textWinner->setText("El jugador 1 ha ganado !!!");
 			inputHandler.stopPlaying();
 
 			inputHandler.processEvents(pSoundManager, audioObj2);
@@ -109,11 +111,12 @@ int main(int argc, char** argv)
 
 			glutPostRedisplay();
 			glutSwapBuffers();
+			play = false;
 		}
 		else if (pPlayer2->getScore() == 10)
 		{
+			textWinner->setText("Player 2 has won!!!");
 			renderer.addObject(textWinner);
-			textWinner->setText("El jugador 2 ha ganado !!!");
 			inputHandler.stopPlaying();
 
 			inputHandler.processEvents(pSoundManager, audioObj2);
@@ -121,8 +124,33 @@ int main(int argc, char** argv)
 
 			glutPostRedisplay();
 			glutSwapBuffers();
+			play = false;
 		}
+		
+		//Restart game
+		if (!play) {
+			Text2D *textRestart = new Text2D("Press any key to restart", -0.2, 0, 1);
+			renderer.addObject(textRestart);
+			while (!play) {
+				glutKeyboardFunc(inputHandler.__processPlay);
+				if (inputHandler.doPlay()) {
+					play = true;
 
+					renderer.removeObject(textRestart);
+					inputHandler.initialize();
+					pPlayer1->setScore(0);
+					pPlayer2->setScore(0);
+					texto1->updateScore(0);
+					texto2->updateScore(0);
+					renderer.removeObject(textWinner);
+					pPlayer1->setPosition(-0.75, 0.5);
+					pPlayer2->setPosition(0.75, -0.75);
+				}
+				glutMainLoopEvent();
+				glutPostRedisplay();
+				glutSwapBuffers();
+			}
+		}
 	}
    
 	return 0;

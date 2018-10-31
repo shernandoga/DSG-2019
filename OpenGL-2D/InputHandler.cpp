@@ -99,10 +99,9 @@ void InputHandler::processUpKeyboard(unsigned char key, int x, int y) {
 void InputHandler::processPlay(unsigned char key, int x, int y) {
 
 	switch (key) {
-		//TODO
-	case 'a':
-		playing = true; break;
+		//TODO		
 	case 27: exit(0);
+	default: playing = true; break;
 	}
 }
 
@@ -169,8 +168,8 @@ bool InputHandler::doPlay() {
 
 void InputHandler::stopPlaying() {
 	playing = false;
-	mvUp2 = false;
 	mvUp1 = false;
+	mvUp2 = false;
 	mvDwn1 = false;
 	mvDwn2 = false;
 }
