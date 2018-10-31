@@ -10,10 +10,21 @@
 #include <iostream>
 #include <thread>
 #include <conio.h>
-
+#include "../3rd-party/SoundManager/SoundManager.h" //relative path to the main header
 
 int main(int argc, char** argv)
 {
+	SoundManager soundManager;
+	SoundManager* pSoundManager = SoundManager::getInstance();
+	pSoundManager->setVerbose(true);
+	pSoundManager->createAudioObject("snd/soundtrack-01.wav");
+	pSoundManager->createAudioObject("snd/cannon.wav");
+	pSoundManager->createAudioObject("snd/fireball.wav");
+	pSoundManager->createAudioObject("snd/explosion.wav");
+
+	int audioObjBg = pSoundManager->getAudioObjectId("snd/soundtrack-01.wav");
+	pSoundManager->play(audioObjBg, 1.f);
+
 	std::cout << "  _________                          \n";
 	std::cout << " /   _____/__________    ____  ____  \n";
 	std::cout << " \_____   \\ ____ \\__  \\ _/ ___\\/ __ \\ \n";
