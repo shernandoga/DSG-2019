@@ -41,8 +41,10 @@ void Bullet::changeImpact() {
 			if (distance < (theEnemy->getSize()+ m_size)) {
 				//collision!!
 				//borrar theEnemy del vector<> que tiene renderer
+				Renderer::get()->delObject(theEnemy);
 				//sumar un punto
 				//borrar la bala (llamar a delSprite) 
+				
 				
 			}
 		
