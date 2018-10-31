@@ -1,4 +1,5 @@
 #include "Bullet.h"
+#include "Player.h"
 #include "Renderer.h"
 #include <math.h>
 #include"Satan.h"
@@ -44,8 +45,9 @@ void Bullet::checkImpact() {
 				if (distance < (theEnemy->getSize() + m_size)) {
 					//Collision!!
 					//borrar theEnemy del vector<> que tiene renderer 
+					theEnemy->kill();
 					//sumar un punto
-
+					Player::get()->addScore();
 					//borrar la bala (llamar a delSprite) 
 
 					m_fun = false;
