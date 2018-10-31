@@ -33,12 +33,13 @@ World::World(std::string nameFile){
 	m_timer.start();
 
 	//TODO: initalize everything else
+	pointsP1 = 0;
+	pointsP2 = 0;
+	numCoins = 0;
+
 	point2D pointsForReading[NUM_POINTS];
 	ReadFile("file.csv", pointsForReading, NUM_POINTS);
 
-	pointsP1 = 0;
-	pointsP2 = 0;
-	numCoins = 15;
 }
 
 
@@ -142,7 +143,9 @@ void World::ReadFile(const char* filename, point2D * points, int numPoints)
 		for (int i = 0; i < m_sizeX * m_sizeY; i++) {
 			inputFile >> c_aux;
 			m_maze[i] = c_aux;
-
+			if (c_aux == c_coin) {
+				numCoins++;
+			}
 			if (c_aux == c_player1) {
 				player1.setcoord(i%m_sizeX, i / m_sizeX);					
 			}
@@ -168,5 +171,5 @@ void World::drawScore() {
 }
 
 int World::getTotalCoins() {
-	return 15;
+	return numCoins;
 }

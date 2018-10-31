@@ -60,6 +60,11 @@ void Sprite::setSize(double size)
 	m_size = size;
 }
 
+double Sprite::getSize()
+{
+	return m_size;
+}
+
 void Sprite::draw()
 {
 	//TODO:

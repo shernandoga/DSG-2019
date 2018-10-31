@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include <iostream>
+#include <iostream>
+#include <chrono>
+#include <thread>
 #include "GameLogic.h"
 #include "System.h"
 #include "World.h"
@@ -54,13 +57,15 @@ void GameLogic::processInput()
 bool GameLogic::gameHasEnded()
 {
 	if ((World::getInstance()->getPlayer(1).getScore() + World::getInstance()->getPlayer(2).getScore()) == World::getInstance()->getTotalCoins()) {
-		cout << "No quedan más monedas. El juego se ha terminado" << endl;
+		World::getInstance()->draw();
+		cout << "No quedan mas monedas. El juego se ha terminado" << endl;
 
 		if (World::getInstance()->getPlayer(1).getScore() > World::getInstance()->getPlayer(2).getScore()) {
 			cout << "El jugador 1 (o) ha ganado !!!" << endl;
 		}
 		else
 			cout << "El jugador 2 (x) ha ganado !!!" << endl;
+		std::this_thread::sleep_for(std::chrono::seconds(5));
 		return true;
 	}
 	return false;

@@ -12,12 +12,12 @@ int main()
 
 	GameLogic gameLogic(world);
 
-	while (!gameLogic.gameHasEnded())
-	{
+	do {
 		world.draw();
 
 		gameLogic.processInput();
 	}
+	while (!gameLogic.gameHasEnded());
 
     return 0;
 }

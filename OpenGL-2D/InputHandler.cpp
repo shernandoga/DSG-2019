@@ -24,6 +24,8 @@ InputHandler::~InputHandler()
 void InputHandler::initialize()
 {
 	glutKeyboardFunc(__processKeyboard);
+	//TODO glutKeyboardUpFunc deje de moverse cuando se suelte y que detecte cuando pulsado con booleans
+
 }
 
 
@@ -44,30 +46,38 @@ void InputHandler::processKeyboard(unsigned char key, int x, int y)
 	case '2':
 		player2->moveDown(); break;
 	case '4':
-		secondsPassed = (clock() - startTimeP2) / CLOCKS_PER_SEC;
-		if (secondsPassed >= secondsToDelay)
-		{
-		renderer->addObject(new Projectile(player2->getX(), player2->getY(), false,"img/fighter-02.png"));
-		startTimeP2 = clock();
+		retard(player2, renderer, false);
 		break;
-		}
-		else break;
 
 	case 'w':
 		player1->moveUp(); break;
 	case 's':
 		player1->moveDown(); break;
 	case 'd':
-		secondsPassed = (clock() - startTimeP1) / CLOCKS_PER_SEC;
-		if (secondsPassed >= secondsToDelay)
-		{
-			renderer->addObject(new Projectile(player1->getX(), player1->getY(), true, "img/fighter-02.png"));
-			startTimeP1 = clock();
-			break;
-		}
-		else break;
+		retard(player1, renderer, true);
+		break;
 
 	case 27: exit(0);
+	}
+}
+
+void InputHandler::retard(Player* player, Renderer* renderer, bool direction) {
+	clock_t startTimePl;
+	if (direction) {
+		startTimePl = startTimeP1;
+	}else {
+		startTimePl = startTimeP2;
+	}
+	secondsPassed = (clock() - startTimePl) / CLOCKS_PER_SEC;
+	if (secondsPassed >= secondsToDelay)
+	{
+		renderer->addObject(new Projectile(player->getX(), player->getY(), direction));
+		if (direction) {
+			startTimeP1 = clock();
+		}
+		else {
+			startTimeP2 = clock();
+		}
 	}
 }
 
