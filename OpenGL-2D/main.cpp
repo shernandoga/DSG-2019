@@ -10,11 +10,22 @@
 #include <iostream>
 #include <thread>
 #include <conio.h>
+#include "../3rd-party/SoundManager/SoundManager.h" //relative path to the main header
 #include "Satan.h"
-
 
 int main(int argc, char** argv)
 {
+	SoundManager soundManager;
+	SoundManager* pSoundManager = SoundManager::getInstance();
+	pSoundManager->setVerbose(true);
+	pSoundManager->createAudioObject("snd/soundtrack-01.wav");
+	pSoundManager->createAudioObject("snd/cannon.wav");
+	pSoundManager->createAudioObject("snd/fireball.wav");
+	pSoundManager->createAudioObject("snd/explosion.wav");
+
+	int audioObjBg = pSoundManager->getAudioObjectId("snd/soundtrack-01.wav");
+	pSoundManager->play(audioObjBg, 1.f);
+
 	std::cout << "  _________                          \n";
 	std::cout << " /   _____/__________    ____  ____  \n";
 	std::cout << " \_____   \\ ____ \\__  \\ _/ ___\\/ __ \\ \n";
@@ -64,7 +75,6 @@ int main(int argc, char** argv)
 	Text2D11->setColor(13, 120, 254);
 	renderer.addObject(Text2D11);
 
-	int i = 0;
 	Timer time;
 	time.start();
 
@@ -72,12 +82,11 @@ int main(int argc, char** argv)
 	Text2D12->setColor(13, 120, 254);
 	renderer.addObject(Text2D12);
 	
-	
 
 	while (1)
 	{
 		bool gameOver = false;
-		Text2D11->setText("Player 1 Points: "+to_string(i++));
+		Text2D11->setText("Player 1 Points: "+to_string(jugador->getScore()));
 		Text2D12->setText("Time: " + to_string((int)time.getElapsedTime()));
 		
 		//UPDATE////////////////////
@@ -107,6 +116,9 @@ int main(int argc, char** argv)
 
 		//RENDER////////////////////
 		////////////////////////////
+
+
+
 		glutPostRedisplay();
 		glutSwapBuffers();
 		if (gameOver)
