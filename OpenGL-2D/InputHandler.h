@@ -31,6 +31,7 @@ public:
 
 	void processEvents(SoundManager* pSoundManager, int cannon);
 	bool doPlay();
+	void stopPlaying();
 	void processPlay(unsigned char key, int x, int y);
 	static void __processPlay(unsigned char key, int x, int y);
 };
