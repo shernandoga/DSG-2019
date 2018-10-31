@@ -18,13 +18,15 @@ int main(int argc, char** argv)
 	SoundManager soundManager;
 	SoundManager* pSoundManager = SoundManager::getInstance();
 	pSoundManager->setVerbose(true);
-	pSoundManager->createAudioObject("snd/soundtrack-01.wav");
+	// TODO uncomment for background music
+//	pSoundManager->createAudioObject("snd/soundtrack-01.wav");
 	pSoundManager->createAudioObject("snd/cannon.wav");
 	pSoundManager->createAudioObject("snd/fireball.wav");
 	pSoundManager->createAudioObject("snd/explosion.wav");
 
 	int audioObjBg = pSoundManager->getAudioObjectId("snd/soundtrack-01.wav");
-	pSoundManager->play(audioObjBg, 1.f);
+	// TODO uncomment for background music
+//	pSoundManager->play(audioObjBg, 1.f);
 
 	std::cout << "  _________                          \n";
 	std::cout << " /   _____/__________    ____  ____  \n";
@@ -104,14 +106,18 @@ int main(int argc, char** argv)
 		for (int id= 0; id<satanas->getNumEnemies(); id++)
 		{
 				Sprite* theEnemy = (Sprite*)renderer.getDrawable(string("enemy") + to_string(id));
-				if (theEnemy->getY()>=-0.25) {
-					theEnemy->setPosition(theEnemy->getX(), theEnemy->getY()-0.0001);
-				}else{
-					gameOver = true;
-					
-					Sprite* gameover = new Sprite("img/game-over.png");
-					gameover->setDepth(1.01);
-					renderer.addObject(gameover);
+				if (theEnemy != nullptr)
+				{
+					if (theEnemy->getY() >= -0.25) {
+						theEnemy->setPosition(theEnemy->getX(), theEnemy->getY() - 0.0001);
+					}
+					else {
+						gameOver = true;
+
+						Sprite* gameover = new Sprite("img/game-over.png");
+						gameover->setDepth(1.01);
+						renderer.addObject(gameover);
+					}
 				}
 							
 		}  

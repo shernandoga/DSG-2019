@@ -46,12 +46,14 @@ void Bullet::checkImpact() {
 					//Collision!!
 					//borrar theEnemy del vector<> que tiene renderer 
 					theEnemy->kill();
+					kill();
 					//sumar un punto
 					Player::get()->addScore();
 					//borrar la bala (llamar a delSprite) 
 
 					m_fun = false;
 					m_hasImpact = true;
+					return;
 				}
 			}
 		}	

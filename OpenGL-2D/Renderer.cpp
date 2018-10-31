@@ -89,8 +89,8 @@ void Renderer::drawScene()
 	{
 		if (!(*it)->isalive())
 		{
-			it = m_objects2D.erase(it);
 			delete (*it);
+			it = m_objects2D.erase(it);
 		}
 		else it++;
 	}
