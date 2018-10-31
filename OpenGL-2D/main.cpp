@@ -37,17 +37,15 @@ int main(int argc, char** argv)
 	
 	renderer.initialize(argc, argv);
 	inputHandler.initialize();
-
 	
+	// set the background with the highest depth
+	Sprite* bg = new Sprite("img/background.jpg");
+	bg->setDepth(10);
+	renderer.addObject(bg);
 
 	//test objects
 	Player* jugador = new Player("jugador", "img/fighter-01.png");
 	renderer.addObject(jugador);
-	
-	/*AnimatedSprite * pAnimatedSprite = new AnimatedSprite("img/fire-animation-2.png", 5, 2, true);
-	pAnimatedSprite->setSize(0.25);
-	renderer.addObject(pAnimatedSprite);
-	*/
 
 	//Number of enemies
 	double E = 8.00;

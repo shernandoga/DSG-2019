@@ -72,6 +72,11 @@ void Renderer::addObject(Drawable* pObj)
 	m_objects2D.push_back(pObj);
 }
 
+void Renderer::delObject(Drawable* pObj1)
+{
+	m_objects2D.push_back(pObj1);
+}
+
 void Renderer::drawScene()
 {
 	//clean the backbuffer

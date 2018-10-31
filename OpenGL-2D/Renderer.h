@@ -26,6 +26,7 @@ public:
 
 	void drawScene();
 	void addObject(Drawable* pObj);
+	void delObject(Drawable* pObj1);
 	Drawable* getDrawable(string name);
 	void reshapeWindow(int x, int y);
 
