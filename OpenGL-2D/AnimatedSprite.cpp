@@ -73,12 +73,12 @@ AnimatedSprite::~AnimatedSprite()
 	glDeleteTextures(1, &m_textureId);
 }
 
-double animationPoint = 0.0;
+
 
 void AnimatedSprite::draw()
 {
 	//0. Calculate what point of the animation [0,1] to show this frame
-	animationPoint += 0.9;
+	animationPoint += 0.0013;
 
 	//2. Save the current transformation matrix
 	glMatrixMode(GL_MODELVIEW);

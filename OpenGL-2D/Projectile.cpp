@@ -7,7 +7,7 @@
 
 
 Projectile::Projectile(double coordPlayerX, double coordPlayerY, bool direction,string dirimg)
-:AnimatedSprite(dirimg.c_str(),5,2,true)
+:AnimatedSprite(dirimg.c_str(),5,2,false)
 {
 	//setColor(100, 0, 0);
 	setPosition(coordPlayerX, coordPlayerY);
@@ -30,12 +30,12 @@ void Projectile::draw()
 {
 	if (m_right == true)
 	{
-		m_x += 0.001;
+		m_x += 0.005;
 	}
 
 	if (m_right == false)
 	{
-		m_x -= 0.001;
+		m_x -= 0.005;
 	}
 
 	if (m_x <= -1.0 || m_x >= 1.0 || m_y <= -1.0 || m_y >= 1.0)
