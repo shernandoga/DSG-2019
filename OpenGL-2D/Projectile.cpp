@@ -30,12 +30,12 @@ void Projectile::draw()
 {
 	if (m_right == true)
 	{
-		m_x += 0.01;
+		m_x += 0.001;
 	}
 
 	if (m_right == false)
 	{
-		m_x -= 0.01;
+		m_x -= 0.001;
 	}
 
 	if (m_x <= -1.0 || m_x >= 1.0 || m_y <= -1.0 || m_y >= 1.0)
