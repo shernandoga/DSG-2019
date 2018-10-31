@@ -71,7 +71,7 @@ void InputHandler::retard(Player* player, Renderer* renderer, bool direction) {
 	secondsPassed = (clock() - startTimePl) / CLOCKS_PER_SEC;
 	if (secondsPassed >= secondsToDelay)
 	{
-		renderer->addObject(new Projectile(player->getX(), player->getY(), direction));
+		renderer->addObject(new Projectile(player->getX(), player->getY(), direction, "img/fighter-01.png"));
 		if (direction) {
 			startTimeP1 = clock();
 		}
