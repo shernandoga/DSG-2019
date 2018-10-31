@@ -9,16 +9,36 @@
 #include "Timer.h"
 #include <iostream>
 #include <thread>
+#include <conio.h>
 
 
 int main(int argc, char** argv)
 {
+	std::cout << "  _________                          \n";
+	std::cout << " /   _____/__________    ____  ____  \n";
+	std::cout << " \_____   \\ ____ \\__  \\ _/ ___\\/ __ \\ \n";
+	std::cout << " /        \\  |_> > __ \\   \\__\\  ___/ \n";
+	std::cout << "/_______  /   __(____  /\\___  >___  >\n";
+	std::cout << "        \\/|__|       \\/     \\/    \\/ \n\n\n";
+
+	std::cout << "         .__                         .___                   \n";
+	std::cout << "         |__| _______  _______     __| _/___________  ______\n";
+	std::cout << "         |  |/    \\  \\/ /\\__  \\   / __ |/ __ \\_  __ \\/  ___/\n";
+	std::cout << "         |  |   |  \\   /  / __ \\_/ /_/ \\  ___/|  | \\/\\___ \\ \n";
+	std::cout << "         |__|___|  /\\_/  (____  /\\____ |\\___  >__|  /____  >\n";
+	std::cout << "                 \\/           \\/      \\/    \\/           \\/ \n\n\n\n";
+
+	std::cout << "                 Insert 25pts to start the game!!! (or press ENTER key)";
+	getch();
+	system("cls");
+
 	Renderer renderer;
 	InputHandler inputHandler(renderer);
 	
 	renderer.initialize(argc, argv);
 	inputHandler.initialize();
 
+	
 
 	//test objects
 	Player* jugador = new Player("jugador", "img/fighter-01.png");
@@ -91,7 +111,7 @@ int main(int argc, char** argv)
 	{
 		bool gameOver = false;
 		Text2D11->setText("Player 1 Points: "+to_string(i++));
-		Text2D12->setText("Time: " + to_string(time.getElapsedTime()));
+		Text2D12->setText("Time: " + to_string((int)time.getElapsedTime()));
 		
 		//UPDATE////////////////////
 		////////////////////////////
