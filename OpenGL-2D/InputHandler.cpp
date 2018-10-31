@@ -167,6 +167,10 @@ bool InputHandler::doPlay() {
 
 void InputHandler::stopPlaying() {
 	playing = false;
+	mvUp2 = false;
+	mvUp1 = false;
+	mvDwn1 = false;
+	mvDwn2 = false;
 }
 
 void InputHandler::__processPlay(unsigned char key, int x, int y) {
