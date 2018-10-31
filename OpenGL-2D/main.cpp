@@ -127,10 +127,9 @@ int main(int argc, char** argv)
 				}else{
 					gameOver = true;
 					
-					Text2D *textGameOver = new Text2D("gameOver", -0.13, 0, 1.0);
-					textGameOver->setColor(10, 0, 0);
-					renderer.addObject(textGameOver);
-					textGameOver->setText("GAME OVER!!!!");
+					Sprite* gameover = new Sprite("img/game-over.png");
+					gameover->setDepth(1.01);
+					renderer.addObject(gameover);
 				}
 							
 		}  
@@ -145,10 +144,6 @@ int main(int argc, char** argv)
 			break;
 	}
    
-/*	Text2D *textGameOver = new Text2D("GAME OVER!!!!", 0, 0, 1.0);
-	textGameOver->setColor(13, 120, 254);
-	renderer.addObject(textGameOver);
-	*/
 	glutMainLoopEvent();
 	glutPostRedisplay();
 	glutSwapBuffers();
