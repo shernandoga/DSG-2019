@@ -7,19 +7,46 @@
 #include "Text.h"
 #include "Projectile.h"
 #include "Text.h"
+#include <iostream>
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
 #include "AnimatedSprite.h"
+#include "../3rd-party/SoundManager/SoundManager.h" //relative path to the main header
+using namespace std;
 
 
 int main(int argc, char** argv)
 {
+	int cont = 0;
+
+	//Sound
+	clock_t startSoundtrack = clock();
+	double secondsPassed;
+	SoundManager soundManager;
+	SoundManager* pSoundManager = SoundManager::getInstance();
+	pSoundManager->setVerbose(true);
+	pSoundManager->createAudioObject("snd/soundtrack-01.wav");
+	pSoundManager->createAudioObject("snd/cannon.wav");
+
+	int audioObj1 = pSoundManager->getAudioObjectId("snd/soundtrack-01.wav");
+	pSoundManager->play(audioObj1, 1.f);
+	int audioObj2 = pSoundManager->getAudioObjectId("snd/cannon.wav");
+
 	Renderer renderer;
 	InputHandler inputHandler(renderer);
 	renderer.initialize(argc, argv);
 	inputHandler.initialize();
-
-	Text2D *texto1 = new Text2D("PLAYER 1: ", -0.75, 0.75, 1);
-	Text2D *texto2 = new Text2D("PLAYER 2: ", 0.40, 0.75, 1);
+	bool play = true;
+	/*while (!play) {
+		if (inputHandler.doPlay()) {
+			play = true;
+		}
+		glutMainLoopEvent();
+		glutPostRedisplay();
+		glutSwapBuffers();
+	}*/
+	Text2D *texto1 = new Text2D("PLAYER 1: 10", -0.75, 0.75, 1);
+	Text2D *texto2 = new Text2D("PLAYER 2: 10", 0.40, 0.75, 1);
+	Text2D *textWinner = new Text2D("GANADOR", -0.25, 0.5, 1);
 
 	renderer.addObject(texto1);
 	renderer.addObject(texto2);
@@ -53,16 +80,49 @@ int main(int argc, char** argv)
 
 	while (1)
 	{
-		//UPDATE////////////////////
-		////////////////////////////
-		//process queued events
-		glutMainLoopEvent();
+		if (inputHandler.doPlay() == true) {
 
+			secondsPassed = (clock() - startSoundtrack) / CLOCKS_PER_SEC;
+			if (secondsPassed > 80) {
+				startSoundtrack = clock();
+				pSoundManager->play(audioObj1, 1.f);
+			}
+			//UPDATE////////////////////
+			////////////////////////////
+			//process queued events
+			inputHandler.processEvents(pSoundManager, audioObj2);
+			glutMainLoopEvent();
 
-		//RENDER////////////////////
-		////////////////////////////
-		glutPostRedisplay();
-		glutSwapBuffers();
+			//RENDER////////////////////
+			////////////////////////////
+			glutPostRedisplay();
+			glutSwapBuffers();
+		}
+
+		if (pPlayer1->getScore() == 10) {
+			renderer.addObject(textWinner);
+			textWinner->setText("El jugador 1 ha ganado !!!");
+			inputHandler.stopPlaying();
+
+			inputHandler.processEvents(pSoundManager, audioObj2);
+			glutMainLoopEvent();
+
+			glutPostRedisplay();
+			glutSwapBuffers();
+		}
+		else if (pPlayer2->getScore() == 10)
+		{
+			renderer.addObject(textWinner);
+			textWinner->setText("El jugador 2 ha ganado !!!");
+			inputHandler.stopPlaying();
+
+			inputHandler.processEvents(pSoundManager, audioObj2);
+			glutMainLoopEvent();
+
+			glutPostRedisplay();
+			glutSwapBuffers();
+		}
+
 	}
    
 	return 0;
