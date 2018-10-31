@@ -85,6 +85,16 @@ void Renderer::drawScene()
 	//set the 2d modelview matrix
 	set2DMatrix();
 
+	for (auto it = m_objects2D.begin(); it != m_objects2D.end();)
+	{
+		if (!(*it)->isalive())
+		{
+			it = m_objects2D.erase(it);
+			delete (*it);
+		}
+		else it++;
+	}
+
 	for (auto it = m_objects2D.begin(); it != m_objects2D.end(); ++it)
 	{
 		(*it)->draw();
