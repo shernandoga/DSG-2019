@@ -106,7 +106,6 @@ int main(int argc, char** argv)
 	Text2D11->setColor(13, 120, 254);
 	renderer.addObject(Text2D11);
 
-	int i = 0;
 	Timer time;
 	time.start();
 
@@ -114,12 +113,11 @@ int main(int argc, char** argv)
 	Text2D12->setColor(13, 120, 254);
 	renderer.addObject(Text2D12);
 	
-	
 
 	while (1)
 	{
 		bool gameOver = false;
-		Text2D11->setText("Player 1 Points: "+to_string(i++));
+		Text2D11->setText("Player 1 Points: "+to_string(jugador->getScore()));
 		Text2D12->setText("Time: " + to_string((int)time.getElapsedTime()));
 		
 		//UPDATE////////////////////
@@ -149,6 +147,9 @@ int main(int argc, char** argv)
 
 		//RENDER////////////////////
 		////////////////////////////
+
+
+
 		glutPostRedisplay();
 		glutSwapBuffers();
 		if (gameOver)

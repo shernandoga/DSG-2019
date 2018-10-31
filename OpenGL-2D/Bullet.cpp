@@ -1,4 +1,6 @@
 #include "Bullet.h"
+#include "Renderer.h"
+#include <math.h>
 
 
 
@@ -29,6 +31,26 @@ void Bullet::changeImpact() {
 	if (!m_hasImpact) {
 
 		m_hasImpact = true; 
+
+
+		for (int x = 0; x < Renderer::get()->numPrintedObjects(); x++)
+		{
+			
+			Sprite* theEnemy = (Sprite*)Renderer::get()->getDrawable(string("enemy") + to_string(x)); //get the instance called "enemyX"
+			float distance = sqrt(pow((theEnemy->getX() - m_x),2) + pow((theEnemy->getY() - m_y), 2)); //magic formula to calculate the distance
+			if (distance < (theEnemy->getSize()+ m_size)) {
+				//collision!!
+				//borrar theEnemy del vector<> que tiene renderer
+				Renderer::get()->delObject(theEnemy);
+				//sumar un punto
+				//borrar la bala (llamar a delSprite) 
+				
+				
+			}
+		
+
+		}
+
 	
 	
 	

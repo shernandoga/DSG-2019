@@ -14,6 +14,7 @@ class Renderer
 	int m_windowWidth = 0, m_windowHeight = 0;
 
 	vector <Drawable*> m_objects2D;
+	vector <Drawable*> m_deadObjects2D;
 
 	void set2DMatrix();
 public:
@@ -29,6 +30,8 @@ public:
 	void delObject(Drawable* pObj1);
 	Drawable* getDrawable(string name);
 	void reshapeWindow(int x, int y);
+	vector <Drawable*> getObjectsInRenderer() { return m_objects2D; }; //posiblemente eliminemos este metodo...
+	int numPrintedObjects() { return m_objects2D.size(); };
 
 	static void __drawScene();
 	static void __reshapeWindow(int x, int y);
