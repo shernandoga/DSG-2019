@@ -73,14 +73,7 @@ void InputHandler::retard(Player* player, Renderer* renderer, bool direction) {
 	if (secondsPassed >= secondsToDelay)
 	{
 		renderer->addObject(new Projectile(player->getX(), player->getY(), direction, "img/fire-animation-2.png"));
-		//AnimatedSprite * pAnimatedSprite = new AnimatedSprite("img/fire-animation-2.png", 5, 2, true);
-
-		//pAnimatedSprite->setSize(0.12);
-		//pAnimatedSprite->setPosition(player->getX(), player->getY());
-		//pAnimatedSprite->setRotation(1);
-
-		//pAnimatedSprite->draw();
-		//renderer->addObject(pAnimatedSprite);
+	
 		if (direction) {
 			startTimeP1 = clock();
 		}

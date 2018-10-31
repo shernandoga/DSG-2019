@@ -33,7 +33,7 @@ int main(int argc, char** argv)
 	Player *pPlayer1= new Player("img/fighter-01.png");
 	//Player1->setColor(255, 0, 0);
 	pPlayer1->setPosition(-0.75, 0.0);
-	pPlayer1->setRotation(0.0);
+	pPlayer1->setRotation(270.0);
 	pPlayer1->setSize(0.2);
 	pPlayer1->setDepth(1.5);
 	pPlayer1->setName("Player1");
@@ -42,7 +42,7 @@ int main(int argc, char** argv)
 	Player *pPlayer2 = new Player("img/fighter-02.png");
 	//pPlayer2->setColor(0, 255, 0);
 	pPlayer2->setPosition(0.75, 0.0);
-	pPlayer2->setRotation(0.0);
+	pPlayer2->setRotation(90.0);
 	pPlayer2->setSize(0.2);
 	pPlayer2->setDepth(1.3);
 	pPlayer2->setName("Player2");
