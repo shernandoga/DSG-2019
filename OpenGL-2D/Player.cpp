@@ -16,7 +16,7 @@ void Player::shoot()
 {
 
 	Bullet* pBullet = new Bullet(m_x, m_y, "img/fire-animation-2.png");
-	pBullet->setSize(0.1);
+	pBullet->setSize(0.05);
 	Renderer::get()->addObject(pBullet);
 
 }

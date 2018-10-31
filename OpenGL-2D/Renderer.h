@@ -29,6 +29,8 @@ public:
 	void delObject(Drawable* pObj1);
 	Drawable* getDrawable(string name);
 	void reshapeWindow(int x, int y);
+	vector <Drawable*> getObjectsInRenderer() { return m_objects2D; }; //posiblemente eliminemos este metodo...
+	int numPrintedObjects() { return m_objects2D.size(); };
 
 	static void __drawScene();
 	static void __reshapeWindow(int x, int y);
