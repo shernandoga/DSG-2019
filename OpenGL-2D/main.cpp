@@ -28,8 +28,8 @@ int main(int argc, char** argv)
 	
 	
 	//test objects
-	Player *pPlayer1= new Player();
-	pPlayer1->setColor(255, 0, 0);
+	Player *pPlayer1= new Player("img/fighter-01.png");
+	//Player1->setColor(255, 0, 0);
 	pPlayer1->setPosition(-0.75, 0.0);
 	pPlayer1->setRotation(0.0);
 	pPlayer1->setSize(0.2);
@@ -37,7 +37,7 @@ int main(int argc, char** argv)
 	pPlayer1->setName("Player1");
 	renderer.addObject(pPlayer1);
 
-	Player *pPlayer2 = new Player();
+	Player *pPlayer2 = new Player("img/fighter-02.png");
 	pPlayer2->setColor(0, 255, 0);
 	pPlayer2->setPosition(0.75, 0.0);
 	pPlayer2->setRotation(0.0);

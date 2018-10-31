@@ -47,7 +47,7 @@ void InputHandler::processKeyboard(unsigned char key, int x, int y)
 		secondsPassed = (clock() - startTimeP2) / CLOCKS_PER_SEC;
 		if (secondsPassed >= secondsToDelay)
 		{
-		renderer->addObject(new Projectile(player2->getX(), player2->getY(), false));
+		renderer->addObject(new Projectile(player2->getX(), player2->getY(), false,"img/fighter-02.png"));
 		startTimeP2 = clock();
 		break;
 		}
@@ -61,7 +61,7 @@ void InputHandler::processKeyboard(unsigned char key, int x, int y)
 		secondsPassed = (clock() - startTimeP1) / CLOCKS_PER_SEC;
 		if (secondsPassed >= secondsToDelay)
 		{
-			renderer->addObject(new Projectile(player1->getX(), player1->getY(), true));
+			renderer->addObject(new Projectile(player1->getX(), player1->getY(), true, "img/fighter-02.png"));
 			startTimeP1 = clock();
 			break;
 		}

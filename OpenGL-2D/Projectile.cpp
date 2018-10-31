@@ -4,7 +4,8 @@
 
 
 
-Projectile::Projectile(double coordPlayerX, double coordPlayerY, bool direction)
+Projectile::Projectile(double coordPlayerX, double coordPlayerY, bool direction,string dirimg)
+:Sprite(dirimg)
 {
 	setColor(100, 0, 0);
 	setPosition(coordPlayerX, coordPlayerY);

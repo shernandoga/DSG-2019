@@ -6,7 +6,7 @@ protected:
 	bool m_right;
 
 public:
-	Projectile(double coordPlayerX, double coordPlayerY, bool direction);
+	Projectile(double coordPlayerX, double coordPlayerY, bool direction, string dirimg);
 	~Projectile();
 	void draw();
 };
