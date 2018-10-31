@@ -8,7 +8,7 @@
 #include "Projectile.h"
 #include "Text.h"
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
-
+#include "AnimatedSprite.h"
 
 
 int main(int argc, char** argv)
@@ -47,6 +47,9 @@ int main(int argc, char** argv)
 	pPlayer2->setDepth(1.3);
 	pPlayer2->setName("Player2");
 	renderer.addObject(pPlayer2);
+	AnimatedSprite * pAnimatedSprite = new AnimatedSprite("img/fire-animation-2.png", 5, 2, true);
+	pAnimatedSprite->setSize(0.25);
+	renderer.addObject(pAnimatedSprite);
 
 	while (1)
 	{
