@@ -58,6 +58,12 @@ int main(int argc, char** argv)
 	texto1->updateScore(0);
 	texto2->updateScore(0);
 	
+	//background
+	Sprite *bg = new Sprite("img/bg.jpg");
+	bg->setDepth(2);
+	renderer.addObject(bg);
+
+
 	//test objects
 	Player *pPlayer1= new Player("img/fighter-01.png");
 	//Player1->setColor(255, 0, 0);
