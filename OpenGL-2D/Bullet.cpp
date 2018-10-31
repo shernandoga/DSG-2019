@@ -26,10 +26,19 @@ double Bullet::getPosY() { return m_y; }
 void Bullet::setPos(double x, double y) { m_x = x; m_y = y; }
 
 void Bullet::changeImpact() {
-	if (!m_hasImpact) { m_hasImpact = true; }
+	if (!m_hasImpact) {
+
+		m_hasImpact = true; 
+	
+	
+	
+	}
 }
 
 void Bullet::draw() {
+	/*if (m_hasImpact) {
+		 Bullet();
+	} */
 	setPos(getPosX(),getPosY()+0.01);
 	AnimatedSprite::draw();
 }

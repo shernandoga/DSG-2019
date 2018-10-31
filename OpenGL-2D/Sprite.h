@@ -31,6 +31,7 @@ public:
 	void setDepth(double depth);
 	void setRotation(double angle);
 	void setSize(double size);
+	double getSize() { return m_size; };
 	double getX() { return m_x; };
 	double getY() { return m_y; };
 	double getDepth() { return m_depth; };
