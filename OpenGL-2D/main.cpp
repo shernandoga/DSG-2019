@@ -16,7 +16,7 @@ int main(int argc, char** argv)
 {
 
 	//Sound
-	clock_t startSoundtrack = clock();
+	clock_t startSoundtrack;
 	double secondsPassed;
 	SoundManager soundManager;
 	SoundManager* pSoundManager = SoundManager::getInstance();
@@ -25,24 +25,29 @@ int main(int argc, char** argv)
 	pSoundManager->createAudioObject("snd/cannon.wav");
 
 	int audioObj1 = pSoundManager->getAudioObjectId("snd/soundtrack-01.wav");
-	pSoundManager->play(audioObj1, 1.f);
 	int audioObj2 = pSoundManager->getAudioObjectId("snd/cannon.wav");
 
 	Renderer renderer;
 	InputHandler inputHandler(renderer);
 	renderer.initialize(argc, argv);
-	inputHandler.initialize();
-	bool play = true;
-	/*while (!play) {
+	Text2D *textoInicio = new Text2D("Presione cualquier tecla para empezar", -0.4, 0, 1);
+	renderer.addObject(textoInicio);
+	bool play = false;
+	while (!play) {
+		glutKeyboardFunc(inputHandler.__processPlay);
 		if (inputHandler.doPlay()) {
 			play = true;
+			renderer.removeObject(textoInicio);
+			pSoundManager->play(audioObj1, 1.f);
+			startSoundtrack = clock();
 		}
 		glutMainLoopEvent();
 		glutPostRedisplay();
 		glutSwapBuffers();
-	}*/
-	Text2D *texto1 = new Text2D("PLAYER 1: 10", -0.75, 0.75, 1);
-	Text2D *texto2 = new Text2D("PLAYER 2: 10", 0.40, 0.75, 1);
+	}
+	inputHandler.initialize();
+	Text2D *texto1 = new Text2D("PLAYER 1: 10", -0.75, 0.92, 1);
+	Text2D *texto2 = new Text2D("PLAYER 2: 10", 0.40, 0.92, 1);
 
 	renderer.addObject(texto1);
 	renderer.addObject(texto2);

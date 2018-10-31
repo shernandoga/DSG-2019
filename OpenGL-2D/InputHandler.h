@@ -11,7 +11,7 @@ class InputHandler
 	int SHOOT_TIME = 2;
 	bool mvUp1 = false, mvUp2 = false, mvDwn1 = false, mvDwn2 = false;
 	bool shoot1 = false, shoot2 = false;
-	bool playing = true;
+	bool playing = false;
 
 	Player* player2;
 	Player* player1;
