@@ -57,6 +57,7 @@
     <ClCompile Include="Drawable.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="AnimatedSprite.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="main.cpp" />
@@ -64,11 +65,11 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="AnimatedSprite.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="InputHandler.h" />
@@ -81,6 +82,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\3rd-party\freeglut3\freeglut3.vcxproj">
+      <Project>{5a98782e-7027-46f9-91e1-e1ede1e14bf4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\3rd-party\glew-2.0.0\glew-2.0.0.vcxproj">
+      <Project>{c474717f-f37a-4201-ae32-871219c77803}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\3rd-party\SOIL\projects\VC9\SOIL.vcxproj">
+      <Project>{c32fb2b4-500c-43cd-a099-eecce079d3f1}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\3rd-party\freeglut3\freeglut3.vcxproj">

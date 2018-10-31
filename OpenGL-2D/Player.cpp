@@ -2,7 +2,8 @@
 #include "Player.h"
 #include "World.h"
 
-Player::Player()
+Player::Player(string dirimg)
+:Sprite(dirimg)
 {
 	score = 0;
 }

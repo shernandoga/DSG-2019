@@ -24,7 +24,7 @@ void Text2D::draw()
 	glDisable(GL_LIGHTING);
 	glDisable(GL_BLEND);
 	//set color
-	glColor3f(m_r, m_g, m_b);
+	//glColor3f(m_r, m_g, m_b);
 
 	//save the current transformation matrix
 	glMatrixMode(GL_MODELVIEW);
@@ -70,11 +70,11 @@ void Text2D::updateScore(int score)
 	}
 	if (score == 4 ){
 
-		setColor(0, 255, 0);
+setColor(0, 255, 0);
 	}
 	if (score == 2) {
 
-		setColor(0, 150, 100);
+setColor(0, 150, 100);
 	}
 	if (score == 1) {
 

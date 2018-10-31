@@ -9,6 +9,7 @@
 #include "Text.h"
 #include <iostream>
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
+#include "AnimatedSprite.h"
 #include "../3rd-party/SoundManager/SoundManager.h" //relative path to the main header
 using namespace std;
 
@@ -58,23 +59,26 @@ int main(int argc, char** argv)
 	texto2->updateScore(0);
 	
 	//test objects
-	Player *pPlayer1= new Player();
-	pPlayer1->setColor(255, 0, 0);
-	pPlayer1->setPosition(-0.75, 0.5);
+	Player *pPlayer1= new Player("img/fighter-01.png");
+	//Player1->setColor(255, 0, 0);
+	pPlayer1->setPosition(-0.75, 0.0);
 	pPlayer1->setRotation(0.0);
 	pPlayer1->setSize(0.2);
 	pPlayer1->setDepth(1.5);
 	pPlayer1->setName("Player1");
 	renderer.addObject(pPlayer1);
 
-	Player *pPlayer2 = new Player();
-	pPlayer2->setColor(0, 255, 0);
-	pPlayer2->setPosition(0.75, -0.75);
+	Player *pPlayer2 = new Player("img/fighter-02.png");
+	//pPlayer2->setColor(0, 255, 0);
+	pPlayer2->setPosition(0.75, 0.0);
 	pPlayer2->setRotation(0.0);
 	pPlayer2->setSize(0.2);
 	pPlayer2->setDepth(1.3);
 	pPlayer2->setName("Player2");
 	renderer.addObject(pPlayer2);
+	//AnimatedSprite * pAnimatedSprite = new AnimatedSprite("img/fire-animation-2.png", 5, 2, true);
+	//pAnimatedSprite->setSize(0.25);
+	//renderer.addObject(pAnimatedSprite);
 
 	while (1)
 	{

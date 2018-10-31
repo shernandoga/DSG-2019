@@ -3,6 +3,7 @@
 #include "Drawable.h"
 #include "Projectile.h"
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
+#include "../3rd-party/glew-2.0.0/src/glew.h"
 
 Renderer* Renderer::m_pRenderer = nullptr;
 
@@ -35,6 +36,9 @@ void Renderer::initialize(int argc, char** argv)
 	
 	//OpenGL global initializations
 	glEnable(GL_DEPTH_TEST);
+
+	//init Glew. We need it to use "modern" features as 3d textures
+	glewInit();
 
 	//callback functions
 	glutDisplayFunc(__drawScene);
