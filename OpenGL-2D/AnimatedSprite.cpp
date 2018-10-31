@@ -78,7 +78,7 @@ AnimatedSprite::~AnimatedSprite()
 void AnimatedSprite::draw()
 {
 	//0. Calculate what point of the animation [0,1] to show this frame
-	animationPoint += 0.01;
+	animationPoint += 0.005;
 
 	//2. Save the current transformation matrix
 	glMatrixMode(GL_MODELVIEW);

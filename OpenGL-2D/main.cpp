@@ -88,7 +88,8 @@ int main(int argc, char** argv)
 	while (1)
 	{
 		bool gameOver = false;
-		Text2D11->setText("Player 1 Points: "+to_string(jugador->getScore()));
+		//Text2D11->setText("Enemies: " + to_string(Satan::getInstance()->getNumEnemies()));
+		Text2D11->setText("Points: "+to_string(jugador->getScore()));
 		Text2D12->setText("Time: " + to_string((int)time.getElapsedTime()));
 		
 		//UPDATE////////////////////
@@ -103,6 +104,13 @@ int main(int argc, char** argv)
 
 
 	
+		if (Satan::getInstance()->getNumEnemies() == 0) {
+			gameOver = true;
+
+			Sprite* gameover = new Sprite("img/game-over.png");
+			gameover->setDepth(1.01);
+			renderer.addObject(gameover);
+		}
 		for (int id= 0; id<satanas->getNumEnemies(); id++)
 		{
 				Sprite* theEnemy = (Sprite*)renderer.getDrawable(string("enemy") + to_string(id));
@@ -111,6 +119,7 @@ int main(int argc, char** argv)
 					if (theEnemy->getY() >= -0.25) {
 						theEnemy->setPosition(theEnemy->getX(), theEnemy->getY() - 0.0001);
 					}
+					
 					else {
 						gameOver = true;
 
@@ -121,7 +130,7 @@ int main(int argc, char** argv)
 				}
 							
 		}  
-
+		
 
 
 		//RENDER////////////////////

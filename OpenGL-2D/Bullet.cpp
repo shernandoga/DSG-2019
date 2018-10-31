@@ -47,6 +47,7 @@ void Bullet::checkImpact() {
 					//borrar theEnemy del vector<> que tiene renderer 
 					theEnemy->kill();
 					kill();
+				//	Satan::getInstance()->killEnemy();
 					//sumar un punto
 					Player::get()->addScore();
 					//borrar la bala (llamar a delSprite) 
@@ -61,7 +62,14 @@ void Bullet::checkImpact() {
 }
 
 void Bullet::draw() {
-	checkImpact();
-	setPos(getPosX(),getPosY()+0.01);
-	AnimatedSprite::draw();
+	if (getPosY()>1)
+	{
+		kill();
+	}
+	else
+	{
+		checkImpact();
+		setPos(getPosX(),getPosY()+0.01);
+		AnimatedSprite::draw();
+	}
 }

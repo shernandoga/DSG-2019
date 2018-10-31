@@ -30,5 +30,6 @@ public:
 	int getNumEnemies() { return m_numEnemies;  };
 
 	static Satan* getInstance() { return m_pInstance; }
+	void killEnemy() { m_numEnemies--; };
 };
 
