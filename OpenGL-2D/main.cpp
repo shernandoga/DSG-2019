@@ -31,14 +31,14 @@ int main(int argc, char** argv)
 	Renderer renderer;
 	InputHandler inputHandler(renderer);
 	renderer.initialize(argc, argv);
-	Text2D *textoInicio = new Text2D("Presione cualquier tecla para empezar", -0.4, 0, 1);
-	renderer.addObject(textoInicio);
+	Text2D *textInit = new Text2D("Presione cualquier tecla para empezar", -0.4, 0, 1);
+	renderer.addObject(textInit);
 	bool play = false;
 	while (!play) {
 		glutKeyboardFunc(inputHandler.__processPlay);
 		if (inputHandler.doPlay()) {
 			play = true;
-			renderer.removeObject(textoInicio);
+			renderer.removeObject(textInit);
 			pSoundManager->play(audioObj1, 1.f);
 			startSoundtrack = clock();
 		}
@@ -56,7 +56,6 @@ int main(int argc, char** argv)
 	texto2->setName("text2");
 	texto1->updateScore(0);
 	texto2->updateScore(0);
-	
 	
 	//test objects
 	Player *pPlayer1= new Player();
@@ -99,8 +98,8 @@ int main(int argc, char** argv)
 		}
 
 		if (pPlayer1->getScore() == 10) {
+			textWinner->setText("Player 1 has won!!!");
 			renderer.addObject(textWinner);
-			textWinner->setText("El jugador 1 ha ganado !!!");
 			inputHandler.stopPlaying();
 
 			inputHandler.processEvents(pSoundManager, audioObj2);
@@ -108,11 +107,12 @@ int main(int argc, char** argv)
 
 			glutPostRedisplay();
 			glutSwapBuffers();
+			play = false;
 		}
 		else if (pPlayer2->getScore() == 10)
 		{
+			textWinner->setText("Player 2 has won!!!");
 			renderer.addObject(textWinner);
-			textWinner->setText("El jugador 2 ha ganado !!!");
 			inputHandler.stopPlaying();
 
 			inputHandler.processEvents(pSoundManager, audioObj2);
@@ -120,8 +120,33 @@ int main(int argc, char** argv)
 
 			glutPostRedisplay();
 			glutSwapBuffers();
+			play = false;
 		}
+		
+		//Restart game
+		if (!play) {
+			Text2D *textRestart = new Text2D("Press any key to restart", -0.2, 0, 1);
+			renderer.addObject(textRestart);
+			while (!play) {
+				glutKeyboardFunc(inputHandler.__processPlay);
+				if (inputHandler.doPlay()) {
+					play = true;
 
+					renderer.removeObject(textRestart);
+					inputHandler.initialize();
+					pPlayer1->setScore(0);
+					pPlayer2->setScore(0);
+					texto1->updateScore(0);
+					texto2->updateScore(0);
+					renderer.removeObject(textWinner);
+					pPlayer1->setPosition(-0.75, 0.5);
+					pPlayer2->setPosition(0.75, -0.75);
+				}
+				glutMainLoopEvent();
+				glutPostRedisplay();
+				glutSwapBuffers();
+			}
+		}
 	}
    
 	return 0;

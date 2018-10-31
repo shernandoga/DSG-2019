@@ -162,7 +162,6 @@ void InputHandler::processEvents(SoundManager* pSoundManager, int cannon) {
 
 bool InputHandler::doPlay() {
 	return playing;
-
 }
 
 void InputHandler::stopPlaying() {

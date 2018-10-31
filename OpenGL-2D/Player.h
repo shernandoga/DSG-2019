@@ -17,5 +17,6 @@ public:
 	bool movegeneral(int x1, int y1);
 	int getScore();
 	void addScore();
+	void setScore(int pScore);
 };
 

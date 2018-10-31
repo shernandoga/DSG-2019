@@ -37,3 +37,7 @@ int Player::getScore()
 {
 	return score;
 }
+
+void Player::setScore(int pScore) {
+	score = pScore;
+}
