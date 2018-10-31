@@ -1,6 +1,7 @@
 #pragma once
-#include "Sprite.h"
-class Projectile : public Sprite
+
+#include "AnimatedSprite.h"
+class Projectile : public AnimatedSprite
 {
 protected:
 	bool m_right;

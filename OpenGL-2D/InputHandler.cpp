@@ -4,6 +4,7 @@
 #include "Projectile.h"
 #include "Renderer.h"
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
+#include "AnimatedSprite.h"
 
 InputHandler* InputHandler::m_pInputHandler = nullptr;
 double secondsToDelay = 0.1;
@@ -71,7 +72,15 @@ void InputHandler::retard(Player* player, Renderer* renderer, bool direction) {
 	secondsPassed = (clock() - startTimePl) / CLOCKS_PER_SEC;
 	if (secondsPassed >= secondsToDelay)
 	{
-		renderer->addObject(new Projectile(player->getX(), player->getY(), direction, "img/fighter-01.png"));
+		renderer->addObject(new Projectile(player->getX(), player->getY(), direction, "img/fire-animation-2.png"));
+		//AnimatedSprite * pAnimatedSprite = new AnimatedSprite("img/fire-animation-2.png", 5, 2, true);
+
+		//pAnimatedSprite->setSize(0.12);
+		//pAnimatedSprite->setPosition(player->getX(), player->getY());
+		//pAnimatedSprite->setRotation(1);
+
+		//pAnimatedSprite->draw();
+		//renderer->addObject(pAnimatedSprite);
 		if (direction) {
 			startTimeP1 = clock();
 		}

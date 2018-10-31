@@ -5,9 +5,11 @@
 
 Sprite::Sprite(string img)
 {
-	m_dirimg = img;
-	m_textureid = SOIL_load_OGL_texture(m_dirimg.c_str(), 0, 0, 0);
-	
+	if (!img.empty())
+	{
+		m_dirimg = img;
+		m_textureid = SOIL_load_OGL_texture(m_dirimg.c_str(), 0, 0, 0);
+	}
 	
 }
 
@@ -84,6 +86,8 @@ void Sprite::draw()
 	glScalef(m_size, m_size, 1);
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, m_textureid);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	//4. Draw the quad centered in [0,0] with coordinates: [-1,-1], [1,-1], [1,1] and [-1,1]
 

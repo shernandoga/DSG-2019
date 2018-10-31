@@ -4,6 +4,7 @@
 #include <string>
 
 AnimatedSprite::AnimatedSprite(const char* textureFilename, int numSubImagesX, int numSubImagesY, bool loop)
+:Sprite(string(""))
 {
 	int width, height, nChannels;
 	unsigned char* pImage= SOIL_load_image(textureFilename, &width, &height, &nChannels, 0);
@@ -59,6 +60,8 @@ AnimatedSprite::AnimatedSprite(const char* textureFilename, int numSubImagesX, i
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+		glDisable(GL_TEXTURE_3D); //disable 3d textures and enable 2d textures
+		//glEnable(GL_TEXTURE_2D);
 		delete [] pDstBuffer;
 		delete [] pImage;
 	}
