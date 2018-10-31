@@ -18,5 +18,8 @@ public:
 	void update();
 	static void __processKeyboard(unsigned char key, int x, int y);
 	static void __processKeyboardUp(unsigned char key, int x, int y);
+
+	//bool spacePressed() { return spacePressed; };
+
 };
 

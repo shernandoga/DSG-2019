@@ -125,6 +125,10 @@ int main(int argc, char** argv)
 		//process queued events
 		glutMainLoopEvent();
 		inputHandler.update();
+		if (inputHandler.spacePressed) {
+			int audioObjShoot = pSoundManager->getAudioObjectId("snd/cannon.wav");
+			pSoundManager->play(audioObjShoot, 1.f);
+		}
 
 
 	
