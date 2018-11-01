@@ -4,5 +4,5 @@
 class Drawable
 {
 public:
-	virtual void draw() = 0;
+	virtual void draw(double dt) = 0;
 };

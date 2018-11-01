@@ -18,6 +18,6 @@ public:
 	void setText(string text);
 
 	void setColor(double r, double g, double b);
-	void draw();
+	void draw(double dt);
 };
 

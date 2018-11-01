@@ -16,7 +16,7 @@ Text2D::~Text2D()
 {
 }
 
-void Text2D::draw()
+void Text2D::draw(double dt)
 {
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_LIGHTING);

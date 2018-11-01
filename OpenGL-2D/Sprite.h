@@ -18,7 +18,7 @@ public:
 	Sprite();
 	~Sprite();
 
-	virtual void draw();
+	virtual void draw(double dt);
 	void setColor(float r, float g, float b);
 	void setPosition(double x, double y);
 	void setDepth(double depth);

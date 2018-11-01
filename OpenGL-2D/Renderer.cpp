@@ -3,12 +3,16 @@
 #include "Drawable.h"
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
 #include "../3rd-party/glew-2.0.0/src/glew.h"
+#include <algorithm>
+#include <thread>
+#include <chrono>
 
 Renderer* Renderer::m_pRenderer = nullptr;
 
 Renderer::Renderer()
 {
 	m_pRenderer = this;
+	m_frameTimer.start();
 }
 
 
@@ -42,6 +46,11 @@ void Renderer::initialize(int argc, char** argv)
 	//callback functions
 	glutDisplayFunc(__drawScene);
 	glutReshapeFunc(__reshapeWindow);
+}
+
+void Renderer::setFrameRate(int framesPerSecond)
+{
+	m_frameDuration = 1.0 / (double)std::max(1, framesPerSecond);
 }
 
 void Renderer::set2DMatrix()
@@ -80,7 +89,14 @@ void Renderer::drawScene()
 
 	for (auto it = m_objects2D.begin(); it != m_objects2D.end(); ++it)
 	{
-		(*it)->draw();
+		(*it)->draw(m_frameDuration);
+	}
+	double elapsedTime = m_frameTimer.getElapsedTime();
+	if (elapsedTime < m_frameDuration)
+	{
+		double timeAsleep = m_frameDuration - elapsedTime;
+		std::this_thread::sleep_for(chrono::duration<double, std::ratio<1>>(timeAsleep)); //sleep until m_frameDuration seconds passed since last frame
+		m_frameTimer.getElapsedTime(true); //reset the timer
 	}
 }
 
