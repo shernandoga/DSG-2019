@@ -20,6 +20,6 @@ public:
 	void updateScore(int score);
 
 	void setColor(double r, double g, double b);
-	void draw();
+	void draw(double dt);
 };
 

@@ -30,6 +30,7 @@ int main(int argc, char** argv)
 	int audioObj2 = pSoundManager->getAudioObjectId("snd/cannon.wav");
 
 	Renderer renderer;
+	renderer.setFrameRate(30);
 	InputHandler inputHandler(renderer);
 	renderer.initialize(argc, argv);
 	Text2D *textInit = new Text2D("Presione cualquier tecla para empezar", -0.4, 0, 1);

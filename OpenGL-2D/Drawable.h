@@ -7,6 +7,7 @@ class Drawable
 	bool m_alive= true;
 	string name;
 public:
+	virtual void draw(double dt) = 0;
 	virtual void draw() = 0;
 	string getName();
 	void setName(string name);
