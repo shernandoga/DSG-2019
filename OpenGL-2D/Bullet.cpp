@@ -63,7 +63,7 @@ void Bullet::checkImpact() {
 	}
 }
 
-void Bullet::draw() {
+void Bullet::draw(double dt) {
 	if (getPosY()>1)
 	{
 		kill();
@@ -72,6 +72,6 @@ void Bullet::draw() {
 	{
 		checkImpact();
 		setPos(getPosX(),getPosY()+0.01);
-		AnimatedSprite::draw();
+		AnimatedSprite::draw(dt);
 	}
 }

@@ -20,7 +20,7 @@ public:
 
 	void setPos(double x,double y);
 	void checkImpact();
-	void draw();
+	void draw(double dt);
 
 
 };
