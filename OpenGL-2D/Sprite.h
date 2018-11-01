@@ -25,8 +25,8 @@ public:
 	Sprite(const char* texture );
 	~Sprite();
 
-	virtual void draw();
-	void setColor(float r, float g, float b); 
+	virtual void draw(double dt);
+	void setColor(float r, float g, float b);
 	void setPosition(double x, double y);
 	void setDepth(double depth);
 	void setRotation(double angle);

@@ -57,7 +57,7 @@ void Sprite::setSize(double size)
 	m_size = size;
 }
 
-void Sprite::draw()
+void Sprite::draw(double dt)
 {
 	//DONE:
 

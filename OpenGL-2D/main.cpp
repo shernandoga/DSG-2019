@@ -47,6 +47,7 @@ int main(int argc, char** argv)
 	system("cls");
 
 	Renderer renderer;
+	renderer.setFrameRate(30);
 	InputHandler inputHandler(renderer);
 	
 	renderer.initialize(argc, argv);
