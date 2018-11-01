@@ -104,25 +104,24 @@ void Renderer::drawScene()
 
 	for (auto it = m_objects2D.begin(); it != m_objects2D.end();)
 	{
-		(*it)->draw(m_frameDuration);
-	}
-	double elapsedTime = m_frameTimer.getElapsedTime();
-	if (elapsedTime < m_frameDuration)
-	{
-		double timeAsleep = m_frameDuration - elapsedTime;
-		std::this_thread::sleep_for(chrono::duration<double, std::ratio<1>>(timeAsleep)); //sleep until m_frameDuration seconds passed since last frame
-		m_frameTimer.getElapsedTime(true); //reset the timer
-		if ((*it)->isAlive()) 
+		double elapsedTime = m_frameTimer.getElapsedTime();
+		if (elapsedTime < m_frameDuration)
 		{
-			(*it)->draw();
-			it++;
-		}
-		else
-		{
-			//delete the object
-			delete (*it);
-			//remove the pointer from the vector
-			it = m_objects2D.erase(it);
+			double timeAsleep = m_frameDuration - elapsedTime;
+			std::this_thread::sleep_for(chrono::duration<double, std::ratio<1>>(timeAsleep)); //sleep until m_frameDuration seconds passed since last frame
+			m_frameTimer.getElapsedTime(true); //reset the timer
+			if ((*it)->isAlive())
+			{
+				(*it)->draw(m_frameDuration);
+				it++;
+			}
+			else
+			{
+				//delete the object
+				delete (*it);
+				//remove the pointer from the vector
+				it = m_objects2D.erase(it);
+			}
 		}
 	}
 }
