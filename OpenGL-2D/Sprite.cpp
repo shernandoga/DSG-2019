@@ -62,13 +62,12 @@ void Sprite::setSize(double size)
 	m_size = size;
 }
 
-void Sprite::draw(double dt)
 double Sprite::getSize()
 {
 	return m_size;
 }
 
-void Sprite::draw()
+void Sprite::draw(double dt)
 {
 	//TODO:
 

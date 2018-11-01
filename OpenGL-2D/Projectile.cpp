@@ -43,7 +43,7 @@ void Projectile::draw()
 	else if (isHitP1() || isHitP2())
 		markForDeletion();
 	else 
-		AnimatedSprite::draw();
+		AnimatedSprite::draw(0.5);
 }
 
 bool Projectile::isHitP1()
