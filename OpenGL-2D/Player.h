@@ -1,11 +1,13 @@
 #pragma once
 
 #include <string>
+#include "Timer.h"
 #include "Sprite.h"
 
 using namespace std;
 class Player : public Sprite
 {
+	Timer m_shootingTimer;
 	static Player* m_player;
 	int score = 0;
 

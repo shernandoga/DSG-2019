@@ -6,7 +6,7 @@ class Bullet :
 
 	//int m_direction; //0=UP/1=DOWN
 	bool m_hasImpact;
-	bool m_fun;
+
 
 public:
 	Bullet(double x,double y, const char* texture);

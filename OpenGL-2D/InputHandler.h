@@ -8,7 +8,7 @@ class InputHandler
 	Renderer& m_renderer;
 public:
 
-	bool leftPressed = false , rightPressed = false, spacePressed = false;
+	bool leftPressed = false , rightPressed = false;
 
 	InputHandler(Renderer& renderer);
 	~InputHandler();

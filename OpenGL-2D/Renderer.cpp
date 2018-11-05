@@ -108,12 +108,12 @@ void Renderer::drawScene()
 	{
 		(*it)->draw(m_frameDuration);
 	}
-	double elapsedTime = m_frameTimer.getElapsedTime();
+
+	double elapsedTime = m_frameTimer.getElapsedTime(true);
 	if (elapsedTime < m_frameDuration)
 	{
 		double timeAsleep = m_frameDuration - elapsedTime;
 		std::this_thread::sleep_for(chrono::duration<double, std::ratio<1>>(timeAsleep)); //sleep until m_frameDuration seconds passed since last frame
-		m_frameTimer.getElapsedTime(true); //reset the timer
 	}
 }
 

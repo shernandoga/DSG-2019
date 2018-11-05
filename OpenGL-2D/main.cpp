@@ -19,14 +19,14 @@ int main(int argc, char** argv)
 	SoundManager* pSoundManager = SoundManager::getInstance();
 	pSoundManager->setVerbose(true);
 	// TODO uncomment for background music
-//	pSoundManager->createAudioObject("snd/soundtrack-01.wav");
+	pSoundManager->createAudioObject("snd/soundtrack-01.wav");
 	pSoundManager->createAudioObject("snd/cannon.wav");
 	//pSoundManager->createAudioObject("snd/fireball.wav");
 	//pSoundManager->createAudioObject("snd/explosion.wav");
 
 	int audioObjBg = pSoundManager->getAudioObjectId("snd/soundtrack-01.wav");
 	// TODO uncomment for background music
-//	pSoundManager->play(audioObjBg, 1.f);
+	pSoundManager->play(audioObjBg, 1.f);
 	system("cls");
 	std::cout << "  _________                          \n";
 	std::cout << " /   _____/__________    ____  ____  \n";
@@ -96,11 +96,6 @@ int main(int argc, char** argv)
 		//process queued events
 		glutMainLoopEvent();
 		inputHandler.update();
-		if (inputHandler.spacePressed) {
-			int audioObjShoot = pSoundManager->getAudioObjectId("snd/cannon.wav");
-			pSoundManager->play(audioObjShoot, 1.f);
-		}
-
 
 	
 		if (Satan::getInstance()->getNumEnemies() <= Satan::getInstance()->getKilledEnemies()) {

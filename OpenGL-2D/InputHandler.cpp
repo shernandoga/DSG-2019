@@ -28,9 +28,6 @@ void InputHandler::update()
 {
 	//keyboard callback function
 	Sprite* thePlayer = (Sprite*)m_renderer.getDrawable("jugador");
-
-	if (spacePressed)
-		((Player*)thePlayer)->shoot();
  
 	if (leftPressed) {
 		if (thePlayer->getX() > -1)
@@ -49,12 +46,14 @@ void InputHandler::update()
 
 void InputHandler::__processKeyboard(unsigned char key, int x, int y)
 {
+	Sprite* thePlayer;
 	if (m_pInputHandler)
 	{
 		switch (key)
 		{
 		case 32: //ASCII KEY SPACE
-			m_pInputHandler->spacePressed = true;
+			thePlayer= (Sprite*)Renderer::get()->getDrawable("jugador");
+			((Player*)thePlayer)->shoot();
 			break;
 		case 'a':
 			m_pInputHandler->leftPressed = true;
@@ -62,6 +61,8 @@ void InputHandler::__processKeyboard(unsigned char key, int x, int y)
 		case 'd':
 			m_pInputHandler->rightPressed = true;
 			break;
+		case 27:
+			exit(0);
 		}
 
 	}
@@ -72,13 +73,14 @@ void InputHandler::__processKeyboard(unsigned char key, int x, int y)
 void InputHandler::__processKeyboardUp(unsigned char key, int x, int y)
 {
 	
-	if (m_pInputHandler->leftPressed)
+	switch (key)
+	{
+	case 'a':
 		m_pInputHandler->leftPressed = false;
-	else if (m_pInputHandler->rightPressed)
+		break;
+	case 'd':
 		m_pInputHandler->rightPressed = false;
-	else
-		m_pInputHandler->spacePressed = false;
-
-
+		break;
+	}
 
 }
