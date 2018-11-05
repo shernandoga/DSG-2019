@@ -15,7 +15,7 @@ public:
 
 	void initialize();
 
-	void update();
+	void update(double dt);
 	static void __processKeyboard(unsigned char key, int x, int y);
 	static void __processKeyboardUp(unsigned char key, int x, int y);
 

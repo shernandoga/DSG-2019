@@ -30,6 +30,7 @@ public:
 	void setNumEnemies(int numEnemies) { m_numEnemies = numEnemies;  };
 	int getNumEnemies() { return m_numEnemies;  };
 	int getKilledEnemies() { return killedEnemies; };
+	bool updateEnemies(double dt); //return true if enemies reached the player
 
 
 	static Satan* getInstance() { return m_pInstance; }

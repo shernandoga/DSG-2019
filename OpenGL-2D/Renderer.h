@@ -26,6 +26,7 @@ public:
 	void initialize(int argc, char** argv);
 
 	void setFrameRate(int framesPerSecond);
+	double getFrameDuration() { return m_frameDuration; }
 
 	static Renderer* get(); //this method returns the only instance to the renderer. Needs to be called after the constructor
 

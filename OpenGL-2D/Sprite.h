@@ -7,7 +7,7 @@ using namespace std;
 class Sprite: public Drawable
 {
 protected:
-	unsigned int m_textureId;
+	const char* m_textureFilename;
 
 	float m_r, m_g, m_b;
 	
@@ -22,6 +22,7 @@ protected:
 
 
 public:
+	Sprite() {} //called from AnimatedSprite(): does nothing at all
 	Sprite(const char* texture );
 	~Sprite();
 

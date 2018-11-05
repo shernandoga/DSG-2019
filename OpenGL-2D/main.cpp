@@ -12,21 +12,24 @@
 #include <conio.h>
 #include "../3rd-party/SoundManager/SoundManager.h" //relative path to the main header
 #include "Satan.h"
+#include "TextureManager.h"
 
 int main(int argc, char** argv)
 {
 	SoundManager soundManager;
 	SoundManager* pSoundManager = SoundManager::getInstance();
+#ifdef _DEBUG
 	pSoundManager->setVerbose(true);
+#endif
 	// TODO uncomment for background music
-	pSoundManager->createAudioObject("snd/soundtrack-01.wav");
+	//pSoundManager->createAudioObject("snd/soundtrack-01.wav");
 	pSoundManager->createAudioObject("snd/cannon.wav");
 	//pSoundManager->createAudioObject("snd/fireball.wav");
 	//pSoundManager->createAudioObject("snd/explosion.wav");
 
-	int audioObjBg = pSoundManager->getAudioObjectId("snd/soundtrack-01.wav");
+	//int audioObjBg = pSoundManager->getAudioObjectId("snd/soundtrack-01.wav");
 	// TODO uncomment for background music
-	pSoundManager->play(audioObjBg, 1.f);
+	//pSoundManager->play(audioObjBg, 1.f);
 	system("cls");
 	std::cout << "  _________                          \n";
 	std::cout << " /   _____/__________    ____  ____  \n";
@@ -49,6 +52,10 @@ int main(int argc, char** argv)
 	Renderer renderer;
 	renderer.setFrameRate(30);
 	InputHandler inputHandler(renderer);
+	TextureManager textureManager;
+#ifdef _DEBUG
+	textureManager.setVerbose(true);
+#endif
 	
 	renderer.initialize(argc, argv);
 	inputHandler.initialize();
@@ -95,35 +102,20 @@ int main(int argc, char** argv)
 		////////////////////////////
 		//process queued events
 		glutMainLoopEvent();
-		inputHandler.update();
+		inputHandler.update(renderer.getFrameDuration()  );
 
 	
-		if (Satan::getInstance()->getNumEnemies() <= Satan::getInstance()->getKilledEnemies()) {
+		if (Satan::getInstance()->getNumEnemies() <= Satan::getInstance()->getKilledEnemies())
+		{
 			gameOver = true;
 
 			Sprite* gameover = new Sprite("img/you-win.jpg");
 			gameover->setDepth(1);
 			renderer.addObject(gameover);
 		}
-		for (int id= 0; id<satanas->getNumEnemies(); id++)
-		{
-				Sprite* theEnemy = (Sprite*)renderer.getDrawable(string("enemy") + to_string(id));
-				if (theEnemy != nullptr)
-				{
-					if (theEnemy->getY() >= -0.25) {
-						theEnemy->setPosition(theEnemy->getX(), theEnemy->getY() - 0.0001);
-					}
-					
-					else {
-						gameOver = true;
 
-						Sprite* gameover = new Sprite("img/game-over.png");
-						gameover->setDepth(1.01);
-						renderer.addObject(gameover);
-					}
-				}
-							
-		}  
+		if (!gameOver)
+			gameOver = satanas->updateEnemies(renderer.getFrameDuration());
 		
 
 

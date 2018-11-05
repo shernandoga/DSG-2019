@@ -17,7 +17,7 @@ Player::Player(string name, const char* texture): Sprite(texture)
 	m_shootingTimer.start();
 }
 
-#define SHOOTING_MIN_TIME 0.8
+#define SHOOTING_MIN_TIME 0.25
 
 void Player::shoot()
 {
@@ -29,7 +29,7 @@ void Player::shoot()
 		Renderer::get()->addObject(pBullet);
 		//sound
 		int audioObjShoot = SoundManager::getInstance()->getAudioObjectId("snd/cannon.wav");
-		SoundManager::getInstance()->play(audioObjShoot, 1.f);
+		SoundManager::getInstance()->play(audioObjShoot, 1.f, m_x, 0.0, 0.0, 0.0,1.0, 0.0);
 
 		m_shootingTimer.getElapsedTime(true);//reset the timer
 	}

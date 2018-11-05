@@ -44,3 +44,28 @@ void Satan::createEnemies() {
 	}
 	setNumEnemies(numEnemies);
 }
+
+#define ENEMY_SPEED 0.01
+
+bool Satan::updateEnemies(double dt)
+{
+	for (int id = 0; id < getNumEnemies(); id++)
+	{
+		Sprite* theEnemy = (Sprite*)Renderer::get()->getDrawable(string("enemy") + to_string(id));
+		if (theEnemy != nullptr)
+		{
+			if (theEnemy->getY() >= -0.5) 
+			{
+				theEnemy->setPosition(theEnemy->getX(), theEnemy->getY() - ENEMY_SPEED* dt);
+			}
+			else
+			{
+				Sprite* gameover = new Sprite("img/game-over.png");
+				gameover->setDepth(1.01);
+				Renderer::get()->addObject(gameover);
+				return true;
+			}
+		}
+	}
+	return false;
+}

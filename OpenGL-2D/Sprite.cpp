@@ -1,14 +1,12 @@
 #include "stdafx.h"
 #include "Sprite.h"
-#include "../3rd-party/SOIL/src/SOIL.h"
-
+#include "TextureManager.h"
 
 
 Sprite::Sprite(const char* texture)
 {
-	if( texture != nullptr){
-		m_textureId = SOIL_load_OGL_texture(texture, 0, 0, 0);
-	}
+	m_textureFilename = texture;
+	TextureManager::getInstance()->create2DTexture(texture);	
 }
 
 
@@ -62,13 +60,12 @@ void Sprite::draw(double dt)
 	//DONE:
 
 	//0. Activate textures and give coords
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, m_textureId);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	TextureManager::getInstance()->useTexture(m_textureFilename);
+
+
 
 	//1. Pass the object's test to OpenGL
-       //glColor3f(m_r, m_g, m_b);
+    //glColor3f(m_r, m_g, m_b);
 
 	//2. Save the current transformation matrix
 

@@ -23,21 +23,22 @@ void InputHandler::initialize()
 	glutKeyboardUpFunc(__processKeyboardUp);
 }
 
+#define PLAYER_MOVE_SPEED 0.15
 
-void InputHandler::update() 
+void InputHandler::update(double dt) 
 {
 	//keyboard callback function
 	Sprite* thePlayer = (Sprite*)m_renderer.getDrawable("jugador");
  
 	if (leftPressed) {
 		if (thePlayer->getX() > -1)
-			thePlayer->setPosition(thePlayer->getX() - 0.01, thePlayer->getY());
+			thePlayer->setPosition(thePlayer->getX() - PLAYER_MOVE_SPEED *dt, thePlayer->getY());
 	}
 		
 
 	if (rightPressed) {
 		if (thePlayer->getX() <= 1)
-			thePlayer->setPosition(thePlayer->getX() + 0.01, thePlayer->getY());		
+			thePlayer->setPosition(thePlayer->getX() + PLAYER_MOVE_SPEED *dt, thePlayer->getY());
 	}
 		
 		
@@ -56,9 +57,11 @@ void InputHandler::__processKeyboard(unsigned char key, int x, int y)
 			((Player*)thePlayer)->shoot();
 			break;
 		case 'a':
+		case 'A':
 			m_pInputHandler->leftPressed = true;
 			break;
 		case 'd':
+		case 'D':
 			m_pInputHandler->rightPressed = true;
 			break;
 		case 27:
@@ -76,9 +79,11 @@ void InputHandler::__processKeyboardUp(unsigned char key, int x, int y)
 	switch (key)
 	{
 	case 'a':
+	case 'A':
 		m_pInputHandler->leftPressed = false;
 		break;
 	case 'd':
+	case 'D':
 		m_pInputHandler->rightPressed = false;
 		break;
 	}
