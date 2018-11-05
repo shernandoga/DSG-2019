@@ -10,8 +10,8 @@ public:
 	~Player();
 	void setcoord(int q, int w);
 	void setlimit(int q, int w);
-	void moveUp();
-	void moveDown();
+	void moveUp(double dt);
+	void moveDown(double dt);
 	void moveRight();
 	void moveLeft();
 	bool movegeneral(int x1, int y1);

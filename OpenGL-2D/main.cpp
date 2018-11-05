@@ -7,6 +7,7 @@
 #include "Text.h"
 #include "Projectile.h"
 #include "Text.h"
+#include "TextureManager.h"
 #include <iostream>
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
 #include "AnimatedSprite.h"
@@ -22,7 +23,9 @@ int main(int argc, char** argv)
 	double secondsPassed;
 	SoundManager soundManager;
 	SoundManager* pSoundManager = SoundManager::getInstance();
+#ifdef _DEBUG
 	pSoundManager->setVerbose(true);
+#endif
 	pSoundManager->createAudioObject("snd/soundtrack-01.wav");
 	pSoundManager->createAudioObject("snd/cannon.wav");
 
@@ -30,13 +33,23 @@ int main(int argc, char** argv)
 	int audioObj2 = pSoundManager->getAudioObjectId("snd/cannon.wav");
 
 	Renderer renderer;
+	TextureManager textureManager;
+
+#ifdef _DEBUG
+	textureManager.setVerbose(true);
+#endif
+	
 	renderer.setFrameRate(30);
 	InputHandler inputHandler(renderer);
 	renderer.initialize(argc, argv);
+
+
+
 	Text2D *textInit = new Text2D("Presione cualquier tecla para empezar", -0.4, 0, 1);
 	renderer.addObject(textInit);
 	bool play = false;
-	while (!play) {
+	while (!play)
+	{
 		glutKeyboardFunc(inputHandler.__processPlay);
 		if (inputHandler.doPlay()) {
 			play = true;
@@ -48,6 +61,7 @@ int main(int argc, char** argv)
 		glutPostRedisplay();
 		glutSwapBuffers();
 	}
+
 	inputHandler.initialize();
 	Text2D *texto1 = new Text2D("PLAYER 1: 10", -0.75, 0.92, 1);
 	Text2D *texto2 = new Text2D("PLAYER 2: 10", 0.40, 0.92, 1);
@@ -67,7 +81,6 @@ int main(int argc, char** argv)
 
 	//test objects
 	Player *pPlayer1= new Player("img/fighter-01.png");
-	//Player1->setColor(255, 0, 0);
 	pPlayer1->setPosition(-0.75, 0.0);
 	pPlayer1->setRotation(270.0);
 	pPlayer1->setSize(0.2);
@@ -83,9 +96,6 @@ int main(int argc, char** argv)
 	pPlayer2->setDepth(1.3);
 	pPlayer2->setName("Player2");
 	renderer.addObject(pPlayer2);
-	//AnimatedSprite * pAnimatedSprite = new AnimatedSprite("img/fire-animation-2.png", 5, 2, true);
-	//pAnimatedSprite->setSize(0.25);
-	//renderer.addObject(pAnimatedSprite);
 
 	while (1)
 	{

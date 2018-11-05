@@ -9,7 +9,7 @@ protected:
 public:
 	Projectile(double coordPlayerX, double coordPlayerY, bool direction, string dirimg);
 	~Projectile();
-	void draw();
+	void draw(double dt);
 	bool isHitP1();
 	bool isHitP2();
 };

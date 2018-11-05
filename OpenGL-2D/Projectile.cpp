@@ -9,33 +9,29 @@
 Projectile::Projectile(double coordPlayerX, double coordPlayerY, bool direction,string dirimg)
 :AnimatedSprite(dirimg.c_str(),5,2,false)
 {
-	//setColor(100, 0, 0);
 	setPosition(coordPlayerX, coordPlayerY);
 	setRotation(0.0);
 	setSize(0.1);
 	setDepth(1.5);
 	m_right = direction;
-	//if(direction == true)
-		//setColor(130, 0, 0);
-	//else
-		//setColor(0, 130, 0);
-
 }
 
 Projectile::~Projectile()
 {
 }
 
-void Projectile::draw()
+#define PROJECTILE_SPEED 0.7
+
+void Projectile::draw(double dt)
 {
 	if (m_right == true)
 	{
-		m_x += 0.005;
+		m_x += PROJECTILE_SPEED *dt;
 	}
 
 	if (m_right == false)
 	{
-		m_x -= 0.005;
+		m_x -= PROJECTILE_SPEED *dt;
 	}
 
 	if (m_x <= -1.0 || m_x >= 1.0 || m_y <= -1.0 || m_y >= 1.0)
@@ -43,7 +39,7 @@ void Projectile::draw()
 	else if (isHitP1() || isHitP2())
 		markForDeletion();
 	else 
-		AnimatedSprite::draw(1);
+		AnimatedSprite::draw(dt);
 }
 
 bool Projectile::isHitP1()

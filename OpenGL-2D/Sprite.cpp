@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Sprite.h"
-#include "../3rd-party/SOIL/src/SOIL.h"
+#include "TextureManager.h"
 
 
 Sprite::Sprite(string img)
@@ -8,7 +8,7 @@ Sprite::Sprite(string img)
 	if (!img.empty())
 	{
 		m_dirimg = img;
-		m_textureid = SOIL_load_OGL_texture(m_dirimg.c_str(), 0, 0, 0);
+		TextureManager::getInstance()->create2DTexture(img);
 	}
 	
 }
@@ -73,7 +73,6 @@ void Sprite::draw(double dt)
 
 	//1. Pass the object's color to OpenGL
 
-	//glColor3f(m_r, m_g, m_b);
 
 	//2. Save the current transformation matrix
 
@@ -84,10 +83,9 @@ void Sprite::draw(double dt)
 	glTranslatef(m_x, m_y, 0); 
 	glRotatef(m_angle, 0, 0, 1);
 	glScalef(m_size, m_size, 1);
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, m_textureid);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	
+
+	TextureManager::getInstance()->useTexture(m_dirimg);
 
 	//4. Draw the quad centered in [0,0] with coordinates: [-1,-1], [1,-1], [1,1] and [-1,1]
 

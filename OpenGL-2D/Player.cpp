@@ -13,18 +13,20 @@ Player::~Player()
 {
 }
 
-void Player::moveUp()
+#define PLAYER_SPEED 0.1
+
+void Player::moveUp(double dt)
 {
 		if (m_y < limitUp) {
-			m_y = m_y + 0.0008;//mvSpeed
+			m_y = m_y + PLAYER_SPEED * dt;
 			setPosition(m_x, m_y);
 		}
 }
 
-void Player::moveDown()
+void Player::moveDown(double dt)
 {
 	if (m_y > limitDown) {
-		m_y = m_y - 0.0008;//mvSpeed
+		m_y = m_y - PLAYER_SPEED * dt;
 		setPosition(m_x, m_y);
 	}
 }

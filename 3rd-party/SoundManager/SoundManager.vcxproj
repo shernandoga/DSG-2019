@@ -23,7 +23,7 @@
     <ProjectGuid>{A57F9D62-1D00-4D1C-A5C3-BB3710EDD95B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SoundManager</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
     <ProjectName>SoundManager-Lib</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

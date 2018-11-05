@@ -23,7 +23,7 @@
     <ProjectGuid>{BEA9AFE4-C925-4E0E-B50D-1F0E45B43D08}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>OpenAL-Lib</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
     <ProjectName>OpenAL</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

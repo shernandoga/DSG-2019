@@ -8,7 +8,7 @@
 
 
 InputHandler* InputHandler::m_pInputHandler = nullptr;
-double secondsToDelay = 0.1;
+double secondsToDelay = 0.5;
 clock_t startTimeP1 = clock();
 clock_t startTimeP2 = clock();
 double secondsPassed;
@@ -106,13 +106,13 @@ void InputHandler::processPlay(unsigned char key, int x, int y) {
 }
 
 void InputHandler::retard(Player* player, Renderer* renderer, bool direction) {
-	clock_t startTimePl;
+	clock_t startTime;
 	if (direction) {
-		startTimePl = startTimeP1;
+		startTime = startTimeP1;
 	}else {
-		startTimePl = startTimeP2;
+		startTime = startTimeP2;
 	}
-	secondsPassed = (clock() - startTimePl) / CLOCKS_PER_SEC;
+	secondsPassed = (clock() - startTime) / (double)CLOCKS_PER_SEC;
 	if (secondsPassed >= secondsToDelay)
 	{
 		renderer->addObject(new Projectile(player->getX(), player->getY(), direction, "img/fire-animation-2.png"));
@@ -141,23 +141,23 @@ void InputHandler::__processUpKeyboard(unsigned char key, int x, int y) {
 
 void InputHandler::processEvents(SoundManager* pSoundManager, int cannon) {
 	if (mvUp1) {
-		player1->moveUp();
+		player1->moveUp(Renderer::get()->getFrameDuration());
 	}
 	if (mvUp2) {
-		player2->moveUp();
+		player2->moveUp(Renderer::get()->getFrameDuration());
 	}
 	if (mvDwn1) {
-		player1->moveDown();
+		player1->moveDown(Renderer::get()->getFrameDuration());
 	}
 	if (mvDwn2) {
-		player2->moveDown();
+		player2->moveDown(Renderer::get()->getFrameDuration());
 	}
 	if (shoot1) {
-		pSoundManager->play(cannon, 0.5f - 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+		pSoundManager->play(cannon, player1->getX(), 0.f, 0.f, 0.f, 0.f, 0.f);
 		shoot1 = false;
 	}
 	if (shoot2) {
-		pSoundManager->play(cannon, 0.5f - 1.f, 0.f, 0.f, 0.f, 0.f, 0.f);
+		pSoundManager->play(cannon, player2->getX(), 0.f, 0.f, 0.f, 0.f, 0.f);
 		shoot2 = false;
 	}
 }
