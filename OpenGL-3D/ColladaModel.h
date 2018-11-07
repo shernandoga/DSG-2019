@@ -6,9 +6,9 @@ using namespace std;
 class ColladaModel :
 	public GraphicObject3D
 {
-	std::vector<double> m_positions;
-	std::vector<double> m_normals;
-	std::vector<double> m_texCoords;
+	vector<double> m_positions;
+	vector<double> m_normals;
+	vector<double> m_texCoords;
 	int textureId;
 
 public:
