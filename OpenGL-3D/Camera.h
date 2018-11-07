@@ -7,7 +7,6 @@ public:
 	Camera();
 	~Camera();
 
-	virtual void applyMatrix();
 	virtual void draw() {} //we do nothing
 };
 
