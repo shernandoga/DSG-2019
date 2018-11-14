@@ -19,8 +19,20 @@ public:
 	~ColladaModel();
 
 	virtual void draw() {
-	
-	
+
+
+		glBegin(GL_TRIANGLES);
+		for (int i = 0; i < m_indices; i++) {
+			glVertex3f(0.0, 0.0, 0.0);
+			glVertex3f(0.3, 0.2, 0.5);
+			glVertex3f(0.3, 0.8, 0.2);
+			//2o triángulo
+
+			glPushMatrix();
+			obj1.applyMatrix();
+			obj1.draw();
+			glPopMatrix();
+		}
 	
 	} 
 	void parseXMLFloatArray(tinyxml2::XMLElement *pFloatArray, std::vector<double> &vector);
