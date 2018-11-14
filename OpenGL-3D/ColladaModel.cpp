@@ -34,10 +34,10 @@ ColladaModel::ColladaModel(const char* file)
 	tinyxml2::XMLElement* pTriangles = pRoot->FirstChildElement("library_geometries")->FirstChildElement("geometry")->FirstChildElement("mesh")->FirstChildElement("triangles");
 	tinyxml2::XMLElement* pP = pRoot->FirstChildElement("library_geometries")->FirstChildElement("geometry")->FirstChildElement("mesh")->FirstChildElement("triangles")->FirstChildElement("p");
 
-
+	
 	parseXMLFloatArray(pFloat_array1, m_positions);
 
-
+	
 }
 
 
