@@ -24,11 +24,11 @@ ColladaModel::ColladaModel(string fileName)
 	tinyxml2::XMLElement* pVenomPosArray = pSourceVenomPos->FirstChildElement("float_array");
 	parseXMLFloatArray(pVenomPosArray, m_positions);
 
-	tinyxml2::XMLElement* pSourceVenomNrm = pSourceVenomPos->NextSibling();
+	tinyxml2::XMLElement* pSourceVenomNrm = pSourceVenomPos->NextSiblingElement("source");
 	tinyxml2::XMLElement* pVenomNrmArray = pSourceVenomNrm->FirstChildElement("float_array");
 	parseXMLFloatArray(pVenomNrmArray, m_normals);
 
-	tinyxml2::XMLElement* pSourceVenomUV = pSourceVenomNrm->NextSibling();
+	tinyxml2::XMLElement* pSourceVenomUV = pSourceVenomNrm->NextSiblingElement("source");
 	tinyxml2::XMLElement* pVenomUVArray = pSourceVenomUV->FirstChildElement("float_array");
 	parseXMLFloatArray(pVenomUVArray, m_texCoords);
 
@@ -44,7 +44,7 @@ ColladaModel::~ColladaModel()
 }
 
 
-void ColladaModel::parseXMLFloatArray(tinyxml2::XMLElement *pFloatArray, std::vector<double> &vector)
+void ColladaModel::parseXMLFloatArray(tinyxml2::XMLElement *pFloatArray, vector<double> &vector)
 {
 	char* pCharArray = (char*)pFloatArray->GetText();
 	char* nextToken;
@@ -67,4 +67,40 @@ void ColladaModel::parseXMLIntArray(tinyxml2::XMLElement *pFloatArray, vector<in
 		vector.push_back(atoi(pt));
 		pt = strtok_s(0, " ", &nextToken);
 	}
+}
+
+void ColladaModel::draw()
+{
+	//0. Activate textures and give coords
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, textureId);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	//1. Pass the object's test to OpenGL
+	//glColor3f(m_r, m_g, m_b);
+
+	//2. Save the current transformation matrix
+
+	glPushMatrix();
+
+	//3. Set the transformation matrix of the quad using position, size and angle
+/*
+	glTranslatef(m_x, m_y, 0);
+	glRotatef(m_angle, 0, 0, 1);
+	glScalef(m_size, m_size, 1);
+
+	*/
+
+	//4. Draw the quad centered in [0,0] with coordinates: [-1,-1], [1,-1], [1,1] and [-1,1]
+
+	glBegin(GL_TRIANGLES);
+	for (int i = 0; i < m_indices.size(); i++) {
+		glVertex3f(m_positions[(i*3)], m_positions[(i*3)+1], m_positions[(i*3)+2]);
+	}
+	glEnd();
+
+	//5. Restore the transformation matrix
+
+	glPopMatrix();
 }
