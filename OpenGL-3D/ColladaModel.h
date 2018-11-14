@@ -1,5 +1,7 @@
 #pragma once
 #include "GraphicObject3D.h"
+#include <vector>
+#include "../3rd-party/tinyxml2/tinyxml2.h"
 
 using namespace std;
 
@@ -10,6 +12,8 @@ class ColladaModel :
 	vector<double> m_normals;
 	vector<double> m_texCoords;
 	int textureId;
+
+	vector<int> m_indices;
 
 public:
 	ColladaModel(const char * file);

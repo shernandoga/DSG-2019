@@ -1,7 +1,8 @@
 #include "ColladaModel.h"
 #include "../3rd-party/tinyxml2/tinyxml2.h"
-#include <vector>;
+#include <vector>
 #include "../3rd-party/SOIL/src/SOIL.h"
+#include "../3rd-party/glew-2.0.0/src/glew.h"
 
 using namespace std;
 
@@ -9,11 +10,11 @@ ColladaModel::ColladaModel(const char* file)
 {
 	tinyxml2::XMLDocument doc;
 	doc.LoadFile(file);
-	tinyxml2::XMLElement* pRoot = doc.FirstChildElement("COLLADA");
+	tinyxml2::XMLElement* pRoot = doc.FirstChildElement("COLLADA");
 
-	tinyxml2::XMLElement* pLibraryImages = pRoot->FirstChildElement("library_images");
-	tinyxml2::XMLElement* pImage = pLibraryImages->FirstChildElement("image");
-	tinyxml2::XMLElement* pInit_form = pImage->FirstChildElement("init_form");
+	tinyxml2::XMLElement* pLibraryImages = pRoot->FirstChildElement("library_images");
+	tinyxml2::XMLElement* pImage = pLibraryImages->FirstChildElement("image");
+	tinyxml2::XMLElement* pInit_form = pImage->FirstChildElement("init_from");
 
 	const char* textureFile = pInit_form->GetText();
 	textureId = SOIL_load_OGL_texture(&textureFile[8], 0, 0, 0);
@@ -36,7 +37,9 @@ ColladaModel::ColladaModel(const char* file)
 
 	
 	parseXMLFloatArray(pFloat_array1, m_positions);
-
+	parseXMLFloatArray(pFloat_array2, m_normals);
+	parseXMLFloatArray(pFloat_array3, m_texCoords);
+	parseXMLIntArray(pP, m_indices);
 	
 }
 
@@ -47,6 +50,28 @@ ColladaModel::~ColladaModel()
 
 void ColladaModel::draw() {
 
+	int por3;
+	int por2;
+	int indice;
+
+	glRotatef(270,1,0,0);
+
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, textureId);
+	glBegin(GL_TRIANGLES);
+	
+	for(int i=0; i < m_indices.size(); i++)
+	{
+		indice = m_indices[i];
+		por3 = indice * 3;
+		por2 = indice * 2;
+
+		glNormal3f(m_normals[por3], m_normals[por3 + 1], m_normals[por3 + 2]);
+		glTexCoord2f(m_texCoords[por2], 1-(m_texCoords[por2 + 1]));
+		glVertex3f(m_positions[por3], m_positions[por3 + 1], m_positions[por3 + 2]);
+	}
+
+	glEnd();
 }
 
 void ColladaModel::parseXMLFloatArray(tinyxml2::XMLElement *pFloatArray, vector<double> &vector)

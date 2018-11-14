@@ -4,6 +4,7 @@
 #include "Sphere.h"
 #include "../3rd-party/freeglut3/include/GL/freeglut.h"
 #include "Camera.h"
+#include "ColladaModel.h"
 
 
 int main(int argc, char** argv)
@@ -14,8 +15,10 @@ int main(int argc, char** argv)
 	renderer.initialize(argc, argv);
 	inputHandler.initialize();
 
+	ColladaModel collada("Venom.dae");
 
 	//init objects
+	/*
 	Sphere sphere1;
 	sphere1.setColor(255, 0, 0);
 	renderer.addObject(&sphere1);
@@ -27,6 +30,9 @@ int main(int argc, char** argv)
 	sphere2.setResolution(100, 100);
 	sphere2.setScale(0.1, 0.1, 0.1);
 	renderer.addObject(&sphere2);
+	*/
+	renderer.addObject(&collada);
+
 	Camera camera;
 	camera.setPosition(0, 0, 5);
 	renderer.addCamera(&camera);
