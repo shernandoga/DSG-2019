@@ -1,5 +1,5 @@
 #pragma once
-#include "GraphicObject3D.cpp"
+#include "GraphicObject3D.h"
 #include <string>
 #include <vector>
 using namespace std;

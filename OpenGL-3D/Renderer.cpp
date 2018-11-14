@@ -62,6 +62,7 @@ Camera* Renderer::getActiveCamera()
 void Renderer::drawScene()
 {
 	//clean the backbuffer
+	glClearColor(1, 1, 1,1);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	//set the 2d modelview matrix

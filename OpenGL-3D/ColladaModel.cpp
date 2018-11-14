@@ -2,18 +2,19 @@
 
 #include "../3rd-party/tinyxml2/tinyxml2.h"
 #include "../3rd-party/SOIL/src/SOIL.h"
+#include "../3rd-party/glew-2.0.0/src/glew.h"
 
 ColladaModel::ColladaModel(string fileName)
 {
 	tinyxml2::XMLDocument doc;
-	doc.LoadFile("../OpenGL-3D/Venom.dae");
+	doc.LoadFile(fileName.c_str());
 	tinyxml2::XMLElement* pRoot = doc.FirstChildElement("COLLADA");
 	tinyxml2::XMLElement* pLibraryImages = pRoot->FirstChildElement("library_images");
 	tinyxml2::XMLElement* pImage = pLibraryImages ->FirstChildElement("image");
 	tinyxml2::XMLElement* pInit_From = pImage->FirstChildElement("init_from");
 	const char* nameTexture = pInit_From->GetText();
 
-	int TextureID = SOIL_load_OGL_texture(&(nameTexture[8]), 0, 0, 0);
+	textureId = SOIL_load_OGL_texture(&(nameTexture[8]), 0, 0, 0);
 
 	
 	tinyxml2::XMLElement* pLibraryGeometries = pRoot->FirstChildElement("library_geometries");
@@ -21,15 +22,15 @@ ColladaModel::ColladaModel(string fileName)
 	tinyxml2::XMLElement* pMesh = pGeometry->FirstChildElement("mesh");
 
 	tinyxml2::XMLElement* pSourceVenomPos = pMesh->FirstChildElement("source");
-	tinyxml2::XMLElement* pVenomPosArray = pSourceVenomPos->FirstChildElement("float_array");
+	tinyxml2::XMLElement* pVenomPosArray = pSourceVenomPos->FirstChildElement("float_array");
 	parseXMLFloatArray(pVenomPosArray, m_positions);
 
 	tinyxml2::XMLElement* pSourceVenomNrm = pSourceVenomPos->NextSiblingElement("source");
-	tinyxml2::XMLElement* pVenomNrmArray = pSourceVenomNrm->FirstChildElement("float_array");
+	tinyxml2::XMLElement* pVenomNrmArray = pSourceVenomNrm->FirstChildElement("float_array");
 	parseXMLFloatArray(pVenomNrmArray, m_normals);
 
 	tinyxml2::XMLElement* pSourceVenomUV = pSourceVenomNrm->NextSiblingElement("source");
-	tinyxml2::XMLElement* pVenomUVArray = pSourceVenomUV->FirstChildElement("float_array");
+	tinyxml2::XMLElement* pVenomUVArray = pSourceVenomUV->FirstChildElement("float_array");
 	parseXMLFloatArray(pVenomUVArray, m_texCoords);
 
 	tinyxml2::XMLElement* pTriangles = pMesh->FirstChildElement("triangles");
@@ -74,8 +75,10 @@ void ColladaModel::draw()
 	//0. Activate textures and give coords
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, textureId);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHT1);
 
 	//1. Pass the object's test to OpenGL
 	//glColor3f(m_r, m_g, m_b);
@@ -87,16 +90,21 @@ void ColladaModel::draw()
 	//3. Set the transformation matrix of the quad using position, size and angle
 /*
 	glTranslatef(m_x, m_y, 0);
-	glRotatef(m_angle, 0, 0, 1);
+	
 	glScalef(m_size, m_size, 1);
 
 	*/
+	glScalef(0.25, 0.25, 1);
+	glRotatef(270, 1, 0, 0);
 
 	//4. Draw the quad centered in [0,0] with coordinates: [-1,-1], [1,-1], [1,1] and [-1,1]
 
 	glBegin(GL_TRIANGLES);
 	for (int i = 0; i < m_indices.size(); i++) {
-		glVertex3f(m_positions[(i*3)], m_positions[(i*3)+1], m_positions[(i*3)+2]);
+		glNormal3f(m_normals[(m_indices[i] * 3)], m_normals[((m_indices[i] * 3) + 1)], m_normals[((m_indices[i] * 3) + 2)]);
+		glTexCoord2f(m_texCoords[(m_indices[i] * 2)],1- m_texCoords[((m_indices[i] * 2) + 1)]);
+		glVertex3f(m_positions[(m_indices[i]*3)], m_positions[((m_indices[i] *3)+1)], m_positions[((m_indices[i] *3)+2)]);
+
 	}
 	glEnd();
 
