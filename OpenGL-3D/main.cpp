@@ -16,22 +16,10 @@ int main(int argc, char** argv)
 	renderer.initialize(argc, argv);
 	inputHandler.initialize();
 
-
 	//init objects
-	/*Sphere sphere1;
-	sphere1.setColor(255, 0, 0);
-	renderer.addObject(&sphere1);
-	sphere1.setPosition(0, 0, -5);
-	sphere1.setScale(0.2, 0.2, 0.2);
-	sphere1.setResolution(100, 100);
-	Sphere sphere2;
-	sphere2.setColor(0, 255, 0);
-	sphere2.setResolution(100, 100);
-	sphere2.setScale(0.1, 0.1, 0.1);
-	renderer.addObject(&sphere2);*/
-	/*Camera camera;
-	camera.setPosition(0, 0, 5);
-	renderer.addCamera(&camera);*/
+	Camera camera;
+	camera.setPosition(0, 0, 1);
+	renderer.addCamera(&camera);
 
 	ColladaModel* cm = new ColladaModel("Venom.dae");
 	//ColladaModel* cm = new ColladaModel("EM208_heavy.dae");
