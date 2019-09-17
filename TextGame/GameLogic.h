@@ -1,16 +1,16 @@
 #pragma once
 
-class Player;
-class World;
+#include "Player.h"
+#include "World.h"
 
 class GameLogic
 {
 
-	Player player1, player2;
-	World world;
+	Player m_player1, m_player2;
+	World m_world;
 
 public:
-	GameLogic(World& world);
+	GameLogic(Player& player1, Player& player2, World& world);
 	~GameLogic();
 
 	void processInput();
