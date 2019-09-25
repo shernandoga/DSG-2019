@@ -1,13 +1,15 @@
 #pragma once
+#include "World.h"
 
 class Player
 {
 	int c_x;
 	int c_y;
 	int coins;
+	World world;
 
 public:
-	Player();
+	Player(int x, int y, World world);
 	~Player();
 
 	void moveUp();
@@ -18,6 +20,5 @@ public:
 	int getY();
 	int getcoin();
 	void addcoin();
-
 };
 
