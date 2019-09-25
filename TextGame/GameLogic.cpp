@@ -4,6 +4,7 @@
 #include "System.h"
 #include "World.h"
 
+using namespace std;
 GameLogic::GameLogic(Player& player1, Player& player2, World& world)
 	: m_player1(player1), m_player2(player2), m_world(world)
 {
@@ -54,6 +55,7 @@ void GameLogic::processInput()
 		case 27:
 			//'Esc' key pressed. Exit the game
 			return;
+			drawCoins();
 		}
 	}
 }
@@ -70,4 +72,10 @@ bool GameLogic::gameHasEnded()
 		}
 	}
 	return ended;
+}
+
+void GameLogic::drawCoins()
+{
+	cout << "Player1 has: " << m_player1.getcoin() << ". \n";
+	cout << "Player2 has: " << m_player2.getcoin() << ".";
 }

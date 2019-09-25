@@ -17,5 +17,6 @@ public:
 
 	void processInput();
 	bool gameHasEnded();
+	void drawCoins();
 };
 
