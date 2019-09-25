@@ -7,7 +7,7 @@
 GameLogic::GameLogic(Player& player1, Player& player2, World& world)
 	: m_player1(player1), m_player2(player2), m_world(world)
 {
-	
+	vector<char> v = m_world.getVector();
 }
 
 
@@ -28,15 +28,29 @@ void GameLogic::processInput()
 		{
 
 		case 'a':
-			//Do whatever needs to be done when 'a' is pressed
-
+			m_player1.moveLeft();
 			break;
 		case 's':
-			//Do whatever needs to be done when 's' is pressed
+			m_player1.moveDown();
 			break;
-		//...
-		//...
-		//...
+		case 'w':
+			m_player1.moveUp();
+			break;
+		case 'd':
+			m_player1.moveRight();
+			break;
+		case '1':
+			m_player2.moveLeft();
+			break;
+		case '2':
+			m_player2.moveDown();
+			break;
+		case '3':
+			m_player2.moveRight();
+			break;
+		case '5':
+			m_player2.moveUp();
+			break;
 		case 27:
 			//'Esc' key pressed. Exit the game
 			return;
@@ -46,6 +60,14 @@ void GameLogic::processInput()
 
 bool GameLogic::gameHasEnded()
 {
-	//TODO: We need to check it the game has ended
-	return false;
+	for (size_t i = 0; i < v; i++)
+	{
+		if (v[i] == '?') {
+			ended = false;
+		}
+		else {
+			ended = true;
+		}
+	}
+	return ended;
 }
