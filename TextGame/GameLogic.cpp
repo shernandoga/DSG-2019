@@ -62,7 +62,7 @@ void GameLogic::processInput()
 
 bool GameLogic::gameHasEnded()
 {
-	for (size_t i = 0; i < v; i++)
+	for (size_t i = 0; i < v.size(); i++)
 	{
 		if (v[i] == '?') {
 			ended = false;
