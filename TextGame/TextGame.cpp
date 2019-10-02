@@ -9,8 +9,9 @@
 int main()
 {
 	World world("file.csv");
-	Player player1, player2;
-	GameLogic gameLogic(player1, player2, world);
+	Player player1(world.getPlayer1ROW(), world.getPlayer1COL(), world);
+	Player player2(world.getPlayer2ROW(), world.getPlayer2COL(), world);
+	GameLogic gameLogic(player1,player2,world);
 
 	while (!gameLogic.gameHasEnded())
 	{
