@@ -147,3 +147,79 @@ void World::updateVector(char player, char newPosition)
 	m_cells[playerint] = ' ';
 	draw();
 }
+
+int World::getPlayer1ROW()
+{
+	int row = 0;
+	int count = -1;
+	for (int i = 0; i < m_cells.size; i++) 
+	{
+		count++;
+		if (count > m_width - 1)
+		{
+			count = 0;
+			row++;
+		}
+		if (m_cells[i]=='1')
+		{
+			return row;
+		}
+	}
+}
+
+int World::getPlayer2ROW()
+{
+	int row = 0;
+	int count = -1;
+	for (int i = 0; i < m_cells.size; i++)
+	{
+		count++;
+		if (count > m_width - 1)
+		{
+			count = 0;
+			row++;
+		}
+		if (m_cells[i] == '2')
+		{
+			return row;
+		}
+	}
+}
+
+int World::getPlayer1COL()
+{
+	int row = 0;
+	int count = -1;
+	for (int i = 0; i < m_cells.size; i++)
+	{
+		count++;
+		if (count > m_width - 1)
+		{
+			count = 0;
+			row++;
+		}
+		if (m_cells[i] == '1')
+		{
+			return count;
+		}
+	}
+}
+
+int World::getPlayer2COL()
+{
+	int row = 0;
+	int count = -1;
+	for (int i = 0; i < m_cells.size; i++)
+	{
+		count++;
+		if (count > m_width-1)
+		{
+			count = 0;
+			row++;
+		}
+		if (m_cells[i] == '2')
+		{
+			return count;
+		}
+	}
+}

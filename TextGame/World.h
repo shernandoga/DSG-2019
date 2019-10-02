@@ -21,6 +21,8 @@ public:
 	void draw();
 	string attemptMove(int oldx, int oldy, int newx, int newy);
 	vector<char>& getVector();
-
-	
+	int getPlayer1ROW();
+	int getPlayer1COL();
+	int getPlayer2ROW();
+	int getPlayer2COL();
 };
