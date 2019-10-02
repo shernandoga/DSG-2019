@@ -8,15 +8,19 @@ class World
 {
 	Timer m_timer;
 	vector <char> m_cells;
-	void drawMaze();
+	void updateVector(char player, char newPosition);
+	int m_heigth;
+	int m_width;
 
 
 public:
 	World(string nameFile);
 	~World();
 
+	void drawMaze();
 	void draw();
+	string attemptMove(int oldx, int oldy, int newx, int newy);
 	vector<char>& getVector();
-	string attemptMove(int oldx,int oldy,int newx,int newy);
-	void updateVector(char player,char newPosition);
+
+	
 };

@@ -9,7 +9,7 @@ class Player
 	World world;
 
 public:
-	Player(int x, int y, World world);
+	Player(int x, int y, World& world);
 	~Player();
 
 	void moveUp();

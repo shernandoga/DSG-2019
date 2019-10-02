@@ -21,25 +21,30 @@ World::World(std::string nameFile)
 
 	//TODO: initalize everything else
 	m_cells = vector<char>(0);
+	
+	//We try to read the file
+	char delimiter;
+	ifstream inputFile(nameFile, fstream::in);
+	if (inputFile.is_open())
+	{
+		inputFile >> m_heigth;
+		inputFile >> delimiter;
+		inputFile >> m_width;
+		inputFile >> delimiter;
+		inputFile >> delimiter;
 
-
-	//We randomly create a map to try the draw method
-	m_cells.push_back('#');
-	m_cells.push_back(' ');
-	m_cells.push_back(' ');
-	m_cells.push_back('?');
-	m_cells.push_back('#');
-	m_cells.push_back('#');
-	m_cells.push_back(' ');
-	m_cells.push_back('1');
-	m_cells.push_back('#');
-	m_cells.push_back(' ');
-	m_cells.push_back('?');
-	m_cells.push_back('2');
-	m_cells.push_back('#');
-	m_cells.push_back('?');
-	m_cells.push_back(' ');
-	m_cells.push_back(' ');
+		for (int row = 0; row < m_heigth; row++)
+		{		
+			for (int col = 0; col < m_width; col++)
+			{
+				inputFile >> m_cells[row*m_width+col];
+				inputFile >> delimiter;
+			}
+			inputFile >> delimiter;
+			inputFile >> delimiter;			
+		}
+		inputFile.close();
+	}
 }
 
 
@@ -64,11 +69,11 @@ void World::drawMaze()
 
 	//TODO: -draw the maze: walls and each of the cells
 	string map;
-	for (int i = 0; i < 4; i++) //Height
+	for (int i = 0; i < m_heigth; i++) //Height
 	{
-		for (int j = 0; j < 4; j++) //Width
+		for (int j = 0; j < m_width; j++) //Width
 		{
-			map = map + m_cells[i*4+j];
+			map = map + m_cells[i*m_width+j];
 		}
 		map = map + "\n";
 	}
@@ -84,11 +89,11 @@ vector <char>& World::getVector()
 }
 string World::attemptMove(int oldx, int oldy, int newx, int newy)
 {
-	if (newy * 4 + newx > m_cells.size()||newy<0||newx<0) {
+	if (newy * m_width + newx > m_cells.size()||newy<0||newx<0) {
 		return "NO";
 	}
-	char newPosition= m_cells[newy*4+newx];
-	char oldPosition= m_cells[oldy*4+oldx];
+	char newPosition= m_cells[newy*m_width+newx];
+	char oldPosition= m_cells[oldy*m_width +oldx];
 	
 	if(oldPosition=='1')
 	{
@@ -134,5 +139,5 @@ void World::updateVector(char player, char newPosition)
 	int newPositionint = newPosition - '0';
 	m_cells[newPositionint] = player;
 	m_cells[playerint] = ' ';
-
+	draw();
 }
