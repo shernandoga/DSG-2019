@@ -20,7 +20,7 @@ World::World(std::string nameFile)
 	m_timer.start();
 
 	//TODO: initalize everything else
-	m_cells = vector<char>(0);
+	
 	
 	//We try to read the file
 	char delimiter;
@@ -30,18 +30,24 @@ World::World(std::string nameFile)
 		inputFile >> m_heigth;
 		inputFile >> delimiter;
 		inputFile >> m_width;
-		inputFile >> delimiter;
-		inputFile >> delimiter;
+		m_cells = vector<char>(m_heigth*m_width);
+	
 
 		for (int row = 0; row < m_heigth; row++)
 		{		
 			for (int col = 0; col < m_width; col++)
 			{
-				inputFile >> m_cells[row*m_width+col];
-				inputFile >> delimiter;
+				if (col < m_width - 1)
+				{
+					inputFile >> m_cells[row*m_width + col];
+					inputFile >> delimiter;
+				}		
+				else
+				{
+					inputFile >> m_cells[row*m_width + col];
+				}
 			}
-			inputFile >> delimiter;
-			inputFile >> delimiter;			
+		
 		}
 		inputFile.close();
 	}
