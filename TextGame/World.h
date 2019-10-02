@@ -8,7 +8,7 @@ class World
 {
 	Timer m_timer;
 	vector <char> m_cells;
-	void updateVector(char player, char newPosition);
+	void updateVector(char oldcharacter, char newcharacter,int oldposition, int newposition);
 	int m_heigth;
 	int m_width;
 

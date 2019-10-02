@@ -100,6 +100,8 @@ string World::attemptMove(int oldx, int oldy, int newx, int newy)
 	}
 	char newPosition= m_cells[newy*m_width+newx];
 	char oldPosition= m_cells[oldy*m_width +oldx];
+	int oldP = oldy * m_width + oldx;
+	int newP = newy * m_width + newx;
 	
 	if(oldPosition=='1')
 	{
@@ -109,13 +111,15 @@ string World::attemptMove(int oldx, int oldy, int newx, int newy)
 		}
 		else if (newPosition=='?')
 		{
+			
+			updateVector(oldPosition, newPosition,oldP,newP);
 			return "COIN";
-			updateVector(oldPosition, newPosition);
 		}
 		else
 		{
+			
+			updateVector(oldPosition, newPosition,oldP,newP);
 			return "YES";
-			updateVector(oldPosition, newPosition);
 
 		}
 	}
@@ -127,19 +131,21 @@ string World::attemptMove(int oldx, int oldy, int newx, int newy)
 		}
 		else if (newPosition=='?')
 		{
+			
+			updateVector(oldPosition, newPosition,oldP,newP);
 			return "COIN";
-			updateVector(oldPosition, newPosition);
 
 		}
 		else
 		{
+			updateVector(oldPosition, newPosition,oldP,newP);
 			return "YES";
-			updateVector(oldPosition, newPosition);
+
 
 		}
 	}
 }
-void World::updateVector(char player, char newPosition)
+void World::updateVector(char oldcharacter, char newcharacter,int oldposition,int newposition)
 {
 	int playerint = player - '0';
 	int newPositionint = newPosition - '0';
@@ -152,7 +158,7 @@ int World::getPlayer1ROW()
 {
 	int row = 0;
 	int count = -1;
-	for (int i = 0; i < m_cells.size; i++) 
+	for (int i = 0; i < m_cells.size(); i++) 
 	{
 		count++;
 		if (count > m_width - 1)
@@ -171,7 +177,7 @@ int World::getPlayer2ROW()
 {
 	int row = 0;
 	int count = -1;
-	for (int i = 0; i < m_cells.size; i++)
+	for (int i = 0; i < m_cells.size(); i++)
 	{
 		count++;
 		if (count > m_width - 1)
@@ -190,7 +196,7 @@ int World::getPlayer1COL()
 {
 	int row = 0;
 	int count = -1;
-	for (int i = 0; i < m_cells.size; i++)
+	for (int i = 0; i < m_cells.size(); i++)
 	{
 		count++;
 		if (count > m_width - 1)
@@ -209,7 +215,7 @@ int World::getPlayer2COL()
 {
 	int row = 0;
 	int count = -1;
-	for (int i = 0; i < m_cells.size; i++)
+	for (int i = 0; i < m_cells.size(); i++)
 	{
 		count++;
 		if (count > m_width-1)

@@ -8,9 +8,9 @@
 
 int main()
 {
-	World world("file.csv");
-	Player player1(world.getPlayer1ROW(), world.getPlayer1COL(), world);
-	Player player2(world.getPlayer2ROW(), world.getPlayer2COL(), world);
+	World world("map.csv");
+	Player player1(world.getPlayer1COL(), world.getPlayer1ROW(), world);
+	Player player2(world.getPlayer2COL(), world.getPlayer2ROW(), world);
 	GameLogic gameLogic(player1,player2,world);
 
 	while (!gameLogic.gameHasEnded())
@@ -19,6 +19,8 @@ int main()
 
 		gameLogic.processInput();
 	}
+
+
 
     return 0;
 }

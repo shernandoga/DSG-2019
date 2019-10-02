@@ -66,12 +66,13 @@ bool GameLogic::gameHasEnded()
 	{
 		if (v[i] == '?') {
 			ended = false;
+			return ended;
 		}
 		else {
 			ended = true;
 		}
 	}
-	return ended;
+	return true;
 }
 
 void GameLogic::drawCoins()
