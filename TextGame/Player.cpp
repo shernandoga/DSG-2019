@@ -2,12 +2,12 @@
 #include "Player.h"
 #include "World.h"
 
-Player::Player(int x,int y, World pWorld)
+Player::Player(int x,int y, World& world)
+	: world(world)
 {
 	c_x=x;
 	c_y = y;
 	coins = 0;
-	world = pWorld;
 }
 
 
