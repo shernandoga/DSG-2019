@@ -54,6 +54,10 @@ World::World(std::string nameFile)
 }
 World::World(vector<char> vectormap)
 {
+	coinsP1 = 0;
+	coinsP2 = 0;
+	m_heigth=4;
+	m_width = 4;
 	m_cells = vector<char>(16);
 	for (int i = 0; i < vectormap.size(); i++)
 	{
