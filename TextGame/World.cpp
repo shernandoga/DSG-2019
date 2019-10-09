@@ -11,7 +11,6 @@
 #include <stdio.h>
 #include <istream>
 
-
 World::World(std::string nameFile)
 {
 	System::hideCursor();
@@ -53,7 +52,14 @@ World::World(std::string nameFile)
 		inputFile.close();
 	}
 }
-
+World::World(vector<char> vectormap)
+{
+	m_cells = vector<char>(16);
+	for (int i = 0; i < vectormap.size(); i++)
+	{
+		m_cells[i] = vectormap[i];
+	}
+}
 
 World::~World()
 {
@@ -229,6 +235,10 @@ int World::getPlayer2COL()
 		}
 	}
 
+}
+vector <char> World::getCells()
+{
+	return m_cells;
 }
 void World::setCoins(int m_coinsP1, int m_coinsP2)
 {
