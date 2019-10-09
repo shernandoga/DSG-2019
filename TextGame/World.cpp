@@ -20,7 +20,8 @@ World::World(std::string nameFile)
 	m_timer.start();
 
 	//TODO: initalize everything else
-	
+	coinsP1 = 0;
+	coinsP2 = 0;
 	
 	//We try to read the file
 	char delimiter;
@@ -65,14 +66,13 @@ void World::draw()
 
 	//TODO: -write the time elapsed since the beginning
 	//		-set the proper position/color
-	std::cout << m_timer.getElapsedTime() << "   ";
+	
 }
 
 
 void World::drawMaze()
 {
 	System::clear();
-
 	//TODO: -draw the maze: walls and each of the cells
 	string map;
 	for (int i = 0; i < m_heigth; i++) //Height
@@ -84,7 +84,9 @@ void World::drawMaze()
 		map = map + "\n";
 	}
 	std::cout << map;
-
+	std::cout << m_timer.getElapsedTime() << " milliseconds\n";
+	std::cout << "Player 1 has: "<<coinsP1<<"coin(s)\n" ;
+	std::cout <<  "Player 2 has: "<<coinsP2<<"coin(s)";
 	//we sleep for a while
 	std::this_thread::sleep_for(std::chrono::milliseconds(100));
 }
@@ -112,13 +114,13 @@ string World::attemptMove(int oldx, int oldy, int newx, int newy)
 		else if (newPosition=='?')
 		{
 			
-			updateVector(oldPosition, newPosition,oldP,newP);
+			updateVector(oldPosition,oldP,newP);
 			return "COIN";
 		}
 		else
 		{
 			
-			updateVector(oldPosition, newPosition,oldP,newP);
+			updateVector(oldPosition,oldP,newP);
 			return "YES";
 
 		}
@@ -132,26 +134,24 @@ string World::attemptMove(int oldx, int oldy, int newx, int newy)
 		else if (newPosition=='?')
 		{
 			
-			updateVector(oldPosition, newPosition,oldP,newP);
+			updateVector(oldPosition,oldP,newP);
 			return "COIN";
 
 		}
 		else
 		{
-			updateVector(oldPosition, newPosition,oldP,newP);
+			updateVector(oldPosition,oldP,newP);
 			return "YES";
 
 
 		}
 	}
 }
-void World::updateVector(char oldcharacter, char newcharacter,int oldposition,int newposition)
+void World::updateVector(char player,int oldposition,int newposition)
 {
-	int playerint = player - '0';
-	int newPositionint = newPosition - '0';
-	m_cells[newPositionint] = player;
-	m_cells[playerint] = ' ';
-	draw();
+
+	m_cells[newposition] = player;
+	m_cells[oldposition] = 'n';	
 }
 
 int World::getPlayer1ROW()
@@ -228,4 +228,12 @@ int World::getPlayer2COL()
 			return count;
 		}
 	}
+
 }
+void World::setCoins(int m_coinsP1, int m_coinsP2)
+{
+	coinsP1 = m_coinsP1;
+	coinsP2 = m_coinsP2;
+
+}
+

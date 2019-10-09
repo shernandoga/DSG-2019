@@ -4,7 +4,10 @@
 #include "stdafx.h"
 #include "World.h"
 #include "GameLogic.h"
-
+#include "System.h"
+#include "iostream"
+#include <chrono>
+#include <thread>
 
 int main()
 {
@@ -19,8 +22,23 @@ int main()
 
 		gameLogic.processInput();
 	}
+	System::clear();
+	if (player1.getcoin() > player2.getcoin())
+	{
+		std::cout << "U HAVE GUON PLAIER JUAN";
+	}
+	else if (player1.getcoin() < player2.getcoin())
+	{
+		std::cout << "U JAF WON PLAI ER TXU";
 
+	}
+	else
+	{
+		std::cout << "DRAW";
 
+	}
+	
+	std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
     return 0;
 }

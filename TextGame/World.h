@@ -8,9 +8,11 @@ class World
 {
 	Timer m_timer;
 	vector <char> m_cells;
-	void updateVector(char oldcharacter, char newcharacter,int oldposition, int newposition);
+	void updateVector(char player, int oldposition, int newposition);
 	int m_heigth;
 	int m_width;
+	int coinsP1;
+	int coinsP2;
 
 
 public:
@@ -25,4 +27,5 @@ public:
 	int getPlayer1COL();
 	int getPlayer2ROW();
 	int getPlayer2COL();
+	void setCoins(int m_coinsP1,int m_coinsP2);
 };

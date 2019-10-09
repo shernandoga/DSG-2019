@@ -24,7 +24,8 @@ void GameLogic::processInput()
 
 	while (System::keyHit())
 	{
-		char c = System::getNextKey();
+		char c = '*';
+		c = System::getNextKey();
 		switch (c)
 		{
 
@@ -55,13 +56,15 @@ void GameLogic::processInput()
 		case 27:
 			//'Esc' key pressed. Exit the game
 			return;
-			drawCoins();
+			
 		}
+		drawCoins();
 	}
 }
 
 bool GameLogic::gameHasEnded()
 {
+	v = m_world.getVector();
 	for (size_t i = 0; i < v.size(); i++)
 	{
 		if (v[i] == '?') {
@@ -77,6 +80,5 @@ bool GameLogic::gameHasEnded()
 
 void GameLogic::drawCoins()
 {
-	cout << "Player1 has: " << m_player1.getcoin() << ". \n";
-	cout << "Player2 has: " << m_player2.getcoin() << ".";
+	m_world.setCoins(m_player1.getcoin(), m_player2.getcoin());
 }

@@ -6,7 +6,7 @@ class Player
 	int c_x;
 	int c_y;
 	int coins;
-	World world;
+	World& world;
 
 public:
 	Player(int x, int y, World& world);

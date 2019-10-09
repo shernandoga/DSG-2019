@@ -7,8 +7,8 @@
 class GameLogic
 {
 
-	Player m_player1, m_player2;
-	World m_world;
+	Player &m_player1, &m_player2;
+	World &m_world;
 	bool ended;
 	vector<char> v;
 public:
