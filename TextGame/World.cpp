@@ -59,6 +59,10 @@ World::World(vector<char> vectormap)
 	{
 		m_cells[i] = vectormap[i];
 	}
+	coinsP1 = 0;
+	coinsP2 = 0;
+	m_heigth = 4;
+	m_width = 4;
 }
 
 World::~World()
@@ -246,4 +250,5 @@ void World::setCoins(int m_coinsP1, int m_coinsP2)
 	coinsP2 = m_coinsP2;
 
 }
+
 
