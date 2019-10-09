@@ -171,6 +171,7 @@
     </ClCompile>
     <ClCompile Include="testPlayer.cpp" />
     <ClCompile Include="unittest1.cpp" />
+    <ClCompile Include="WorldTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

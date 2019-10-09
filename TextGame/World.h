@@ -17,6 +17,7 @@ class World
 
 public:
 	World(string nameFile);
+	World(vector<char> vectormap);
 	~World();
 
 	void drawMaze();
@@ -28,4 +29,5 @@ public:
 	int getPlayer2ROW();
 	int getPlayer2COL();
 	void setCoins(int m_coinsP1,int m_coinsP2);
+	vector <char> World::getCells();
 };
