@@ -54,11 +54,19 @@ World::World(std::string nameFile)
 }
 World::World(vector<char> vectormap)
 {
+	coinsP1 = 0;
+	coinsP2 = 0;
+	m_heigth=4;
+	m_width = 4;
 	m_cells = vector<char>(16);
 	for (int i = 0; i < vectormap.size(); i++)
 	{
 		m_cells[i] = vectormap[i];
 	}
+	coinsP1 = 0;
+	coinsP2 = 0;
+	m_heigth = 4;
+	m_width = 4;
 }
 
 World::~World()
@@ -245,5 +253,13 @@ void World::setCoins(int m_coinsP1, int m_coinsP2)
 	coinsP1 = m_coinsP1;
 	coinsP2 = m_coinsP2;
 
+}
+int World::getCoinsP1()
+{
+	return coinsP1;
+}
+int World::getCoinsP2()
+{
+	return coinsP2;
 }
 

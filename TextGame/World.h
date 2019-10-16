@@ -30,4 +30,6 @@ public:
 	int getPlayer2COL();
 	void setCoins(int m_coinsP1,int m_coinsP2);
 	vector <char> World::getCells();
+	int getCoinsP1();
+	int getCoinsP2();
 };

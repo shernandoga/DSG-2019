@@ -15,12 +15,27 @@ namespace TextGameUTests
 			//We create the world and we try to move from the start(3,1) to the left(2,1)
 			//There is a coin so it should be able to move and the position on m_cells will be updated
 			vector<char>m_cells;
-			m_cells = vector<char>(16);
+			m_cells.push_back('#');
+			m_cells.push_back('n');
+			m_cells.push_back('n');
+			m_cells.push_back('?');
 
-			for (int i = 0; i < 16; i++)
-			{
-				m_cells[i] = 'n';
-			}
+			m_cells.push_back('#');
+			m_cells.push_back('#');
+			m_cells.push_back('?');
+			m_cells.push_back('1');
+
+			m_cells.push_back('#');
+			m_cells.push_back('n');
+			m_cells.push_back('?');
+			m_cells.push_back('2');
+
+			m_cells.push_back('#');
+			m_cells.push_back('?');
+			m_cells.push_back('n');
+			m_cells.push_back('n');
+
+
 			World world(m_cells);
 			world.attemptMove(3,1,2,1);
 			//m_cells is a vector which contains the map but keep in mind it has just 1 dimension
@@ -30,8 +45,13 @@ namespace TextGameUTests
 			char blank =cells[7];
 			Assert::AreEqual('1', player);
 			Assert::AreEqual('n', blank);
-
+			//Now we check if player 1 has a coin and player 2 has nothing
+			int coinsP1 = world.getCoinsP1();
+			int coinsP2 = world.getCoinsP2();
+			Assert::AreEqual(coinsP1, 1);
+			Assert::AreEqual(coinsP2, 0);
 		}
+		
 
 	};
 }
