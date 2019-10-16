@@ -56,7 +56,6 @@ void GameLogic::processInput()
 		case 27:
 			//'Esc' key pressed. Exit the game
 			return;
-			
 		}
 		drawCoins();
 	}
