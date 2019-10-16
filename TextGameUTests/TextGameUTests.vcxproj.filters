@@ -35,9 +35,6 @@
     <ClCompile Include="..\TextGame\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\TextGame\stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\TextGame\System.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

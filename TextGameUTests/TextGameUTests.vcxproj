@@ -158,7 +158,6 @@
   <ItemGroup>
     <ClCompile Include="..\TextGame\GameLogic.cpp" />
     <ClCompile Include="..\TextGame\Player.cpp" />
-    <ClCompile Include="..\TextGame\stdafx.cpp" />
     <ClCompile Include="..\TextGame\System.cpp" />
     <ClCompile Include="..\TextGame\TextGame.cpp" />
     <ClCompile Include="..\TextGame\Timer.cpp" />
