@@ -45,8 +45,13 @@ namespace TextGameUTests
 			char blank =cells[7];
 			Assert::AreEqual('1', player);
 			Assert::AreEqual('n', blank);
-
+			//Now we check if player 1 has a coin and player 2 has nothing
+			int coinsP1 = world.getCoinsP1();
+			int coinsP2 = world.getCoinsP2();
+			Assert::AreEqual(coinsP1, 1);
+			Assert::AreEqual(coinsP2, 0);
 		}
+		
 
 	};
 }
