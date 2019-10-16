@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <istream>
 
+#include "../SoundManager/SoundManager.h" //relative path to the main header
+
 World::World(std::string nameFile)
 {
 	System::hideCursor();
@@ -111,6 +113,7 @@ vector <char>& World::getVector()
 }
 string World::attemptMove(int oldx, int oldy, int newx, int newy)
 {
+	SoundManager* pSoundManager = SoundManager::getInstance();
 	if (newy * m_width + newx > m_cells.size()||newy<0||newx<0) {
 		return "NO";
 	}
@@ -129,6 +132,7 @@ string World::attemptMove(int oldx, int oldy, int newx, int newy)
 		{
 			
 			updateVector(oldPosition,oldP,newP);
+			pSoundManager->play("../snd/moneda.wav", 0.9, 0, 0, 0, 0, 0, 0);
 			return "COIN";
 		}
 		else
@@ -149,6 +153,7 @@ string World::attemptMove(int oldx, int oldy, int newx, int newy)
 		{
 			
 			updateVector(oldPosition,oldP,newP);
+			pSoundManager->play("../snd/moneda.wav", 0.9, 0, 0, 0, 0, 0, 0);
 			return "COIN";
 
 		}

@@ -177,6 +177,11 @@
     </ClCompile>
     <ClCompile Include="TextGame.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SoundManager\SoundManager.vcxproj">
+      <Project>{a57f9d62-1d00-4d1c-a5c3-bb3710edd95b}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
