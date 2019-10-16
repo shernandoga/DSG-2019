@@ -50,7 +50,7 @@
     <ClCompile Include="testPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\TextGame\TextGame.cpp">
+    <ClCompile Include="TestGameLogic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
