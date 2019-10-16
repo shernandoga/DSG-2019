@@ -250,5 +250,12 @@ void World::setCoins(int m_coinsP1, int m_coinsP2)
 	coinsP2 = m_coinsP2;
 
 }
-
+int World::getCoinsP1()
+{
+	return coinsP1;
+}
+int World::getCoinsP2()
+{
+	return coinsP2;
+}
 
