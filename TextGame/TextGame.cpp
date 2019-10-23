@@ -20,11 +20,9 @@ int main()
 	SoundManager* pSoundManager = SoundManager::getInstance();
 	//pSoundManager->load("../snd/soundtrack-01.wav");
 	pSoundManager->load("../snd/sonido.wav");
-	//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 	System::clear();
 	cout << "Loading....";
 	pSoundManager->load("../snd/moneda.wav");
-	//std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 	System::clear();
 	cout << "Loading........";
 	pSoundManager->load("../snd/ko.wav");
@@ -40,7 +38,12 @@ int main()
 		cout << "Please make your selection\n";
 		cout << "1 - Start game\n";
 		cout << "2 - About\n";
-		cout << "3 - Quit\n";
+		cout << "3 - Quit\n\n";
+		cout << "\tM        M      I       N     N      EEEEEEEE\n";
+		cout << "\tM M    M M	I	N N   N	     E\n";
+		cout << "\tM  M  M  M	I	N  N  N      EEEE\n";
+		cout << "\tM   M    M	I	N   N N      E\n";
+		cout << "\tM        M  	I	N     N      EEEEEEEE\n";
 		std::cout << "\n\t                    ###  \n";
 		std::cout << "\t                   # ,#  \n";
 		std::cout << "\t                  # ,:#  \n";
@@ -74,8 +77,8 @@ int main()
 			cout << "This is a local 1V1 game in which you have to get all the coins before your opponent does.\n";
 			cout << "PLAYER 1 --> W/A/S/D\n";
 			cout << "PLAYER 1 --> 5/1/2/3\n";
-			cout << "Game done in C++ in the subject -DESARROLLO DE SISTEMAS GRÁFICOS-\n";
-			cout << "Copyright © 2000-2019 Interactive Programmers Community - Todos los derechos reservados\n";
+			cout << "Game done in C++ in the subject -DESARROLLO DE SISTEMAS GRAFICOS-\n\n";
+			cout << "Copyright © 2000-2019 Interactive Programmers Community - Todos los derechos reservados\n\n";
 			cout << "Press any key to continue";
 			char ch;
 			ch = _getch();
