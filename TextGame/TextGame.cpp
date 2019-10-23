@@ -41,7 +41,28 @@ int main()
 		cout << "1 - Start game\n";
 		cout << "2 - About\n";
 		cout << "3 - Quit\n";
-		cout << "Selection: ";
+		std::cout << "\n\t                    ###  \n";
+		std::cout << "\t                   # ,#  \n";
+		std::cout << "\t                  # ,:#  \n";
+		std::cout << "\t                 # ,:#\n";
+		std::cout << "\t                # ,:#    \n";
+		std::cout << "\t               # ,:#\n";
+		std::cout << "\t              # ,:#  \n";
+		std::cout << "\t             # ,:#  \n";
+		std::cout << "\t            # ,:#     \n";
+		std::cout << "\t           # ,:#   \n";
+		std::cout << "\t          # ,:# \n";
+		std::cout << "\t     #   # ,:#   \n";
+		std::cout << "\t    #;# # ;:#   \n";
+		std::cout << "\t     #;# ,:# \n";
+		std::cout << "\t      #;#:#   \n";
+		std::cout << "\t      ##;# \n";
+		std::cout << "\t     #G##;#  \n";
+		std::cout << "\t    #G#  #;#      \n";
+		std::cout << "\t   #G#    # \n";
+		std::cout << "\t  #;#\n";
+		std::cout << "\t   # \n";
+		cout << "\nSelection: ";
 		cin >> choice;
 		switch (choice)
 		{
