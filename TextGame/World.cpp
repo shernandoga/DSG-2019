@@ -11,6 +11,9 @@
 #include <stdio.h>
 #include <istream>
 
+#include <iostream> //Text color
+#include <windows.h>
+
 #include "../SoundManager/SoundManager.h" //relative path to the main header
 
 World::World(std::string nameFile)
@@ -90,17 +93,19 @@ void World::drawMaze()
 {
 	System::clear();
 	//TODO: -draw the maze: walls and each of the cells
-	string map;
+	string map="\t";
 	for (int i = 0; i < m_heigth; i++) //Height
 	{
 		for (int j = 0; j < m_width; j++) //Width
 		{
 			map = map + m_cells[i*m_width+j];
 		}
-		map = map + "\n";
+		map = map + "\n\t";
 	}
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | BACKGROUND_BLUE);
 	std::cout << map;
-	std::cout << m_timer.getElapsedTime() << " milliseconds\n";
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | BACKGROUND_BLUE);
+	std::cout << "\n" << m_timer.getElapsedTime() << " milliseconds\n\n";
 	std::cout << "Player 1 has: "<<coinsP1<<"coin(s)\n" ;
 	std::cout <<  "Player 2 has: "<<coinsP2<<"coin(s)";
 	//we sleep for a while
